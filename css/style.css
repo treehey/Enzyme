@@ -542,6 +542,10 @@ div.theme-dark .hero-caption {
     box-shadow: var(--shadow-lifted);
 }
 
+.card p {
+    padding-bottom: 10px;
+}
+
 /* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
@@ -678,8 +682,9 @@ div.theme-dark .hero-caption {
     position: absolute;
     top: 0;
     left: 0;
+    height: 100%;
     width: 980px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.2),transparent 30%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4),transparent 30%);
 }
 
 .tv-plus-gallery .gallery-item:hover {
@@ -698,7 +703,7 @@ div.theme-dark .hero-caption {
     position: absolute;
     bottom: 45px;
     left: 47px;
-    font-size: 20px;
+    font-size: 25px;
     line-height: 1.1;
     font-weight: 400;
     letter-spacing: 0em;
@@ -795,8 +800,8 @@ div.theme-dark .hero-caption {
 } */
 
 .gallery-arrow svg {
-    /* width: 16px;
-    height: 16px; */
+    width: 25px;
+    height: 25px;
     fill: none;
     stroke: white;
     stroke-width: 1.5;
