@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 16 Pro - Experience the Future</title>
+    <style>
+        :root {
+            --primary-bg: #000;
+            --text-primary: #fff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --accent-color: #6e6eff;
+            --gradient-start: #4f46e5;
+            --gradient-end: #9333ea;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 48px;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 48px;
+            list-style: none;
+        }
+
+        .nav-logo {
+            color: var(--text-primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-search svg {
+            fill: var(--text-secondary);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            z-index: 2;
+            padding: 0 20px;
+        }
+
+        .hero-headline {
+            font-size: 80px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subhead {
+            font-size: 24px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        .particle-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .section-headline {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-subhead {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .progress-ring {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 20px auto 0;
+        }
+
+        .progress-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .progress-circle::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--gradient-start);
+            border-right-color: var(--gradient-end);
+            animation: progressAnimation 2s ease-out forwards;
+        }
+
+        .progress-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        /* Timeline Section */
+        /* .timeline-section {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--primary-bg), #0a0a1a);
+        }
+
+        .timeline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .timeline-track {
+            position: relative;
+            margin: 60px 0;
+        }
+
+        .timeline-track::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+        }
+
+        .step-set {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+        }
+
+        .timeline-step {
+            flex: 1;
+            max-width: 240px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .step-visual {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-animation {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .step-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, var(--gradient-start), transparent 70%);
+            opacity: 0.5;
+            transform: scale(0);
+            animation: pulseAnimation 4s infinite;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom right, var(--gradient-start), var(--gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .timeline-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background-color: var(--accent-color);
+            transform: scale(1.3);
+        } */
+
+        /* Compare Section */
+        .compare-section {
+            padding: 100px 0;
+        }
+
+        .compare-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .compare-toggle {
+            display: inline-flex;
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            margin-bottom: 40px;
+        }
+
+        .toggle-option {
+            padding: 10px 30px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-option.active {
+            color: var(--text-primary);
+        }
+
+        .toggle-highlight {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .compare-content {
+            position: relative;
+            height: 500px;
+            margin-top: 40px;
+        }
+
+        .compare-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+
+        .compare-card.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .compare-visual {
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-traditional,
+        .product-new {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-traditional::before,
+        .product-new::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .product-traditional::before {
+            background: rgba(59, 130, 246, 0.3);
+        }
+
+        .product-new::before {
+            background: rgba(99, 102, 241, 0.3);
+        }
+
+        .stats-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .compare-list {
+            list-style: none;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .compare-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .compare-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* Animations */
+        @keyframes progressAnimation {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(var(--rotation-deg, 320deg));
+            }
+        }
+
+        @keyframes pulseAnimation {
+            0% {
+                transform: scale(0);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(0);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes floatAnimation {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, var(--gradient-start), transparent);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: floatAnimation 8s infinite;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-headline {
+                font-size: 60px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step-set {
+                flex-direction: column;
+                gap: 50px;
+            }
+
+            .timeline-track::before {
+                left: 60px;
+                right: 60px;
+                top: 0;
+                bottom: 0;
+                width: 1px;
+                height: auto;
+            }
+
+            .timeline-step {
+                display: flex;
+                align-items: center;
+                text-align: left;
+                max-width: 100%;
+            }
+
+            .step-visual {
+                margin: 0 30px 0 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-headline {
+                font-size: 48px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <ul class="nav-content">
+                <li class="nav-item">
+                    <a href="#" class="nav-logo">面包科学</a>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-links">
+                        <a href="#features" class="nav-link">酶制剂</a>
+                        <a href="#process" class="nav-link">工艺流程</a>
+                        <a href="#compare" class="nav-link">用量对比</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主视觉 -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <h1 class="hero-headline">
+                <span class="gradient-text">面包科学</span>
+                <span class="gradient-text">酶制剂技术</span>
+            </h1>
+            <p class="hero-subhead">优化发酵 • 改善质地 • 延长保鲜</p>
+        </div>
+        <div class="particle-background" id="particleContainer"></div>
+    </section>
+
+    <!-- 核心酶制剂 -->
+    <section class="features-section" id="features">
+        <div class="features-container">
+            <h2 class="section-headline">核心酶制剂</h2>
+            <p class="section-subhead">面包品质的关键改良剂</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🍞</div>
+                    <h3 class="feature-title">α-淀粉酶</h3>
+                    <p class="feature-description">最佳用量提升比容15%<br>延缓老化时间达72小时</p>
+                    <div class="progress-ring" data-percent="95">
+                        <div class="progress-circle"></div>
+                        <span class="progress-value">95%</span>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🧪</div>
+                    <h3 class="feature-title">脂肪酶</h3>
+                    <p class="feature-description">提升面团延展性23%<br>降低硬化率40%</p>
+                    <div class="progress-ring" data-percent="88">
+                        <div class="progress-circle"></div>
+                        <span class="progress-value">88%</span>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3 class="feature-title">复合酶</h3>
+                    <p class="feature-description">协同效应提升品质评分27%<br>减少麸皮劣化效果</p>
+                    <div class="progress-ring" data-percent="92">
+                        <div class="progress-circle"></div>
+                        <span class="progress-value">92%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工艺流程 -->
+    <!-- <section class="timeline-section" id="process">
+        <div class="timeline-container">
+            <h2 class="section-headline">酶制剂应用流程</h2>
+            <p class="section-subhead">从原料到成品的科学控制</p>
+
+            <div class="timeline-track">
+                <ul class="step-set">
+                    <li class="timeline-step">
+                        <div class="step-visual">
+                            <div class="step-animation"></div>
+                            <span class="step-number">1</span>
+                        </div>
+                        <h3 class="step-title">原料预处理</h3>
+                        <p class="step-desc">添加淀粉酶优化面粉糖化</p>
+                    </li>
+
+                    <li class="timeline-step">
+                        <div class="step-visual">
+                            <div class="step-animation"></div>
+                            <span class="step-number">2</span>
+                        </div>
+                        <h3 class="step-title">面团调制</h3>
+                        <p class="step-desc">脂肪酶改善延展性</p>
+                    </li>
+
+                    <li class="timeline-step">
+                        <div class="step-visual">
+                            <div class="step-animation"></div>
+                            <span class="step-number">3</span>
+                        </div>
+                        <h3 class="step-title">发酵控制</h3>
+                        <p class="step-desc">葡萄糖氧化酶强化面筋</p>
+                    </li>
+
+                    <li class="timeline-step">
+                        <div class="step-visual">
+                            <div class="step-animation"></div>
+                            <span class="step-number">4</span>
+                        </div>
+                        <h3 class="step-title">烘焙优化</h3>
+                        <p class="step-desc">复合酶协同抗老化</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="timeline-indicator">
+                <div class="indicator-dot active"></div>
+                <div class="indicator-dot"></div>
+                <div class="indicator-dot"></div>
+                <div class="indicator-dot"></div>
+            </div>
+        </div>
+        </div>
+    </section> -->
+    <style>
+        /* Timeline Section */
+        .timeline-section {
+            padding: 60px 0;
+            background: linear-gradient(to bottom, var(--primary-bg), #2a1f0c);
+        }
+
+        .timeline-container {
+            /* max-width: 1200px; */
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .section-headline {
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .section-subhead {
+            font-size: 22px;
+            color: #6e6e73;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* 时间轴轨道 */
+        .timeline-track {
+            /* display: flex;
+            gap: 40px; */
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        /* Card Slider */
+        .step-set {
+            display: grid;
+            grid-auto-flow: column;
+            width: 100%;
+            grid-gap: 24px;
+            grid-template-columns: unset;
+            grid-auto-columns: 1fr;
+            /* padding: 0 10%; */
+            width: -moz-fit-content;
+            width: fit-content;
+            scroll-snap-type: x mandatory;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 20px;
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .step-set::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari */
+        }
+
+        .timeline-step {
+            scroll-snap-align: center;
+            flex: 0 0 70%;
+            max-width: 600px;
+            min-width: 600px;
+            transition: transform 0.4s ease;
+        }
+
+        /* Subtle scaling for centered card */
+        .timeline-step.active {
+            /* transform: scale(1.05); */
+        }
+
+        .step-visual {
+            width: 100%;
+            height: 320px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 40px;
+            font-weight: 600;
+            color: #fff;
+            opacity: 0.8;
+        }
+
+        .step-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 16px 0 8px;
+        }
+
+        .step-desc {
+            font-size: 18px;
+            color: #6e6e73;
+            line-height: 1.4;
+        }
+
+        /* 进度指示器 */
+        .timeline-indicator-background {
+            min-height: 56px;
+            -webkit-backdrop-filter: blur(7px);
+            backdrop-filter: blur(7px);
+            --aap-background-color: rgba(66, 66, 69, 0.7);
+            --aap-inner-glow-color: rgba(232, 232, 237, 0.11);
+            background-color: var(--aap-background-color);
+            border-radius: 32px;
+            box-shadow: inset 0 0 1px var(--aap-inner-glow-color);
+            color: var(--aap-text-color);
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            justify-content: space-between;
+            pointer-events: auto;
+            opacity: 1;
+            position: sticky;
+            margin-bottom: 10px;
+            margin-top: 30px;
+            z-index: 1;
+            bottom: 30px;
+            will-change: transform;
+            width: auto;
+            justify-self: center;
+        }
+
+        .timeline-indicator {
+            padding: 0 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            --dotnav-count: 4;
+            --dot-width-total: calc((var(--dotnav-count) - 1)* 24px);
+            --progress-width-total: calc(24px + 8px* 2);
+            min-width: calc(var(--dot-width-total) + var(--progress-width-total));
+        }
+
+        .indicator-dot {
+            width: 8px;
+            height: 8px;
+            /* background: rgba(0, 0, 0, 0.1); */
+            background-color: rgba(245, 245, 247, 0.8);
+            ;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .indicator-dot.active {
+            --asp-primary: #0071E3;
+            background: var(--asp-primary);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .section-headline {
+                font-size: 36px;
+            }
+
+            .section-subhead {
+                font-size: 18px;
+            }
+
+            .step-set {
+                /* padding: 0 5%; */
+            }
+
+            .timeline-step {
+                flex: 0 0 85%;
+                min-width: 280px;
+            }
+
+            .step-visual {
+                height: 280px;
+            }
+
+            .step-title {
+                font-size: 20px;
+            }
+
+            .step-desc {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .timeline-step {
+                flex: 0 0 90%;
+            }
+
+            .step-visual {
+                height: 240px;
+            }
+        }
+    </style>
+
+    <section class="timeline-section" id="process">
+        <div class="timeline-container">
+            <h2 class="section-headline">酶制剂应用流程</h2>
+            <p class="section-subhead">从原料到成品的科学控制</p>
+
+            <div class="timeline-track">
+                <ul class="step-set">
+                    <li class="timeline-step">
+                        <div class="step-visual">
+                            <div class="step-animation"></div>
+                            <span class="step-number">1</span>
+                        </div>
+                        <h3 class="step-title">原料预处理</h3>
+                        <p class="step-desc">添加淀粉酶优化面粉糖化</p>
+                    </li>
+
+                    <li class="timeline-step">
+                        <div class="step-visual">
+                            <div class="step-animation"></div>
+                            <span class="step-number">2</span>
+                        </div>
+                        <h3 class="step-title">面团调制</h3>
+                        <p class="step-desc">脂肪酶改善延展性</p>
+                    </li>
+
+                    <li class="timeline-step">
+                        <div class="step-visual">
+                            <div class="step-animation"></div>
+                            <span class="step-number">3</span>
+                        </div>
+                        <h3 class="step-title">发酵控制</h3>
+                        <p class="step-desc">葡萄糖氧化酶强化面筋</p>
+                    </li>
+
+                    <li class="timeline-step">
+                        <div class="step-visual">
+                            <div class="step-animation"></div>
+                            <span class="step-number">4</span>
+                        </div>
+                        <h3 class="step-title">烘焙优化</h3>
+                        <p class="step-desc">复合酶协同抗老化</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 进度指示器 -->
+            <div class="timeline-indicator-background">
+                <div class="timeline-indicator">
+                    <div class="indicator-dot active"></div>
+                    <div class="indicator-dot"></div>
+                    <div class="indicator-dot"></div>
+                    <div class="indicator-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const slider = document.querySelector('.step-set');
+        const steps = document.querySelectorAll('.timeline-step');
+        const dots = document.querySelectorAll('.indicator-dot');
+        const timeline = document.querySelector('.timeline-track');
+        let currentIndex = 0;
+        let padding = 0;
+        let autoplayInterval = null;
+        const autoplayDelay = 5000; // 5 seconds per slide
+        const resumeDelay = 3000; // Resume autoplay 3 seconds after interaction
+
+        // Debounce function to limit how often a function is called
+        const debounce = (func, wait) => {
+            let timeout;
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        };
+
+        // Calculate and set padding to center cards
+        const updateSliderPadding = () => {
+            const viewportWidth = window.innerWidth;
+            const firstStep = steps[0];
+            const stepWidth = firstStep.getBoundingClientRect().width;
+            // Calculate padding: (viewport width - card width) / 2
+            padding = Math.max((viewportWidth - stepWidth) / 2, 0); // Prevent negative padding
+            slider.style.padding = `0px ${padding}px`;
+            // slider.style.paddingRight = `${padding}px`;
+        };
+
+        // Update active dot and card based on scroll position
+        const updateActiveState = () => {
+            const scrollPos = timeline.scrollLeft;
+            const stepWidth = timeline.children[0].children[0].offsetWidth + 24;
+            const activeIndex = Math.round(scrollPos / stepWidth);
+
+            currentIndex = activeIndex;
+
+            // Update active dot
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === activeIndex);
+            });
+
+            // Update active card (for scaling)
+            steps.forEach((step, index) => {
+                step.classList.toggle('active', index === activeIndex);
+            });
+        };
+
+        // Scroll to a specific index
+        const scrollToIndex = (index) => {
+            const step = steps[index];
+            const sliderRect = slider.getBoundingClientRect();
+            const stepRect = step.getBoundingClientRect();
+            // const scrollPosition = stepRect.left - sliderRect.left + slider.scrollLeft - (sliderRect.width - stepRect.width) / 2;
+            const scrollPosition = index * (steps[0].offsetWidth + 24);
+            timeline.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+            // updateActiveState();
+        };
+
+        // Start autoplay
+        const startAutoplay = () => {
+            stopAutoplay(); // Clear any existing interval
+            autoplayInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % steps.length; // Loop back to 0
+                scrollToIndex(currentIndex);
+            }, autoplayDelay);
+        };
+
+        // Stop autoplay
+        const stopAutoplay = () => {
+            if (autoplayInterval) {
+                clearInterval(autoplayInterval);
+                autoplayInterval = null;
+            }
+        };
+
+        // Resume autoplay after a delay
+        const resumeAutoplay = () => {
+            stopAutoplay();
+            setTimeout(startAutoplay, resumeDelay);
+        };
+
+        // Handle scroll event
+        timeline.addEventListener('scroll', () => {
+            updateActiveState();
+        });
+
+        // Handle dot clicks
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopAutoplay();
+                currentIndex = index;
+                scrollToIndex(currentIndex);
+                resumeAutoplay();
+            });
+        });
+
+        // Pause autoplay on user interaction
+        ['touchstart', 'mousedown', 'scroll'].forEach((event) => {
+            timeline.addEventListener(event, () => {
+                stopAutoplay();
+                resumeAutoplay();
+            });
+        });
+
+        // Handle window resize to re-center active card
+        window.addEventListener('resize', () => {
+            const activeStep = document.querySelector('.timeline-step.active');
+            if (activeStep) {
+                const index = Array.from(steps).indexOf(activeStep);
+                scrollToIndex(index);
+            }
+        });
+
+        // Initialize: Set padding, center first card, and start autoplay
+        const initializeSlider = () => {
+            updateSliderPadding();
+            scrollToIndex(0); // Center the first card
+            updateActiveState();
+            startAutoplay();
+        };
+
+        // Run initialization after DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializeSlider);
+    </script>
+
+    <!-- 用量对比 -->
+    <section class="compare-section" id="compare">
+        <div class="compare-container">
+            <h2 class="section-headline">用量控制对比</h2>
+            <p class="section-subhead">精准配方的科学依据</p>
+
+            <div class="compare-toggle">
+                <button class="toggle-option active">用量不足</button>
+                <button class="toggle-option">过量使用</button>
+                <div class="toggle-highlight"></div>
+            </div>
+
+            <div class="compare-content">
+                <div class="compare-card active">
+                    <div class="compare-visual">
+                        <div class="product-traditional"></div>
+                        <div class="stats-overlay">
+                            <div class="stat-item">
+                                <span class="stat-value">-30%</span>
+                                <span class="stat-label">比容下降</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">+50%</span>
+                                <span class="stat-label">老化速度</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="compare-list">
+                        <li>淀粉酶不足导致发酵时间延长</li>
+                        <li>脂肪酶缺乏引发组织硬化</li>
+                        <li>蛋白酶过少造成口感僵硬</li>
+                    </ul>
+                </div>
+
+                <div class="compare-card">
+                    <div class="compare-visual">
+                        <div class="product-new"></div>
+                        <div class="stats-overlay">
+                            <div class="stat-item">
+                                <span class="stat-value">-25%</span>
+                                <span class="stat-label">体积缩小</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">+40%</span>
+                                <span class="stat-label">异味风险</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="compare-list">
+                        <li>淀粉酶过量导致内部发黏</li>
+                        <li>脂肪酶过多产生分解异味</li>
+                        <li>蛋白酶过量破坏面筋结构</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Create background particles
+        function createParticles() {
+            const container = document.getElementById('particleContainer');
+            const particleCount = 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Random size between 50px and 200px
+                const size = Math.random() * 150 + 50;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Random position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                particle.style.left = `${left}%`;
+                particle.style.top = `${top}%`;
+
+                // Random animation delay
+                particle.style.animationDelay = `${Math.random() * 8}s`;
+
+                container.appendChild(particle);
+            }
+        }
+
+        // Set progress rings
+        function setProgressRings() {
+            const rings = document.querySelectorAll('.progress-ring');
+            rings.forEach(ring => {
+                const percent = parseInt(ring.dataset.percent);
+                const circle = ring.querySelector('.progress-circle');
+                const degrees = (percent / 100) * 360;
+                circle.style.setProperty('--rotation-deg', `${degrees}deg`);
+            });
+        }
+
+        // Toggle compare cards
+        function setupCompareToggle() {
+            const toggleButtons = document.querySelectorAll('.toggle-option');
+            const highlight = document.querySelector('.toggle-highlight');
+            const cards = document.querySelectorAll('.compare-card');
+
+            toggleButtons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    // Update toggle buttons
+                    toggleButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Move highlight
+                    highlight.style.transform = `translateX(${index * 100}%)`;
+
+                    // Show correct card
+                    cards.forEach(card => card.classList.remove('active'));
+                    cards[index].classList.add('active');
+                });
+            });
+        }
+
+        // Timeline indicator
+        function setupTimelineIndicator() {
+            const dots = document.querySelectorAll('.indicator-dot');
+            let activeIndex = 0;
+
+            // Cycle through dots every 3 seconds
+            setInterval(() => {
+                dots.forEach(dot => dot.classList.remove('active'));
+                activeIndex = (activeIndex + 1) % dots.length;
+                dots[activeIndex].classList.add('active');
+            }, 3000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            setProgressRings();
+            setupCompareToggle();
+            // setupTimelineIndicator();
+        });
+    </script>
+</body>
+
+</html>

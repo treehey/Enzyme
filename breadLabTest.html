@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 在<head>中添加 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <title>面包酶实验室</title>
+    <style>
+        /* 专业实验室样式 */
+        :root {
+            --primary-color: #FF9500;
+            --secondary-color: #34C759;
+            --danger-color: #FF3B30;
+            --bg-color: #F5F5F7;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-primary: #1D1D1F;
+            --text-secondary: #86868B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-primary);
+            font-family: -apple-system, "SF Pro Display", system-ui;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        header h1 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        /* 模式切换 */
+.mode-switch {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.mode-btn {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid #D1D1D6;
+  background: transparent;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.mode-btn.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(180deg, #f5f5f7 0%, #fff 100%);
+        }
+
+        .hero h2 {
+            font-size: 56px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ff9500, #ff2d55);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            font-size: 24px;
+            font-weight: 400;
+            max-width: 600px;
+            margin-bottom: 40px;
+            color: #86868b;
+        }
+
+        .start-button {
+            background: linear-gradient(90deg, #ff9500, #ff2d55);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .start-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 45, 85, 0.2);
+        }
+
+        .lab-container {
+            /* display: none; */
+            min-height: 100vh;
+            padding-top: 48px;
+        }
+
+        .enzyme-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 20px;
+        }
+
+        .enzyme-card {
+            background: white;
+            width: 280px;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .enzyme-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .enzyme-icon {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(120deg, #ff9500, #ff3b30);
+        }
+
+        .enzyme-icon img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .param-range {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  padding: 4px 8px;
+  background: rgba(134,134,139,0.1);
+  border-radius: 6px;
+}
+
+        .enzyme-info {
+            padding: 20px;
+        }
+
+        .enzyme-info h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .enzyme-info p {
+            font-size: 14px;
+            color: #86868b;
+            margin-bottom: 16px;
+            height: 60px;
+        }
+
+        .slider-container {
+            margin-bottom: 10px;
+        }
+
+        .slider-container label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .slider-container label span {
+            color: #ff3b30;
+            font-weight: 600;
+        }
+
+        .slider {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 6px;
+            border-radius: 3px;
+            background: #e0e0e0;
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ff3b30;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 发酵控制面板 */
+.fermentation-controls {
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+.control-card {
+  background: var(--card-bg);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+}
+
+.param-group {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.param-group label {
+  width: 120px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.param-group input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #E0E0E6;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.8);
+  font-size: 16px;
+}
+
+/* 3D面包容器 */
+.bread-container-3d {
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+#bread-3d {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* 数据分析面板 */
+.analytics-panel {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+#radar-chart {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+}
+
+.reference-box {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+}
+
+.reference-box h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: var(--text-primary);
+}
+
+#reference-list {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+        .bread-preview {
+            margin: 0 auto;
+            max-width: 1000px;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bread-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin-bottom: 30px;
+        }
+
+        .bread-cross-section {
+            width: 400px;
+            height: 400px;
+            border-radius: 24px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        .bread-status {
+            background-color: white;
+            padding: 30px;
+            border-radius: 18px;
+            width: 100%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .status-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .status-message {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #86868b;
+            margin-bottom: 20px;
+        }
+
+        .status-effects {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .status-effect {
+            text-align: center;
+            width: 100px;
+        }
+
+        .effect-value {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ff9500, #ff2d55);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .effect-label {
+            font-size: 14px;
+            color: #86868b;
+        }
+
+        .bake-button {
+            background: linear-gradient(90deg, #ff9500, #ff2d55);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bake-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 45, 85, 0.2);
+        }
+
+        .bake-button:disabled {
+            background: #e0e0e0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .knowledge-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 40px auto;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .knowledge-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+        }
+
+        .knowledge-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #86868b;
+            margin-bottom: 20px;
+        }
+
+        .microscope-view {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .microscope-container {
+            width: 70%;
+            max-width: 800px;
+            background-color: #f5f5f7;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .microscope-header {
+            background: linear-gradient(90deg, #ff9500, #ff2d55);
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .microscope-header h3 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .microscope-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .microscope-canvas {
+            width: 100%;
+            height: 300px;
+            background-color: #000;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .microscope-particle {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .close-microscope {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .microscope-info {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            width: 100%;
+        }
+
+        .microscope-info p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #1d1d1f;
+        }
+
+        .experiment-results {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 150;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .results-container {
+            width: 90%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(50px);
+            transition: transform 0.5s ease;
+        }
+
+        .results-header {
+            background: linear-gradient(90deg, #ff9500, #ff2d55);
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .results-header h3 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .results-content {
+            padding: 30px;
+        }
+
+        .results-summary {
+            margin-bottom: 30px;
+        }
+
+        .results-summary h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .results-summary p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #86868b;
+        }
+
+        .results-details {
+            margin-bottom: 30px;
+        }
+
+        .details-card {
+            background-color: #f5f5f7;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .details-card h5 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #1d1d1f;
+        }
+
+        .details-card p {
+            font-size: 14px;
+            color: #86868b;
+            line-height: 1.5;
+        }
+
+        .results-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .results-button {
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .retry-button {
+            background: linear-gradient(90deg, #ff9500, #ff2d55);
+            color: white;
+            border: none;
+        }
+
+        .retry-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 45, 85, 0.2);
+        }
+
+        .share-button {
+            background-color: transparent;
+            color: #ff3b30;
+            border: 2px solid #ff3b30;
+        }
+
+        .share-button:hover {
+            background-color: rgba(255, 59, 48, 0.1);
+        }
+
+        #lottie-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            z-index: 5;
+            display: none;
+        }
+
+        .show-experiment-results {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .show-experiment-results .results-container {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .bread-container {
+                width: 300px;
+                height: 300px;
+            }
+
+            .bread-cross-section {
+                width: 300px;
+                height: 300px;
+            }
+
+            .microscope-container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>面包酶实验室</h1>
+        <div class="mode-switch">
+            <button class="mode-btn active" id="basic-mode">基础模式</button>
+            <button class="mode-btn" id="pro-mode">专业模式</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>探索酶的神奇世界</h2>
+        <p>亲手调配不同的酶，观察它们如何影响面包的质地、体积和口感</p>
+        <button class="start-button" id="start-experiment">开始实验</button>
+    </section>
+
+    <section class="lab-container" id="lab">
+        <div class="enzyme-controls">
+            <div class="enzyme-card">
+                <div class="enzyme-icon">
+                    <img src="/api/placeholder/80/80" alt="淀粉酶图标">
+                </div>
+                <div class="enzyme-info">
+                    <h3>淀粉酶</h3>
+                    <p>分解淀粉产生糖分，影响面包发酵和体积</p>
+                    <div class="slider-container">
+                        <label>活性单位 (AU/kg)：<span id="amylase-value">500</span></label>
+                        <input type="range" min="300" max="800" value="500" class="slider" id="amylase-slider">
+                    </div>
+                    <div class="param-range">推荐范围：450-650 AU/kg</div>
+                </div>
+            </div>
+
+            <div class="enzyme-card">
+                <div class="enzyme-icon">
+                    <img src="/api/placeholder/80/80" alt="脂肪酶图标">
+                </div>
+                <div class="enzyme-info">
+                    <h3>脂肪酶</h3>
+                    <p>改良面包组织结构，增加柔软度</p>
+                    <div class="slider-container">
+                        <label>用量 <span id="lipase-value">50%</span></label>
+                        <input type="range" min="0" max="100" value="50" class="slider" id="lipase-slider">
+                    </div>
+                </div>
+            </div>
+
+            <div class="enzyme-card">
+                <div class="enzyme-icon">
+                    <img src="/api/placeholder/80/80" alt="葡萄糖氧化酶图标">
+                </div>
+                <div class="enzyme-info">
+                    <h3>葡萄糖氧化酶</h3>
+                    <p>强化面团，改善面团抗拉性</p>
+                    <div class="slider-container">
+                        <label>用量 <span id="glucose-oxidase-value">50%</span></label>
+                        <input type="range" min="0" max="100" value="50" class="slider" id="glucose-oxidase-slider">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="enzyme-card protease-card">
+            <div class="enzyme-icon protease">
+                <img src="protease.svg" alt="蛋白酶">
+            </div>
+            <div class="enzyme-info">
+                <h3>中性蛋白酶 <span class="enzyme-type">(真菌来源)</span></h3>
+                <div class="slider-container">
+                    <label>活性单位 (PU/kg)：<span id="protease-value">200</span></label>
+                    <input type="range" min="100" max="400" value="200" class="slider" id="protease-slider">
+                </div>
+                <div class="param-range">推荐范围：180-260 PU/kg</div>
+            </div>
+        </div>
+        <div class="enzyme-card protease-card">
+            <div class="enzyme-icon protease">
+                <img src="protease.svg" alt="木聚糖酶">
+            </div>
+            <div class="enzyme-info">
+                <h3>木聚糖酶 <span class="enzyme-type">1</span></h3>
+                <div class="xylanase-container">
+                    <label>活性单位 (PU/kg)：<span id="protease-value">200</span></label>
+                    <input type="range" min="100" max="400" value="200" class="slider" id="xylanase-slider">
+                </div>
+                <div class="param-range">推荐范围：180-260 PU/kg</div>
+            </div>
+        </div>
+
+        <!-- 新增发酵控制面板 -->
+        <div class="fermentation-controls">
+            <div class="control-card">
+                <h4>发酵参数</h4>
+                <div class="param-group">
+                    <label>初发温度(℃)：</label>
+                    <input type="number" id="ferment-temp" value="28" min="20" max="35">
+                </div>
+                <div class="param-group">
+                    <label>发酵时间(min)：</label>
+                    <input type="number" id="ferment-time" value="60" min="30" max="120">
+                </div>
+            </div>
+        </div>
+
+        <div class="bread-preview">
+            <div class="bread-container">
+                <div class="bread-cross-section" id="bread-visualization">
+                    <!-- 面包可视化区域 -->
+                </div>
+                <div id="lottie-loading">
+                    <!-- 面包烘焙动画区域 -->
+                </div>
+            </div>
+
+            <!-- 面包可视化容器保持不变但新增3D旋转控制 -->
+        <div class="bread-preview">
+            <div class="bread-container-3d" id="bread-3d">
+                
+            </div>
+        </div>
+
+        <!-- 新增数据分析面板 -->
+        <div class="analytics-panel">
+            <canvas id="radar-chart"></canvas>
+            <div class="reference-box">
+                <h4>文献依据</h4>
+                <div id="reference-list"></div>
+            </div>
+        </div>
+
+            <div class="bread-status">
+                <div class="status-title">你的面包配方</div>
+                <div class="status-message">调整酶的用量，然后点击烘焙按钮查看结果</div>
+                <div class="status-effects">
+                    <div class="status-effect">
+                        <div class="effect-value" id="volume-value">--</div>
+                        <div class="effect-label">体积</div>
+                    </div>
+                    <div class="status-effect">
+                        <div class="effect-value" id="texture-value">--</div>
+                        <div class="effect-label">质地</div>
+                    </div>
+                    <div class="status-effect">
+                        <div class="effect-value" id="freshness-value">--</div>
+                        <div class="effect-label">保鲜度</div>
+                    </div>
+                </div>
+                <button class="bake-button" id="bake-button">开始烘焙</button>
+            </div>
+        </div>
+
+        <div class="knowledge-card">
+            <h3>酶的科学原理</h3>
+            <p>酶是生物催化剂，能加速特定的化学反应，但自身不改变。在面包制作中，不同种类的酶负责不同功能：淀粉酶分解淀粉产生糖分供酵母发酵；脂肪酶改良面包组织结构和柔软度；葡萄糖氧化酶增强面团筋力。</p>
+            <p>通过微调酶的用量，专业面包师能够精确控制面包的口感、体积和保质期。但用量不当会导致面包质量下降，比如面包发黏、质地粗糙或表皮烧焦等问题。</p>
+            <p>点击"分子视角"按钮，你可以看到酶在分子层面是如何工作的！</p>
+            <button class="bake-button" id="microscope-button">分子视角</button>
+        </div>
+    </section>
+
+    <div class="microscope-view" id="microscope-view">
+        <div class="microscope-container">
+            <button class="close-microscope" id="close-microscope">&times;</button>
+            <div class="microscope-header">
+                <h3>酶的分子作用</h3>
+            </div>
+            <div class="microscope-content">
+                <div class="microscope-canvas" id="microscope-canvas">
+                    <!-- 分子动画区域 -->
+                </div>
+                <div class="microscope-info">
+                    <p id="microscope-description">
+                        在这个微观世界中，你可以看到酶分子（彩色小球）如何与底物（灰色大分子）结合并催化反应。淀粉酶正在切断淀粉长链，脂肪酶在分解脂肪，葡萄糖氧化酶则在促进蛋白质交联。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="experiment-results" id="experiment-results">
+        <div class="results-container">
+            <div class="results-header">
+                <h3>面包烘焙结果</h3>
+            </div>
+            <div class="results-content">
+                <div class="results-summary">
+                    <h4 id="result-title">实验结果</h4>
+                    <p id="result-description">根据你选择的酶配方，这里是你的面包烘焙结果。</p>
+                </div>
+                <div class="results-details">
+                    <div class="details-card">
+                        <h5>科学解释</h5>
+                        <p id="science-explanation">这里将显示酶配方如何影响面包的科学解释。</p>
+                    </div>
+                    <div class="details-card">
+                        <h5>专家提示</h5>
+                        <p id="expert-tip">这里将显示如何改进配方的提示。</p>
+                    </div>
+                </div>
+                <div class="results-actions">
+                    <button class="results-button retry-button" id="try-again">再试一次</button>
+                    <button class="results-button share-button" id="share-result">分享结果</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // 专业模式核心逻辑
+class BreadLab {
+  constructor() {
+    // 酶活性基准参数（单位：AU/kg）
+    this.enzymeStandards = {
+      amylase: { optimal: 550, range: 150, weight: 0.3 },
+      lipase: { optimal: 200, range: 80, weight: 0.25 },
+      glucoseOxidase: { optimal: 350, range: 100, weight: 0.2 },
+      xylanase: { optimal: 120, range: 40, weight: 0.15 },
+      protease: { optimal: 180, range: 50, weight: 0.1 }
+    };
+
+    // 发酵阶段模型
+    this.fermentationModel = {
+      stages: [
+        { phase: '初发', temp: 28, time: 40, impact: 0.4 },
+        { phase: '主发', temp: 32, time: 60, impact: 0.5 },
+        { phase: '终发', temp: 25, time: 30, impact: 0.1 }
+      ],
+      tempEffect: (temp) => Math.min(1, temp/35),
+      timeEffect: (time) => Math.min(1, time/90)
+    };
+
+    this.initControls();
+    this.init3DVisualization();
+  }
+
+  initControls() {
+    // 绑定所有酶滑块
+    this.sliders = {
+      amylase: this.bindSlider('#amylase-slider', 300, 800),
+      lipase: this.bindSlider('#lipase-slider', 100, 400),
+      glucoseOxidase: this.bindSlider('#glucose-oxidase-slider', 200, 500),
+      xylanase: this.bindSlider('#xylanase-slider', 50, 200),
+      protease: this.bindSlider('#protease-slider', 100, 300)
+    };
+
+    // 绑定发酵参数
+    this.fermentTemp = document.querySelector('#ferment-temp');
+    this.fermentTime = document.querySelector('#ferment-time');
+    
+    // 初始化图表
+    this.initRadarChart();
+  }
+
+  bindSlider(selector, min, max) {
+    const slider = document.querySelector(selector);
+    slider.min = min;
+    slider.max = max;
+    slider.addEventListener('input', () => this.onParamChange());
+    return slider;
+  }
+
+  // 核心评分算法
+  calculateScore() {
+    const enzymeValues = this.getCurrentValues();
+    let totalScore = 0;
+    let synergyMatrix = 1;
+
+    // 计算各酶得分
+    const enzymeScores = Object.entries(this.enzymeStandards).map(([key, std]) => {
+      const value = enzymeValues[key];
+      const deviation = Math.abs(value - std.optimal);
+      
+      // 专业S型评分曲线
+      const score = 100 / (1 + Math.exp((deviation - std.range/2)/15));
+      const weighted = score * std.weight;
+
+      // 协同惩罚计算
+      if(deviation > std.range*0.8) {
+        synergyMatrix *= 0.95;
+      }
+      
+      return { key, score: weighted, deviation };
+    });
+
+    // 发酵效率计算
+    const tempEffect = this.fermentationModel.tempEffect(this.fermentTemp.value);
+    const timeEffect = this.fermentationModel.timeEffect(this.fermentTime.value);
+    const fermentationEfficiency = tempEffect * timeEffect;
+
+    // 总得分计算
+    totalScore = enzymeScores.reduce((sum, item) => sum + item.score, 0);
+    totalScore = totalScore * synergyMatrix * fermentationEfficiency;
+
+    // 极端值检测
+    const hasExtreme = Object.values(enzymeValues).some(v => 
+      v < 50 || v > 750
+    );
+    
+    return {
+      total: Math.min(100, totalScore),
+      details: enzymeScores,
+      status: this.getStatus(totalScore, hasExtreme),
+      efficiency: fermentationEfficiency
+    };
+  }
+
+  getStatus(score, hasExtreme) {
+    const statusLevels = [
+      { threshold: 95, status: 'perfect', color: '#FFD700' },
+      { threshold: 85, status: 'excellent', color: '#FF9500' },
+      { threshold: 75, status: 'good', color: '#34C759' },
+      { threshold: 60, status: 'acceptable', color: '#AF52DE' },
+      { threshold: 0, status: 'failed', color: '#FF3B30' }
+    ];
+
+    let result = statusLevels.find(l => score >= l.threshold);
+    if(hasExtreme) result = { status: 'imbalance', color: '#FF3B30' };
+    
+    return result;
+  }
+
+  // 实时3D渲染更新
+  update3DVisualization(scores) {
+    const crumbParams = {
+      density: this.mapScore(scores.details.find(d => d.key === 'amylase').score),
+      uniformity: this.mapScore(scores.details.find(d => d.key === 'lipase').score),
+      elasticity: this.mapScore(scores.details.find(d => d.key === 'glucoseOxidase').score)
+    };
+
+    // WebGL渲染逻辑（示例伪代码）
+    // this.breadMesh.material.opacity = 0.8 + crumbParams.density * 0.2;
+    // this.crumbGeometry.parameters.sizeVariation = 1 - crumbParams.uniformity;
+    // this.breadMesh.rotation.y = crumbParams.elasticity * Math.PI/4;
+  }
+
+  // 辅助方法
+  mapScore(score) { return score / 100; }
+  
+  getCurrentValues() {
+    return {
+      amylase: parseInt(this.sliders.amylase.value),
+      lipase: parseInt(this.sliders.lipase.value),
+      glucoseOxidase: parseInt(this.sliders.glucoseOxidase.value),
+      xylanase: parseInt(this.sliders.xylanase.value),
+      protease: parseInt(this.sliders.protease.value)
+    };
+  }
+
+  onParamChange() {
+    const scores = this.calculateScore();
+    this.updateDashboard(scores);
+    this.update3DVisualization(scores);
+    this.updateRadarChart(scores.details);
+    this.showExpertTips(scores);
+  }
+
+  // 专业数据仪表盘更新
+  updateDashboard({ total, status, efficiency }) {
+    document.getElementById('total-score').textContent = Math.round(total);
+    document.getElementById('status-indicator').style.backgroundColor = status.color;
+    document.getElementById('efficiency-meter').value = efficiency * 100;
+  }
+
+  // 初始化雷达图
+  initRadarChart() {
+    this.radarChart = new Chart(document.getElementById('radar-chart'), {
+      type: 'radar',
+      data: {
+        labels: ['淀粉酶活性', '脂肪酶活性', '氧化酶活性', '木聚糖酶', '蛋白酶'],
+        datasets: [{
+          label: '酶活平衡度',
+          data: [0, 0, 0, 0, 0],
+          backgroundColor: 'rgba(255, 149, 0, 0.2)',
+          borderColor: '#FF9500'
+        }]
+      },
+      options: {
+        scales: {
+          r: {
+            beginAtZero: true,
+            max: 100,
+            ticks: { display: false },
+            grid: { color: 'rgba(0,0,0,0.05)' }
+          }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+  }
+
+  updateRadarChart(scores) {
+    this.radarChart.data.datasets[0].data = scores.map(s => s.score);
+    this.radarChart.update();
+  }
+
+  // 专家提示系统
+  showExpertTips(scores) {
+    const tips = [];
+    
+    scores.details.forEach(({ key, deviation }) => {
+      if(deviation > 30) {
+        tips.push(this.generateTip(key, deviation));
+      }
+    });
+
+    document.getElementById('expert-tips').innerHTML = tips.join('');
+  }
+
+  generateTip(enzyme, deviation) {
+    const tipConfig = {
+      amylase: {
+        high: '淀粉酶过高会破坏面筋结构，建议减少至550±50 AU/kg',
+        low: '淀粉酶不足影响发酵，建议增加至550±50 AU/kg'
+      },
+      // 其他酶提示配置...
+    };
+
+    const direction = deviation > 0 ? 'high' : 'low';
+    return `<div class="tip-item">⚠️ ${tipConfig[enzyme][direction]}</div>`;
+  }
+
+  // 在BreadLab类中添加以下方法
+init3DVisualization() {
+  // 初始化Three.js场景
+  this.scene = new THREE.Scene();
+  this.camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+  this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  
+  // 容器元素
+  const container = document.getElementById('bread-3d');
+  container.appendChild(this.renderer.domElement);
+  
+  // 灯光配置
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  directionalLight.position.set(5, 5, 5);
+  this.scene.add(ambientLight, directionalLight);
+
+  // 面包材质
+  this.breadMaterial = new THREE.MeshPhongMaterial({
+    color: 0xF0D4A3,
+    specular: 0x111111,
+    shininess: 50,
+    transparent: true,
+    opacity: 0.95
+  });
+
+  // 创建面包基础几何体
+  this.createBreadGeometry();
+  this.animate();
+}
+
+createBreadGeometry() {
+  // 使用参数化几何体实现动态结构
+  this.breadGeometry = new THREE.ParametricGeometry(
+    (u, v, target) => {
+      const radius = 2;
+      const height = 3.5;
+      const wave = Math.sin(u * Math.PI * 8) * 0.05;
+      
+      target.x = (radius + wave) * Math.cos(v * Math.PI * 2);
+      target.y = (radius + wave) * Math.sin(v * Math.PI * 2);
+      target.z = height * (u - 0.5);
+    }, 
+    64, 64
+  );
+
+  // 创建网格
+  this.breadMesh = new THREE.Mesh(this.breadGeometry, this.breadMaterial);
+  this.scene.add(this.breadMesh);
+
+  // 摄像机位置
+  this.camera.position.z = 8;
+  this.camera.position.y = 4;
+  this.camera.lookAt(0, 0, 0);
+}
+
+updateCrumbStructure(scores) {
+  // 根据分数修改顶点位置
+  const positions = this.breadGeometry.attributes.position.array;
+  
+  for (let i = 0; i < positions.length; i += 3) {
+    const originalX = positions[i];
+    const originalY = positions[i+1];
+    const originalZ = positions[i+2];
+    
+    // 体积影响
+    const volumeFactor = scores.total / 100;
+    
+    // 气泡效果
+    const bubbleSize = scores.details[1].score / 100;
+    const bubble = Math.sin(originalX * 10) * Math.cos(originalY * 10) * bubbleSize * 0.3;
+    
+    positions[i] = originalX * (0.9 + volumeFactor * 0.2) + bubble;
+    positions[i+1] = originalY * (0.9 + volumeFactor * 0.2) + bubble;
+    positions[i+2] = originalZ * (0.95 + volumeFactor * 0.1);
+  }
+
+  this.breadGeometry.attributes.position.needsUpdate = true;
+  this.breadGeometry.computeVertexNormals();
+}
+
+animate() {
+  requestAnimationFrame(() => this.animate());
+  
+  // 自动旋转
+  this.breadMesh.rotation.y += 0.002;
+  
+  // 动态材质更新
+  this.breadMaterial.opacity = 0.9 + Math.sin(Date.now() * 0.002) * 0.05;
+  
+  this.renderer.render(this.scene, this.camera);
+}
+}
+
+// 初始化实验室
+document.addEventListener('DOMContentLoaded', () => {
+  window.breadLab = new BreadLab();
+});
+    </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script> -->
+</body>
+
+</html>

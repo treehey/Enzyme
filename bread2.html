@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>面包酶制剂 | 全新体验</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    :root {
+      --apple-black: #000;
+      --apple-white: #f5f5f7;
+      --apple-blue: #0071e3;
+      --apple-text: #86868b;
+      --apple-highlight: #2997ff;
+    }
+    
+    body {
+      background-color: var(--apple-black);
+      color: var(--apple-white);
+      overflow-x: hidden;
+      font-size: 17px;
+      line-height: 1.47059;
+      font-weight: 400;
+      letter-spacing: -0.022em;
+    }
+    
+    .ribbon {
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: saturate(180%) blur(20px);
+      height: 44px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .ribbon nav {
+      width: 100%;
+      max-width: 980px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 22px;
+    }
+    
+    .ribbon a {
+      color: #f5f5f7;
+      text-decoration: none;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    
+    header {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero {
+      position: relative;
+      height: 736px;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #000 0%, #1a1a1a 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeIn 1s forwards 0.5s;
+    }
+    
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    h1 {
+      font-size: 56px;
+      line-height: 1.07143;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      background: linear-gradient(90deg, #f0f0f0, #ffffff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+    
+    h2 {
+      font-size: 48px;
+      line-height: 1.10722;
+      font-weight: 600;
+      letter-spacing: -0.003em;
+      margin-bottom: 20px;
+    }
+    
+    h3 {
+      font-size: 28px;
+      line-height: 1.14286;
+      font-weight: 600;
+      letter-spacing: 0.007em;
+      margin-bottom: 15px;
+    }
+    
+    .section-head {
+      font-size: 80px;
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      margin-bottom: 20px;
+    }
+    
+    .eyebrow {
+      font-size: 21px;
+      line-height: 1.19048;
+      font-weight: 600;
+      letter-spacing: 0.011em;
+      margin-bottom: 8px;
+      color: var(--apple-highlight);
+    }
+    
+    .subtitle {
+      font-size: 28px;
+      line-height: 1.14286;
+      font-weight: 400;
+      letter-spacing: 0.004em;
+      color: var(--apple-text);
+    }
+    
+    p {
+      font-size: 17px;
+      line-height: 1.47059;
+      font-weight: 400;
+      letter-spacing: -0.022em;
+      margin-bottom: 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .section {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .full-bleed {
+      padding: 200px 0;
+      text-align: center;
+      position: relative;
+    }
+    
+    .content-block {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 980px;
+      margin: 60px auto 0;
+      padding: 0 20px;
+    }
+    
+    .grid-item {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 18px;
+      padding: 30px;
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .grid-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .grid-item h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: var(--apple-white);
+    }
+    
+    .grid-item p {
+      font-size: 17px;
+      color: var(--apple-text);
+    }
+    
+    .sticky-container {
+      height: 300vh;
+      position: relative;
+    }
+    
+    .sticky-element {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .sticky-content {
+      max-width: 980px;
+      width: 100%;
+      padding: 0 20px;
+      text-align: center;
+      z-index: 2;
+    }
+    
+    .compare-table {
+      width: 100%;
+      max-width: 980px;
+      margin: 60px auto;
+      border-spacing: 0;
+      border-collapse: separate;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    
+    .compare-table th {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 18px 20px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 17px;
+    }
+    
+    .compare-table td {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 18px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 17px;
+      line-height: 1.47059;
+    }
+    
+    .highlight {
+      color: var(--apple-highlight);
+      font-weight: 500;
+    }
+    
+    .section-label {
+      position: absolute;
+      font-size: 500px;
+      font-weight: 700;
+      opacity: 0.03;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    
+    .animated-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: radial-gradient(circle at 50% 50%, #222 0%, #000 70%);
+      z-index: -1;
+    }
+    
+    .parallax-item {
+      will-change: transform;
+      transition: transform 0.1s linear;
+    }
+    
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .pill-button {
+      display: inline-block;
+      background: var(--apple-blue);
+      color: white;
+      padding: 12px 22px;
+      border-radius: 980px;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 400;
+      margin-top: 20px;
+      transition: all 0.2s ease;
+    }
+    
+    .pill-button:hover {
+      background: #0077ed;
+    }
+    
+    footer {
+      background: #f5f5f7;
+      color: #86868b;
+      padding: 20px;
+      font-size: 12px;
+      line-height: 1.33341;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    
+    .footer-content {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 17px 0;
+    }
+    
+    .footer-content p {
+      font-size: 12px;
+      line-height: 1.33341;
+      color: #86868b;
+    }
+    
+    /* Animation classes */
+    .anim-blur-in {
+      filter: blur(10px);
+      opacity: 0;
+      animation: blurFadeIn 1s forwards;
+    }
+    
+    @keyframes blurFadeIn {
+      to {
+        filter: blur(0);
+        opacity: 1;
+      }
+    }
+    
+    .anim-scale-in {
+      transform: scale(0.9);
+      opacity: 0;
+      animation: scaleIn 1s forwards;
+    }
+    
+    @keyframes scaleIn {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1068px) {
+      h1, .section-head {
+        font-size: 64px;
+      }
+      
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 734px) {
+      h1, .section-head {
+        font-size: 48px;
+      }
+      
+      h2 {
+        font-size: 40px;
+      }
+      
+      .eyebrow {
+        font-size: 19px;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero {
+        height: 548px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Ribbon -->
+  <div class="ribbon">
+    <nav>
+      <a href="#">面包酶制剂</a>
+      <a href="#">了解更多</a>
+    </nav>
+  </div>
+
+  <div class="container">
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="hero-image">
+        <div class="animated-bg"></div>
+      </div>
+      <div class="hero-text">
+        <p class="eyebrow">全新研究</p>
+        <h1>面包酶制剂</h1>
+        <p class="subtitle">革命性的面包品质提升体验</p>
+      </div>
+    </header>
+    
+    <!-- Overview Section -->
+    <section class="full-bleed">
+      <div class="animated-bg"></div>
+      <div class="content-block fade-up">
+        <h2 class="section-head">概览</h2>
+        <p class="subtitle">面包酶制剂种类丰富，作用颇多。面包酶制剂对面粉的品质、面团的操作性、面包产品得率以及面包的体积和柔软度、延长面包保质期等都有良好的改善作用。</p>
+        <a href="#" class="pill-button">了解更多</a>
+      </div>
+    </section>
+    
+    <!-- Categories Section -->
+    <section class="section">
+      <div class="section-label" style="top: 20%; right: -10%;">分类</div>
+      <div class="content-block fade-up">
+        <p class="eyebrow">酶制剂分类</p>
+        <h2>按照作用受体的不同，主要分为2类</h2>
+        
+        <div class="grid">
+          <div class="grid-item parallax-item">
+            <h3>水解酶</h3>
+            <p>木聚糖酶、淀粉酶、蛋白酶、葡聚糖酶、脂肪酶等，通过水解作用改善面团品质和面包结构。</p>
+          </div>
+          <div class="grid-item parallax-item">
+            <h3>氧化酶</h3>
+            <p>脂肪氧合酶、葡萄糖氧化酶等，通过氧化作用强化面筋网络，提高面包组织稳定性。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Sticky Section for Amylase -->
+    <div class="sticky-container">
+      <div class="sticky-element">
+        <div class="animated-bg"></div>
+        <div class="sticky-content fade-up">
+          <p class="eyebrow">核心技术</p>
+          <h2 class="section-head">淀粉酶</h2>
+          <p>研究显示，发酵过程中淀粉酶在面团特性、体积、发酵性能以及面包芯品质等方面起到了显著的改善作用，同时延缓面包制品老化时间，从而提高面包制品的综合品质。</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bacterial Amylase Section -->
+    <section class="section">
+      <div class="content-block fade-up">
+        <p class="eyebrow">淀粉酶种类</p>
+        <h2>细菌α-淀粉酶</h2>
+        <p>细菌α-淀粉酶与真菌α-淀粉酶的作用机理基本相同。但它们的性质却不尽相同，尤其是耐热性的差异极大。细菌α-淀粉酶的最适pH值是5.0，最适温度范围为80~90℃。</p>
+        <p>细菌α-淀粉酶与真菌α-淀粉酶相比，在焙烤应用中的优点是：<span class="highlight">抗老化效果好、能够改善面包芯的品质</span>。</p>
+      </div>
+    </section>
+    
+    <!-- Maltogenic Amylase Section -->
+    <section class="section">
+      <div class="animated-bg"></div>
+      <div class="content-block fade-up">
+        <p class="eyebrow">创新技术</p>
+        <h2>麦芽糖α-淀粉酶</h2>
+        <p>麦芽糖α-淀粉酶是一类新型的酶制剂。比如丹麦诺维信公司的产品麦芽糖α-淀粉酶，它就是一种通过遗传工程改造，由枯草杆菌的菌株生产的一种纯的麦芽糖α-淀粉酶。</p>
+        <p>它的最佳作用条件为45~75℃，pH适用范围为4.8~6.0。麦芽糖α-淀粉酶可以改良小麦淀粉，延长面包芯在贮存的过程中的保鲜期。</p>
+        <p>麦芽糖α-淀粉酶优点是：<span class="highlight">抗老化作用、赋予面包新鲜的口感</span>。添加适量的麦芽糖α-淀粉酶在面包专用粉里能够改良面包的品质。</p>
+      </div>
+    </section>
+    
+    <!-- Other Enzymes Section -->
+    <section class="section">
+      <div class="section-label" style="top: 50%; left: -20%;">酶制剂</div>
+      <div class="content-block fade-up">
+        <p class="eyebrow">全方位提升</p>
+        <h2>其他面包酶制剂</h2>
+        
+        <div class="grid">
+          <div class="grid-item parallax-item">
+            <h3>脂肪酶</h3>
+            <p>脂肪酶可以很好地改良面包内部组织结构以及面包芯柔软度等指标。添加脂肪酶后，面团的面包品质、流变学性质都得到了较为明显的改善。</p>
+          </div>
+          <div class="grid-item parallax-item">
+            <h3>葡萄糖氧化酶</h3>
+            <p>葡萄糖氧化酶对面团的粉质特性和显微结构起到改良作用，同时能够提升面团的抗拉能力，强化面团。</p>
+          </div>
+          <div class="grid-item parallax-item">
+            <h3>多种酶复合制剂</h3>
+            <p>复合酶制剂往往比单一酶制剂产生更好的作用效果。复配型酶制剂能够产生协同作用，减少麸皮中的木聚糖和纤维素对面团的劣化。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Dosage Control Section -->
+    <section class="full-bleed">
+      <div class="animated-bg"></div>
+      <div class="content-block fade-up">
+        <p class="eyebrow">精确控制</p>
+        <h2>酶制剂用量控制</h2>
+        <p>面包生产中，酶制剂用量的精确控制对最终产品质量至关重要。<br>用量不当会导致一系列质量问题。</p>
+      </div>
+    </section>
+    
+    <!-- Comparison Tables -->
+    <section class="section">
+      <div class="content-block fade-up">
+        <h3>淀粉酶用量控制</h3>
+        <table class="compare-table">
+          <tr>
+            <th>用量状况</th>
+            <th>影响效果</th>
+          </tr>
+          <tr>
+            <td class="highlight">用量过少</td>
+            <td>
+              • 酵母发酵所需的糖分不足，导致发酵时间延长<br>
+              • 面包体积偏小，内部结构不够松软<br>
+              • 面包老化速度加快
+            </td>
+          </tr>
+          <tr>
+            <td class="highlight">用量过多</td>
+            <td>
+              • 面包内部发黏，质地变差<br>
+              • 面包体积反而减小，内部结构粗糙<br>
+              • 面包表皮上色过深，甚至出现烧焦现象
+            </td>
+          </tr>
+        </table>
+        
+        <h3>脂肪酶用量控制</h3>
+        <table class="compare-table">
+          <tr>
+            <th>用量状况</th>
+            <th>影响效果</th>
+          </tr>
+          <tr>
+            <td class="highlight">用量过少</td>
+            <td>
+              • 面包柔软度不足，老化速度加快
+            </td>
+          </tr>
+          <tr>
+            <td class="highlight">用量过多</td>
+            <td>
+              • 面团发干、硬化，面包体积变小<br>
+              • 油脂被分解，产生异味，影响面包风味
+            </td>
+          </tr>
+        </table>
+        
+        <h3>木聚糖酶用量控制</h3>
+        <table class="compare-table">
+          <tr>
+            <th>用量状况</th>
+            <th>影响效果</th>
+          </tr>
+          <tr>
+            <td class="highlight">用量过少</td>
+            <td>
+              • 面团持气性不足，面包体积小<br>
+              • 面包老化速度加快
+            </td>
+          </tr>
+          <tr>
+            <td class="highlight">用量过多</td>
+            <td>
+              • 面团发黏，难以操作<br>
+              • 面包发酵受阻，体积减小
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+    
+    <!-- More Control Tables -->
+    <section class="section">
+      <div class="content-block fade-up">
+        <h3>葡萄糖氧化酶用量控制</h3>
+        <table class="compare-table">
+          <tr>
+            <th>用量状况</th>
+            <th>影响效果</th>
+          </tr>
+          <tr>
+            <td class="highlight">用量过少</td>
+            <td>
+              • 面团筋力不足，面包结构松散
+            </td>
+          </tr>
+          <tr>
+            <td class="highlight">用量过多</td>
+            <td>
+              • 面团干硬，面包口感变差
+            </td>
+          </tr>
+        </table>
+        
+        <h3>蛋白酶用量控制</h3>
+        <table class="compare-table">
+          <tr>
+            <th>用量状况</th>
+            <th>影响效果</th>
+          </tr>
+          <tr>
+            <td class="highlight">用量过少</td>
+            <td>
+              • 面团筋度较高，面包口感较硬
+            </td>
+          </tr>
+          <tr>
+            <td class="highlight">用量过多</td>
+            <td>
+              • 面团筋度下降，无法保持气体，面包体积小
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>参考文献</p>
+      <p>[1]周素梅, 马学斌.淀粉酶对面包品质及贮存性的研究, 粮食加工, 1998, 5:49-52.</p>
+      <p>[2]袁永利.酶在面包工业中应用.粮食与油脂, 2006, 7:22-24.</p>
+      <p>[3]王学东, 李秋枫, 李汉春, 等.脂肪酶对面包粉品质的影响研究, 粮油食品科技, 2003, 4:10-12.</p>
+      <p>[4]王学东.新型酶制剂改良小麦粉烘焙品质的机理及其应用研究[D].武汉:华中农业大学, 2003, 5:13-16.</p>
+      <p>[5]严晓鹏, 王璋, 许时婴.酶制剂对于麸皮面包的改良研究.食品工业科技, 2007, 1:206-209.</p>
+      <p>[6]姚晓玲, 宋卫江, 张艳春, 等.酶制剂在豆渣面包中的应用研究.粮食与饲料工业, 2006, 11:22-26.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Intersection Observer for fade-up elements
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            fadeObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -100px 0px'
+      });
+      
+      // Observe all fade-up elements
+      document.querySelectorAll('.fade-up').forEach(el => {
+        fadeObserver.observe(el);
+      });
+      
+      // Parallax effect for grid items
+      const parallaxItems = document.querySelectorAll('.parallax-item');
+      
+      document.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        
+        parallaxItems.forEach(item => {
+          const itemRect = item.getBoundingClientRect();
+          const itemCenterX = itemRect.left + itemRect.width / 2;
+          const itemCenterY = itemRect.top + itemRect.height / 2;
+          
+          const offsetX = (e.clientX - itemCenterX) * 0.01;
+          const offsetY = (e.clientY - itemCenterY) * 0.01;
+          
+          item.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        });
+      });
+      
+      // Subtle movement for animated backgrounds
+      const animatedBgs = document.querySelectorAll('.animated-bg');
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        
+        animatedBgs.forEach((bg, index) => {
+          const section = bg.closest('section, .sticky-element');
+          if (!section) return;
+          
+          const rect = section.getBoundingClientRect();
+          const offsetY = rect.top * 0.05;
+          
+          bg.style.transform = `translateY(${offsetY}px)`;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

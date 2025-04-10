@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 16 Pro - Revolutionary in Every Way</title>
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            color: #1d1d1f;
+            background-color: #000000;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #2997ff;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 22px;
+            height: 44px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links li a {
+            color: #f5f5f7;
+            opacity: 0.8;
+            font-size: 14px;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links li a:hover {
+            opacity: 1;
+        }
+        
+        .menu-button {
+            display: none;
+            color: #ffffff;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* Product hero section */
+        .product-hero {
+            height: 100vh;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-title {
+            font-size: 56px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #a170ff, #00e2ff, #a170ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: gradient 3s linear infinite;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% center;
+            }
+            50% {
+                background-position: 100% center;
+            }
+            100% {
+                background-position: 0% center;
+            }
+        }
+        
+        .product-subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+        
+        .hero-image {
+            max-width: 70%;
+            height: auto;
+            margin: 40px auto;
+            transform: perspective(1000px) rotateY(10deg);
+            transition: transform 0.5s ease;
+        }
+        
+        .hero-image:hover {
+            transform: perspective(1000px) rotateY(-10deg);
+        }
+        
+        /* Feature section */
+        .feature-section {
+            padding: 100px 20px;
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+        }
+        
+        .feature-section:nth-child(odd) {
+            background-color: #000;
+        }
+        
+        .feature-section:nth-child(even) {
+            background-color: #0f0f0f;
+        }
+        
+        .feature-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-title {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .feature-description {
+            font-size: 24px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #86868b;
+        }
+        
+        .feature-highlight {
+            color: #ffffff;
+        }
+        
+        .feature-image {
+            max-width: 100%;
+            height: auto;
+            margin: 40px auto;
+            border-radius: 20px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            padding: 40px 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .feature-card-desc {
+            color: #86868b;
+        }
+        
+        /* Camera section */
+        .camera-section {
+            background-color: #000;
+            color: #ffffff;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        
+        .camera-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .camera-feature {
+            text-align: center;
+        }
+        
+        .camera-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .camera-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .camera-desc {
+            color: #86868b;
+            font-size: 17px;
+        }
+        
+        /* Performance section */
+        .performance-section {
+            position: relative;
+            color: #ffffff;
+            padding: 150px 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .performance-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #300064 0%, #000000 70%);
+            opacity: 0.6;
+            z-index: 1;
+        }
+        
+        .performance-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .processor-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+        
+        .processor-name {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fad0c4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .performance-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        
+        .stat-label {
+            font-size: 17px;
+            color: #86868b;
+        }
+        
+        /* Design section */
+        .design-section {
+            color: #ffffff;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .design-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #000000 0%, #1e1e1e 100%);
+            z-index: 1;
+        }
+        
+        .design-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .design-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .design-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+        }
+        
+        .design-image-container {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .design-image {
+            max-width: 100%;
+            border-radius: 20px;
+        }
+        
+        /* Colors section */
+        .colors-section {
+            color: #ffffff;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        
+        .colors-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .color-options {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .color-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .color-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        
+        .color-name {
+            font-size: 17px;
+            color: #ffffff;
+        }
+        
+        .color-black {
+            background-color: #1c1c1c;
+            border: 1px solid #3a3a3a;
+        }
+        
+        .color-silver {
+            background: linear-gradient(135deg, #d1d1d1, #f5f5f5);
+        }
+        
+        .color-gold {
+            background: linear-gradient(135deg, #e3c496, #f9e0bb);
+        }
+        
+        .color-blue {
+            background: linear-gradient(135deg, #0e4da0, #76a6ea);
+        }
+        
+        /* Pricing section */
+        .pricing-section {
+            color: #ffffff;
+            padding: 100px 20px;
+            text-align: center;
+            background-color: #0f0f0f;
+        }
+        
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .price-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .price-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            padding: 40px 30px;
+            width: 300px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .model-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .storage {
+            color: #86868b;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        .buy-button {
+            background-color: #0071e3;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 400;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        
+        .buy-button:hover {
+            background-color: #0077ed;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1d1d1f;
+            padding: 40px 20px;
+            font-size: 12px;
+            color: #86868b;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 12px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #515154;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #ffffff;
+        }
+        
+        .footer-legal {
+            padding-top: 20px;
+            border-top: 1px solid #3a3a3a;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .copyright {
+            margin-right: 30px;
+        }
+        
+        .legal-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        /* Utilities */
+        .sticky-nav {
+            position: sticky;
+            top: 44px;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            z-index: 9;
+        }
+        
+        .product-nav {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+        
+        .product-nav-links {
+            display: flex;
+            list-style: none;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 0 20px;
+        }
+        
+        .product-nav-links li {
+            margin: 0 20px;
+            white-space: nowrap;
+        }
+        
+        .product-nav-links li a {
+            color: #f5f5f7;
+            opacity: 0.7;
+            font-size: 14px;
+            transition: opacity 0.3s;
+        }
+        
+        .product-nav-links li a:hover {
+            opacity: 1;
+        }
+        
+        /* Animation utilities */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .menu-button {
+                display: block;
+            }
+            
+            .product-title {
+                font-size: 36px;
+            }
+            
+            .product-subtitle {
+                font-size: 20px;
+            }
+            
+            .feature-title {
+                font-size: 32px;
+            }
+            
+            .feature-description {
+                font-size: 18px;
+            }
+            
+            .processor-name {
+                font-size: 36px;
+            }
+            
+            .stat-value {
+                font-size: 36px;
+            }
+            
+            .design-details {
+                flex-direction: column;
+            }
+            
+            .design-text {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Apple</a>
+            <ul class="nav-links">
+                <li><a href="#">Store</a></li>
+                <li><a href="#">Mac</a></li>
+                <li><a href="#">iPad</a></li>
+                <li><a href="#">iPhone</a></li>
+                <li><a href="#">Watch</a></li>
+                <li><a href="#">AirPods</a></li>
+                <li><a href="#">TV & Home</a></li>
+                <li><a href="#">Entertainment</a></li>
+                <li><a href="#">Accessories</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+            <button class="menu-button">≡</button>
+        </nav>
+    </header>
+    
+    <!-- Product navigation -->
+    <div class="sticky-nav">
+        <div class="product-nav">
+            <ul class="product-nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#design">Design</a></li>
+                <li><a href="#camera">Camera</a></li>
+                <li><a href="#performance">Performance</a></li>
+                <li><a href="#display">Display</a></li>
+                <li><a href="#battery">Battery</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="overview" class="product-hero">
+        <h1 class="product-title">iPhone 16 Pro</h1>
+        <h2 class="product-subtitle">Beyond. Intelligence.</h2>
+        <img src="/api/placeholder/800/500" alt="iPhone 16 Pro" class="hero-image">
+    </section>
+
+    <!-- Design section -->
+    <section id="design" class="design-section">
+        <div class="design-bg"></div>
+        <div class="design-content">
+            <h2 class="feature-title">Titanium. Tougher than ever.</h2>
+            <p class="feature-description">iPhone 16 Pro features aerospace-grade titanium that's incredibly strong yet surprisingly light, with a brushed finish that gives it a sophisticated sheen.</p>
+            
+            <div class="design-details">
+                <div class="design-text">
+                    <h3 style="font-size: 28px; margin-bottom: 20px; color: #ffffff;">Designed for durability</h3>
+                    <p style="color: #86868b; margin-bottom: 20px;">The front and back are secured with our most durable glass ever in a smartphone, with a Ceramic Shield that's tougher than any smartphone glass.</p>
+                    <p style="color: #86868b;">And it's splash, water, and dust resistant.</p>
+                </div>
+                <div class="design-image-container">
+                    <img src="/api/placeholder/500/300" alt="iPhone 16 Pro Design" class="design-image">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Colors section -->
+    <section class="colors-section">
+        <div class="colors-container">
+            <h2 class="feature-title">Four stunning finishes</h2>
+            <p class="feature-description">Available in Titanium Black, Titanium Silver, Titanium Gold, and Titanium Blue.</p>
+            
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-circle color-black"></div>
+                    <span class="color-name">Titanium Black</span>
+                </div>
+                <div class="color-option">
+                    <div class="color-circle color-silver"></div>
+                    <span class="color-name">Titanium Silver</span>
+                </div>
+                <div class="color-option">
+                    <div class="color-circle color-gold"></div>
+                    <span class="color-name">Titanium Gold</span>
+                </div>
+                <div class="color-option">
+                    <div class="color-circle color-blue"></div>
+                    <span class="color-name">Titanium Blue</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Camera section -->
+    <section id="camera" class="feature-section">
+        <div class="feature-container">
+            <h2 class="feature-title">Pro camera system</h2>
+            <p class="feature-description">A game-changing camera system with the <span class="feature-highlight">largest iPhone camera sensor ever</span> and Apple Intelligence, to transform the way you capture and create.</p>
+            
+            <img src="/api/placeholder/1000/600" alt="iPhone 16 Pro Camera System" class="feature-image">
+            
+            <div class="camera-grid">
+                <div class="camera-feature">
+                    <div class="camera-icon">📸</div>
+                    <h3 class="camera-title">48MP Main Camera</h3>
+                    <p class="camera-desc">The new pro-grade main camera captures incredible detail even in challenging light.</p>
+                </div>
+                <div class="camera-feature">
+                    <div class="camera-icon">🔍</div>
+                    <h3 class="camera-title">5× Optical Zoom</h3>
+                    <p class="camera-desc">Get closer to your subject without losing quality.</p>
+                </div>
+                <div class="camera-feature">
+                    <div class="camera-icon">🌙</div>
+                    <h3 class="camera-title">Next-gen Night Mode</h3>
+                    <p class="camera-desc">Capture stunning images in virtually any light.</p>
+                </div>
+                <div class="camera-feature">
+                    <div class="camera-icon">🎬</div>
+                    <h3 class="camera-title">ProRAW & ProRes</h3>
+                    <p class="camera-desc">Professional formats for ultimate creative control.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance section -->
+    <section id="performance" class="performance-section">
+        <div class="performance-bg"></div>
+        <div class="performance-content">
+            <p class="processor-title">The new</p>
+            <h2 class="processor-name">A18 Pro chip</h2>
+            <p class="feature-description">Our most powerful chip ever. With a next-generation Neural Engine specifically designed for Apple Intelligence.</p>
+            
+            <img src="/api/placeholder/800/400" alt="A18 Pro Chip" class="feature-image">
+            
+            <div class="performance-stats">
+                <div class="stat-item">
+                    <p class="stat-value">42%</p>
+                    <p class="stat-label">faster CPU performance than A16</p>
+                </div>
+                <div class="stat-item">
+                    <p class="stat-value">36%</p>
+                    <p class="stat-label">faster GPU for gaming</p>
+                </div>
+                <div class="stat-item">
+                    <p class="stat-value">2×</p>
+                    <p class="stat-label">faster Neural Engine</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Display section -->
+    <section id="display" class="feature-section">
+        <div class="feature-container">
+            <h2 class="feature-title">ProMotion Display with Always-On</h2>
+            <p class="feature-description">Super Retina XDR display with ProMotion ramps up refresh rates to <span class="feature-highlight">120Hz when you need exceptional graphics performance</span>. And ramps down to save power when you don't.</p>
+            
+            <img src="/api/placeholder/900/500" alt="iPhone 16 Pro Display" class="feature-image">
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-icon">✨</div>
+                    <h3 class="feature-card-title">2000 nits peak brightness</h3>
+                    <p class="feature-card-desc">Stunning HDR and incredible outdoor visibility.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">⚡</div>
+                    <h3 class="feature-card-title">ProMotion technology</h3>
+                    <p class="feature-card-desc">Adaptive 10Hz-120Hz refresh rates for silky smooth scrolling.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">🌑</div>
+                    <h3 class="feature-card-title">Always-On display</h3>
+                    <p class="feature-card-desc">See essential information without waking your iPhone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Battery section -->
+    <section id="battery" class="feature-section">
+        <div class="feature-container">
+            <h2 class="feature-title">All-day battery life</h2>
+            <p class="feature-description">Even with so much power, iPhone 16 Pro delivers <span class="feature-highlight">up to 27 hours of video playback</span>. And up to 75 hours of audio playback.</p>
+            
+            <img src="/api/placeholder/900/400" alt="iPhone 16 Pro Battery" class="feature-image">
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-icon">⚡</div>
+                    <h3 class="feature-card-title">Fast charging</h3>
+                    <p class="feature-card-desc">Up to 50% charge in around 30 minutes with 20W adapter or higher.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">🔄</div>
+                    <h3 class="feature-card-title">MagSafe charging</h3>
+                    <p class="feature-card-desc">Efficient wireless charging up to 15W with MagSafe accessories.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">🔋</div>
+                    <h3 class="feature-card-title">Smart power management</h3>
+                    <p class="feature-card-desc">A18 Pro works efficiently with iOS to maximize battery performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing section -->
+    <section id="pricing" class="pricing-section">
+        <div class="pricing-container">
+            <h2 class="feature-title">Which iPhone 16 Pro is right for you?</h2>
+            <p class="feature-description">Choose the perfect combination of size and storage.</p>
+            
+            <div class="price-cards">
+                <div class="price-card">
+                    <h3 class="model-name">iPhone 16 Pro</h3>
+                    <p class="storage">128GB</p>
+                    <p class="price">$999</p>
+                    <a href="#" class="buy-button">Buy</a>
+                </div>
+                <div class="price-card">
+                    <h3 class="model-name">iPhone 16 Pro</h3>
+                    <p class="storage">256GB</p>
+                    <p class="price">$1099</p>
+                    <a href="#" class="buy-button">Buy</a>
+                </div>
+                <div class="price-card">
+                    <h3 class="model-name">iPhone 16 Pro Max</h3>
+                    <p class="storage">256GB</p>
+                    <p class="price">$1199</p>
+                    <a href="#" class="buy-button">Buy</a>
+                </div>
+                <div class="price-card">
+                    <h3 class="model-name">iPhone 16 Pro Max</h3>
+                    <p class="storage">512GB</p>
+                    <p class="price">$1399</p>
+                    <a href="#" class="buy-button">Buy</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Shop and Learn</h3>
+                    <ul>
+                        <li><a href="#">Store</a></li>
+                        <li><a href="#">Mac</a></li>
+                        <li><a href="#">iPad</a></li>
+                        <li><a href="#">iPhone</a></li>
+                        <li><a href="#">Watch</a></li>
+                        <li><a href="#">AirPods</a></li>
+                        <li><a href="#">TV & Home</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Apple Music</a></li>
+                        <li><a href="#">Apple TV+</a></li>
+                        <li><a href="#">Apple Fitness+</a></li>
+                        <li><a href="#">iCloud</a></li>
+                        <li><a href="#">Apple One</a></li>
+                        <li><a href="#">Apple Books</a></li>
+                        <li><a href="#">Apple Podcasts</a></li>
+                        <li><a href="#">App Store</a></li>
+                    </ul>
+                </div>
+                </div>
+                </div>
+                </footer>
+                </body>
+                </html>

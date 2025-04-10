@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>酶工厂 - 分子魔法探索</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/sf-pro-display@4.0.0/index.css"> -->
+</head>
+
+<body class="theme-dark main-page">
+    <!-- 导航栏 -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <ul class="nav-content">
+                <li class="nav-item">
+                    <a href="#" class="nav-logo">酶工厂</a>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-links">
+                        <a href="#bread" class="nav-link">面包酶</a>
+                        <a href="#wine" class="nav-link">酿酒酶</a>
+                        <a href="#cheese" class="nav-link">奶酪酶</a>
+                        <a href="#" class="nav-link">果汁酶</a>
+                        <a href="#" class="nav-link">调味品</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="member.html" role="button" class="nav-search">
+                        <span class="nav-regular">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15px" height="44px" viewBox="0 0 15 44">
+                                <path
+                                    d="M14.298,27.202l-3.87-3.87c0.701-0.929,1.122-2.081,1.122-3.332c0-3.06-2.489-5.55-5.55-5.55c-3.06,0-5.55,2.49-5.55,5.55 c0,3.061,2.49,5.55,5.55,5.55c1.251,0,2.403-0.421,3.332-1.122l3.87,3.87c0.151,0.151,0.35,0.228,0.548,0.228 s0.396-0.076,0.548-0.228C14.601,27.995,14.601,27.505,14.298,27.202z M1.55,20c0-2.454,1.997-4.45,4.45-4.45 c2.454,0,4.45,1.997,4.45,4.45S8.454,24.45,6,24.45C3.546,24.45,1.55,22.454,1.55,20z">
+                                </path>
+                            </svg>
+                        </span>
+                    </a>
+                </li>
+                <!-- <button class="ios-button nav-button">探索之旅</button> -->
+            </ul>
+    </nav>
+
+    <!-- 内容模块 -->
+    <main class="main">
+        <!-- 主视觉区 -->
+        <section class="hero-section collection-module">
+            <div class="hero-card bread theme-dark" id="bread">
+                <!-- <div class="hero-background"></div> -->
+                <div class="hero-container">
+                    <!-- <div class="hero-content"> -->
+                    <h1 class="hero-headline">
+                        iBread Enz Pro
+                    </h1>
+                    <p class="hero-caption">Hello, 淀粉酶</p>
+                    <div class="cta-links">
+                        <a href="bread-fermentation.html" class="button button-elevated button-primary">Learn more</a>
+                        <a href="" class="button button-elevated button-tertiary" target="_blank"
+                            onclick="window.open('https://s.taobao.com/search?q=淀粉酶', '_blank')">Buy</a>
+                    </div>
+                    <!-- </div> -->
+                </div>
+                <div class="hero-image-container">
+                    <figure class="hero-image image-bread" alt="面包酶示例图"></figure>
+                </div>
+            </div>
+
+            <div class="hero-card wine theme-dark" id="wine">
+                <div class="hero-container">
+                    <h1 class="hero-headline">
+                        EnzWine Air
+                    </h1>
+                    <p class="hero-caption">Built for Wine Intelligence.</p>
+                    <div class="cta-links">
+                        <a href="#" class="button button-elevated button-neutral">Learn more</a>
+                        <a href="" class="button button-elevated button-tertiary-neutral" target="_blank"
+                            onclick="window.open('https://s.taobao.com/search?q=酒', '_blank')">Buy</a>
+                    </div>
+                    <!-- </div> -->
+                </div>
+                <div class="hero-image-container">
+                    <figure class="hero-image image-wine" alt="酿酒酶示例图"></figure>
+                </div>
+            </div>
+
+            <div class="hero-card cheese theme-light" id="cheese">
+                <div class="hero-container">
+                    <h1 class="hero-headline">
+                        AirCheese Enz
+                    </h1>
+                    <p class="hero-caption">现已提供主动风味增强</p>
+                    <div class="cta-links">
+                        <a href="milk.html" class="button button-elevated button-primary">Learn more</a>
+                        <a href="" class="button button-elevated button-tertiary" target="_blank"
+                            onclick="window.open('https://s.taobao.com/search?q=奶酪', '_blank')">Buy</a>
+                    </div>
+                    <!-- </div> -->
+                </div>
+                <div class="hero-image-container">
+                    <figure class="hero-image image-cheese" alt="奶酪酶示例图"></figure>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Promos Section -->
+        <section class="promos-section">
+            <div class="promos-grid">
+                <!-- 酶的定义 -->
+                <div class="promo-card" style="background-image: url('apple/card_1.jpg');">
+                    <div class="promo-content content-bottom">
+                        <h2>什么是酶？</h2>
+                        <p>生物催化剂，加速化学反应。</p>
+                        <a href="#" class="button button-elevated button-primary">了解更多</a>
+                    </div>
+                </div>
+                <!-- 食品应用 -->
+                <div class="promo-card" style="background-image: url('apple/card_2.jpg');">
+                    <div class="promo-content content-top">
+                        <h2>食品魔法</h2>
+                        <p>面包发酵、果汁澄清。</p>
+                        <a href="#" class="button button-elevated button-primary">了解更多</a>
+                    </div>
+                </div>
+                <!-- 多领域应用 -->
+                <div class="promo-card" style="background-image: url('apple/card_3.jpg');">
+                    <div class="promo-content content-top">
+                        <h2>跨界应用</h2>
+                        <p>医药制造、环保科技。</p>
+                        <a href="#" class="button button-elevated button-primary">了解更多</a>
+                    </div>
+                </div>
+                <!-- 酶的趣味事实 1 -->
+                <div class="promo-card" style="background-image: url('apple/card_4.jpg');">
+                    <div class="promo-content content-bottom" style="color: rgb(245, 245, 247);">
+                        <!-- <div class="icon">⚡</div> -->
+                        <h2>百万倍加速</h2>
+                        <p>酶让反应快100万倍，化学超速引擎！</p>
+                        <a href="#" class="button button-elevated button-primary">了解更多</a>
+                    </div>
+                </div>
+                <!-- 酶的趣味事实 2 -->
+                <div class="promo-card" style="background-image: url('apple/card_5.jpg');">
+                    <div class="promo-content content-top">
+                        <!-- <div class="icon">🍎</div> -->
+                        <h2>消化小能手</h2>
+                        <p>唾液酶分解淀粉，比你想象的还快！</p>
+                        <a href="#" class="button button-elevated button-primary">了解更多</a>
+                    </div>
+                </div>
+                <!-- 酶的趣味事实 3 -->
+                <div class="promo-card" style="background-image: url('apple/card_6.jpg');">
+                    <div class="promo-content content-top">
+                        <!-- <div class="icon">🧬</div> -->
+                        <h2>生命微工匠</h2>
+                        <p>数千种酶构建你的身体，小工人忙不停！</p>
+                        <a href="#" class="button button-elevated button-primary">了解更多</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section: 酶的超能力 (TV+ 风格) -->
+        <section class="gallery-section tv-plus-gallery enzyme-power">
+            <h2 class="gallery-headline">酶的超能力</h2>
+            <div class="tv-plus-gallery">
+                <div class="gallery-container" id="enzyme-gallery">
+                    <div class="gallery-item">
+                        <img src="images/tv/diagnose.jpg" alt="酶在医疗中的应用">
+                        <p>疾病诊断</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/tv/medicine.png" alt="酶在医药中的应用">
+                        <p>医药制造</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/tv/food.jpg" alt="酶在食品中的应用">
+                        <p>食品加工</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/tv/env.jpg" alt="酶在环保中的应用">
+                        <p>环保科技</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/tv/farming.jpeg" alt="酶在农业中的应用">
+                        <p>农业应用</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/tv/detergent.jpg" style="object-position: 30% 80%;" alt="酶在日用品中的应用">
+                        <p>日用品科技</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/tv/bioenzymatic fuel cells.jpeg" alt="酶在能源中的应用">
+                        <p>能源转化</p>
+                    </div>
+                </div>
+                <div class="paddlenav paddlenav-framed">
+                    <ul>
+                        <li class="gallery-arrow prev" id="enzyme-prev">
+                            <button class="paddlenav-arrow paddlenav-arrow-previous">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M15 18l-6-6 6-6"></path>
+                                </svg>
+                            </button>
+                        </li>
+                        <li class="gallery-arrow next" id="enzyme-next">
+                            <button class="paddlenav-arrow paddlenav-arrow-next">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9 18l6-6-6-6"></path>
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section fam-gallery">
+            <div class="gallery-container">
+                <h2 class="gallery-title">酶的特性</h2>
+                <p class="gallery-subtitle">探索使酶成为必不可少的生物催化剂的独特特性</p>
+
+                <div class="gallery-slider" id="gallery">
+                    <div class="gallery-card">
+                        <div class="card-content">
+                            <div class="card-icon color-1">1</div>
+                            <h3 class="card-title">高效性</h3>
+                            <p class="card-description">酶的催化效率比无机催化剂更高，使得反应速率更快。它们可以将反应速率提高数百万甚至数十亿倍，远超未催化的反应速率。</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <div class="card-content">
+                            <div class="card-icon color-2">2</div>
+                            <h3 class="card-title">专一性</h3>
+                            <p class="card-description">一种酶只能催化一种或一类底物，展现出显著的底物选择性。例如，蛋白酶只能催化蛋白质水解成多肽，而不会作用于其他物质。</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <div class="card-content">
+                            <div class="card-icon color-3">3</div>
+                            <h3 class="card-title">多样性</h3>
+                            <p class="card-description">
+                                酶的种类很多，迄今为止已发现约4000多种酶，但在生物体中的酶远远大于这个数量。这种丰富的多样性使生命所需的复杂生化反应能够同时进行。</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <div class="card-content">
+                            <div class="card-icon color-4">4</div>
+                            <h3 class="card-title">温和性</h3>
+                            <p class="card-description">酶所催化的化学反应一般是在较温和的条件下进行的，包括适宜的温度、pH值和压力，这与许多需要极端条件的工业化学过程形成鲜明对比。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <div class="card-content">
+                            <div class="card-icon color-5">5</div>
+                            <h3 class="card-title">活性可调节性</h3>
+                            <p class="card-description">
+                                酶的活性可以通过多种方式精确调节，包括抑制剂和激活剂调节、反馈抑制调节、共价修饰调节和变构调节等，使细胞能够响应不断变化的环境条件。</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <div class="card-content">
+                            <div class="card-icon color-6">6</div>
+                            <h3 class="card-title">易变性</h3>
+                            <p class="card-description">大多数酶是蛋白质，因而会被高温、强酸、强碱等破坏。当酶的结构被破坏时，它们会失去催化活性，这也是控制酶活性的一种方式。</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <div class="card-content">
+                            <div class="card-icon color-7">7</div>
+                            <h3 class="card-title">辅助因子依赖性</h3>
+                            <p class="card-description">有些酶的催化性与辅助因子有关，如金属离子或辅酶。这些辅助因子通常直接参与催化反应或帮助维持酶的结构，是酶功能的重要组成部分。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <div class="card-content">
+                            <div class="card-icon color-8">8</div>
+                            <h3 class="card-title">自我保存</h3>
+                            <p class="card-description">酶能改变化学反应速率，本身几乎不被消耗。它们暂时与底物结合，促进反应，然后释放产物，而酶本身保持不变并准备进行下一次催化循环。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <div class="card-content">
+                            <div class="card-icon color-9">9</div>
+                            <h3 class="card-title">反应促进</h3>
+                            <p class="card-description">酶只催化已存在的化学反应，不能创造新的反应或改变化学可行性。它们只是加速那些自然可能发生但速度非常慢的反应过程。</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <div class="card-content">
+                            <div class="card-icon color-10">10</div>
+                            <h3 class="card-title">平衡保持</h3>
+                            <p class="card-description">
+                                酶能加快化学反应的速度，但不能改变化学反应的平衡点。酶在促进正向反应的同时也以相同的比例促进逆向的反应，所以酶的作用是缩短了到达平衡所需的时间，但平衡常数不变。</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <div class="card-content">
+                            <div class="card-icon color-11">11</div>
+                            <h3 class="card-title">降低活化能</h3>
+                            <p class="card-description">酶通过降低反应所需的活化能来工作，提供一条需要较少能量的替代反应途径，从而显著加快反应速率，使生命过程得以持续进行。</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <div class="card-content">
+                            <div class="card-icon color-12">12</div>
+                            <h3 class="card-title">中毒现象</h3>
+                            <p class="card-description">与无机催化剂一样，酶也会出现中毒现象。某些物质可以与酶结合并阻止其正常功能，无论是可逆的还是不可逆的，都会阻碍酶的催化活性。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- 家庭风格网格画廊 -->
+        <section class="gallery-section fam-gallery">
+            <h2 class="gallery-headline">挑战酶大师</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="images/quiz-preview1.jpg" alt="酶知识问答预览1">
+                    <h3>测验1</h3>
+                    <p>测试你的酶知识</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/quiz-preview2.jpg" alt="酶知识问答预览2">
+                    <h3>测验2</h3>
+                    <p>探索酶的奥秘</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/quiz-preview3.jpg" alt="酶知识问答预览3">
+                    <h3>测验3</h3>
+                    <p>专业酶学挑战</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/quiz-preview4.jpg" alt="酶知识问答预览4">
+                    <h3>测验4</h3>
+                    <p>酶应用案例分析</p>
+                </div>
+            </div>
+        </section>
+        <!-- 自己动手试试 -->
+        <section class="card-section collection-module">
+            <h2 class="section-headline">动手探索酶魔法</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="icon">🧪</div>
+                    <h2>果汁变清实验</h2>
+                    <p>用果胶酶让果汁晶莹剔透，家里就能试！</p>
+                    <a href="#" class="button button Eelevated button-primary">查看教程</a>
+                </div>
+                <div class="card">
+                    <div class="icon">🍞</div>
+                    <h2>面包蓬松秘籍</h2>
+                    <p>加点淀粉酶，看面包变得超软超美味！</p>
+                    <a href="#" class="button button-elevated button-primary">查看教程</a>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Shop and Learn</h3>
+                    <ul>
+                        <li><a href="#">Store</a></li>
+                        <li><a href="#">TechNova</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">TechNova Care</a></li>
+                        <li><a href="#">Cloud Services</a></li>
+                        <li><a href="#">TechNova Pay</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>For Business</h3>
+                    <ul>
+                        <li><a href="#">TechNova for Business</a></li>
+                        <li><a href="#">Shop for Business</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About TechNova</h3>
+                    <ul>
+                        <li><a href="#">Newsroom</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <div class="copyright">Copyright © 2025 TechNova Inc. All rights reserved.</div>
+                <div class="legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Sales Policy</a>
+                    <a href="#">Legal</a>
+                    <a href="#">Site Map</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>酶工程 - 分子催化艺术</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/sf-pro-display@4.0.0/index.css"> -->
+    <link rel="stylesheet" href="css/bread.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="theme-dark bread-page">
+    <!-- 导航栏 -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <ul class="nav-content">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-logo">酶工厂</a>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-links">
+                        <a href="#intro" class="nav-link">酶是什么</a>
+                        <a href="#food" class="nav-link">食品应用</a>
+                        <a href="#industry" class="nav-link">工业应用</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" role="button" class="nav-search">
+                        <span class="nav-regular">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15px" height="44px" viewBox="0 0 15 44">
+                                <path
+                                    d="M14.298,27.202l-3.87-3.87c0.701-0.929,1.122-2.081,1.122-3.332c0-3.06-2.489-5.55-5.55-5.55c-3.06,0-5.55,2.49-5.55,5.55 c0,3.061,2.49,5.55,5.55,5.55c1.251,0,2.403-0.421,3.332-1.122l3.87,3.87c0.151,0.151,0.35,0.228,0.548,0.228 s0.396-0.076,0.548-0.228C14.601,27.995,14.601,27.505,14.298,27.202z M1.55,20c0-2.454,1.997-4.45,4.45-4.45 c2.454,0,4.45,1.997,4.45,4.45S8.454,24.45,6,24.45C3.546,24.45,1.55,22.454,1.55,20z">
+                                </path>
+                            </svg>
+                        </span>
+                    </a>
+                </li>
+                <!-- <button class="ios-button nav-button">探索之旅</button> -->
+            </ul>
+    </nav>
+    <svg style="display: none;" width='1440px' height='300px' viewBox='0 0 1440 300' xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+            <filter id="glow-1" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" Height="200%">
+                <feGaussianBlur in="SourceGraphic" data-target-blur="4" stdDeviation="4" result="blur4" />
+                <feGaussianBlur in="SourceGraphic" data-target-blur="19" stdDeviation="19" result="blur19" />
+                <feGaussianBlur in="SourceGraphic" data-target-blur="9" stdDeviation="9" result="blur9" />
+                <feGaussianBlur in="SourceGraphic" data-target-blur="30" stdDeviation="30" result="blur30" />
+                <feColorMatrix in="blur4" result="color-0-blur" type="matrix" values="1 0 0 0 0
+                          0 0.9803921568627451 0 0 0
+                          0 0 0.9647058823529412 0 0
+                          0 0 0 0.8 0" />
+                <feOffset in="color-0-blur" result="layer-0-offsetted" dx="0" dy="0" data-target-offset-y="0" />
+                <feColorMatrix in="blur19" result="color-1-blur" type="matrix" values="0.8156862745098039 0 0 0 0
+                          0 0.49411764705882355 0 0 0
+                          0 0 0.2627450980392157 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-1-blur" result="layer-1-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+                <feColorMatrix in="blur9" result="color-2-blur" type="matrix" values="1 0 0 0 0
+                          0 0.6666666666666666 0 0 0
+                          0 0 0.36470588235294116 0 0
+                          0 0 0 0.65 0" />
+                <feOffset in="color-2-blur" result="layer-2-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+                <feColorMatrix in="blur30" result="color-3-blur" type="matrix" values="1 0 0 0 0
+                          0 0.611764705882353 0 0 0
+                          0 0 0.39215686274509803 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-3-blur" result="layer-3-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+                <feColorMatrix in="blur30" result="color-4-blur" type="matrix" values="0.4549019607843137 0 0 0 0
+                          0 0.16470588235294117 0 0 0
+                          0 0 0 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-4-blur" result="layer-4-offsetted" dx="0" dy="16" data-target-offset-y="16" />
+                <feColorMatrix in="blur30" result="color-5-blur" type="matrix" values="0.4235294117647059 0 0 0 0
+                          0 0.19607843137254902 0 0 0
+                          0 0 0.11372549019607843 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-5-blur" result="layer-5-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+                <feColorMatrix in="blur30" result="color-6-blur" type="matrix" values="0.21176470588235294 0 0 0 0
+                          0 0.10980392156862745 0 0 0
+                          0 0 0.07450980392156863 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-6-blur" result="layer-6-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+                <feColorMatrix in="blur30" result="color-7-blur" type="matrix" values="0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0.68 0" />
+                <feOffset in="color-7-blur" result="layer-7-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+                <feMerge>
+                    <feMergeNode in="layer-0-offsetted" />
+                    <feMergeNode in="layer-1-offsetted" />
+                    <feMergeNode in="layer-2-offsetted" />
+                    <feMergeNode in="layer-3-offsetted" />
+                    <feMergeNode in="layer-4-offsetted" />
+                    <feMergeNode in="layer-5-offsetted" />
+                    <feMergeNode in="layer-6-offsetted" />
+                    <feMergeNode in="layer-7-offsetted" />
+                    <feMergeNode in="layer-0-offsetted" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+            <filter id="glow-1-safari" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" x="-50%" y="-50%"
+                width="200%" Height="200%">
+                <feGaussianBlur in="SourceGraphic" data-target-blur="4" stdDeviation="4" result="blur4" />
+                <feGaussianBlur in="SourceGraphic" data-target-blur="19" stdDeviation="19" result="blur19" />
+                <feGaussianBlur in="SourceGraphic" data-target-blur="9" stdDeviation="9" result="blur9" />
+                <feGaussianBlur in="SourceGraphic" data-target-blur="30" stdDeviation="30" result="blur30" />
+                <feColorMatrix in="blur4" result="color-0-blur" type="matrix" values="1 0 0 0 0
+                          0 0.9803921568627451 0 0 0
+                          0 0 0.9647058823529412 0 0
+                          0 0 0 0.8 0" />
+                <feOffset in="color-0-blur" result="layer-0-offsetted" dx="0" dy="0" data-target-offset-y="0" />
+                <feColorMatrix in="blur19" result="color-1-blur" type="matrix" values="0.8156862745098039 0 0 0 0
+                          0 0.49411764705882355 0 0 0
+                          0 0 0.2627450980392157 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-1-blur" result="layer-1-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+                <feColorMatrix in="blur9" result="color-2-blur" type="matrix" values="1 0 0 0 0
+                          0 0.6666666666666666 0 0 0
+                          0 0 0.36470588235294116 0 0
+                          0 0 0 0.65 0" />
+                <feOffset in="color-2-blur" result="layer-2-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+                <feColorMatrix in="blur30" result="color-3-blur" type="matrix" values="1 0 0 0 0
+                          0 0.611764705882353 0 0 0
+                          0 0 0.39215686274509803 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-3-blur" result="layer-3-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+                <feColorMatrix in="blur30" result="color-4-blur" type="matrix" values="0.4549019607843137 0 0 0 0
+                          0 0.16470588235294117 0 0 0
+                          0 0 0 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-4-blur" result="layer-4-offsetted" dx="0" dy="16" data-target-offset-y="16" />
+                <feColorMatrix in="blur30" result="color-5-blur" type="matrix" values="0.4235294117647059 0 0 0 0
+                          0 0.19607843137254902 0 0 0
+                          0 0 0.11372549019607843 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-5-blur" result="layer-5-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+                <feColorMatrix in="blur30" result="color-6-blur" type="matrix" values="0.21176470588235294 0 0 0 0
+                          0 0.10980392156862745 0 0 0
+                          0 0 0.07450980392156863 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-6-blur" result="layer-6-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+                <feColorMatrix in="blur30" result="color-7-blur" type="matrix" values="0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0.68 0" />
+                <feOffset in="color-7-blur" result="layer-7-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+                <feMerge>
+                    <feMergeNode in="layer-0-offsetted" />
+                    <feMergeNode in="layer-1-offsetted" />
+                    <feMergeNode in="layer-2-offsetted" />
+                    <feMergeNode in="layer-3-offsetted" />
+                    <feMergeNode in="layer-4-offsetted" />
+                    <feMergeNode in="layer-5-offsetted" />
+                    <feMergeNode in="layer-6-offsetted" />
+                    <feMergeNode in="layer-7-offsetted" />
+                    <feMergeNode in="layer-0-offsetted" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+            <filter id="glow-1-safari-18" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" x="-50%"
+                y="-50%" width="200%" Height="200%">
+                <feGaussianBlur in="SourceGraphic" data-target-blur="4" stdDeviation="4" result="blur4" />
+                <feGaussianBlur in="SourceGraphic" data-target-blur="12" stdDeviation="12" result="blur12" />
+                <feGaussianBlur in="SourceGraphic" data-target-blur="9" stdDeviation="9" result="blur9" />
+                <feGaussianBlur in="SourceGraphic" data-target-blur="12" stdDeviation="12" result="blur12" />
+                <feColorMatrix in="blur4" result="color-0-blur" type="matrix" values="1 0 0 0 0
+                          0 0.9803921568627451 0 0 0
+                          0 0 0.9647058823529412 0 0
+                          0 0 0 0.8 0" />
+                <feOffset in="color-0-blur" result="layer-0-offsetted" dx="0" dy="0" data-target-offset-y="0" />
+                <feColorMatrix in="blur12" result="color-1-blur" type="matrix" values="0.8156862745098039 0 0 0 0
+                          0 0.49411764705882355 0 0 0
+                          0 0 0.2627450980392157 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-1-blur" result="layer-1-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+                <feColorMatrix in="blur9" result="color-2-blur" type="matrix" values="1 0 0 0 0
+                          0 0.6666666666666666 0 0 0
+                          0 0 0.36470588235294116 0 0
+                          0 0 0 0.65 0" />
+                <feOffset in="color-2-blur" result="layer-2-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+                <feColorMatrix in="blur12" result="color-3-blur" type="matrix" values="1 0 0 0 0
+                          0 0.611764705882353 0 0 0
+                          0 0 0.39215686274509803 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-3-blur" result="layer-3-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+                <feColorMatrix in="blur12" result="color-4-blur" type="matrix" values="0.4549019607843137 0 0 0 0
+                          0 0.16470588235294117 0 0 0
+                          0 0 0 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-4-blur" result="layer-4-offsetted" dx="0" dy="16" data-target-offset-y="16" />
+                <feColorMatrix in="blur12" result="color-5-blur" type="matrix" values="0.4235294117647059 0 0 0 0
+                          0 0.19607843137254902 0 0 0
+                          0 0 0.11372549019607843 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-5-blur" result="layer-5-offsetted" dx="0" dy="20" data-target-offset-y="20" />
+                <feColorMatrix in="blur12" result="color-6-blur" type="matrix" values="0.21176470588235294 0 0 0 0
+                          0 0.10980392156862745 0 0 0
+                          0 0 0.07450980392156863 0 0
+                          0 0 0 1 0" />
+                <feOffset in="color-6-blur" result="layer-6-offsetted" dx="0" dy="20" data-target-offset-y="20" />
+                <feColorMatrix in="blur12" result="color-7-blur" type="matrix" values="0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0.68 0" />
+                <feOffset in="color-7-blur" result="layer-7-offsetted" dx="0" dy="20" data-target-offset-y="20" />
+                <feMerge>
+                    <feMergeNode in="layer-0-offsetted" />
+                    <feMergeNode in="layer-1-offsetted" />
+                    <feMergeNode in="layer-2-offsetted" />
+                    <feMergeNode in="layer-3-offsetted" />
+                    <feMergeNode in="layer-4-offsetted" />
+                    <feMergeNode in="layer-5-offsetted" />
+                    <feMergeNode in="layer-6-offsetted" />
+                    <feMergeNode in="layer-7-offsetted" />
+                    <feMergeNode in="layer-0-offsetted" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+            <filter id="glow-1-ios" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" x="-50%" y="-50%"
+                width="200%" Height="200%">
+                <feGaussianBlur in="SourceGraphic" data-target-blur="4" stdDeviation="4" result="blur4" />
+                <feGaussianBlur in="SourceGraphic" data-target-blur="12" stdDeviation="12" result="blur12" />
+                <feGaussianBlur in="SourceGraphic" data-target-blur="9" stdDeviation="9" result="blur9" />
+                <feGaussianBlur in="SourceGraphic" data-target-blur="12" stdDeviation="12" result="blur12" />
+                <feColorMatrix in="blur4" result="color-0-blur" type="matrix" values="1 0 0 0 0
+                        0 0.9803921568627451 0 0 0
+                        0 0 0.9647058823529412 0 0
+                        0 0 0 0.8 0" />
+                <feOffset in="color-0-blur" result="layer-0-offsetted" dx="0" dy="0" data-target-offset-y="0" />
+                <feColorMatrix in="blur12" result="color-1-blur" type="matrix" values="0.8156862745098039 0 0 0 0
+                        0 0.49411764705882355 0 0 0
+                        0 0 0.2627450980392157 0 0
+                        0 0 0 1 0" />
+                <feOffset in="color-1-blur" result="layer-1-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+                <feColorMatrix in="blur9" result="color-2-blur" type="matrix" values="1 0 0 0 0
+                        0 0.6666666666666666 0 0 0
+                        0 0 0.36470588235294116 0 0
+                        0 0 0 0.65 0" />
+                <feOffset in="color-2-blur" result="layer-2-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+                <feColorMatrix in="blur12" result="color-3-blur" type="matrix" values="1 0 0 0 0
+                        0 0.611764705882353 0 0 0
+                        0 0 0.39215686274509803 0 0
+                        0 0 0 1 0" />
+                <feOffset in="color-3-blur" result="layer-3-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+                <feColorMatrix in="blur12" result="color-4-blur" type="matrix" values="0.4549019607843137 0 0 0 0
+                        0 0.16470588235294117 0 0 0
+                        0 0 0 0 0
+                        0 0 0 1 0" />
+                <feOffset in="color-4-blur" result="layer-4-offsetted" dx="0" dy="12" data-target-offset-y="12" />
+                <feColorMatrix in="blur12" result="color-5-blur" type="matrix" values="0.4235294117647059 0 0 0 0
+                        0 0.19607843137254902 0 0 0
+                        0 0 0.11372549019607843 0 0
+                        0 0 0 1 0" />
+                <feOffset in="color-5-blur" result="layer-5-offsetted" dx="0" dy="12" data-target-offset-y="12" />
+                <feColorMatrix in="blur12" result="color-6-blur" type="matrix" values="0.21176470588235294 0 0 0 0
+                        0 0.10980392156862745 0 0 0
+                        0 0 0.07450980392156863 0 0
+                        0 0 0 1 0" />
+                <feOffset in="color-6-blur" result="layer-6-offsetted" dx="0" dy="12" data-target-offset-y="12" />
+                <feColorMatrix in="blur12" result="color-7-blur" type="matrix" values="0 0 0 0 0
+                        0 0 0 0 0
+                        0 0 0 0 0
+                        0 0 0 0.68 0" />
+                <feOffset in="color-7-blur" result="layer-7-offsetted" dx="0" dy="12" data-target-offset-y="12" />
+                <feMerge>
+                    <feMergeNode in="layer-0-offsetted" />
+                    <feMergeNode in="layer-1-offsetted" />
+                    <feMergeNode in="layer-2-offsetted" />
+                    <feMergeNode in="layer-3-offsetted" />
+                    <feMergeNode in="layer-4-offsetted" />
+                    <feMergeNode in="layer-5-offsetted" />
+                    <feMergeNode in="layer-6-offsetted" />
+                    <feMergeNode in="layer-7-offsetted" />
+                    <feMergeNode in="layer-0-offsetted" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- 主视觉区 -->
+    <section class="asp-hero">
+        <div class="asp-hero-container">
+            <h1 class="asp-hero-headline">
+                <span class="asp-gradient-text">生物催化</span>
+                <span class="asp-gradient-text">新纪元</span>
+            </h1>
+            <p class="asp-hero-subhead">重新定义工业发酵效率</p>
+        </div>
+        <div class="asp-particle-background"></div>
+    </section>
+
+    <!-- 技术模块 -->
+    <section class="tech-specs">
+        <div class="specs-container">
+            <h2 class="section-headline">发酵核心参数</h2>
+            <p class="section-subhead">精准控制每个发酵环节</p>
+
+            <!-- 参数卡片组 -->
+            <div class="specs-grid">
+                <!-- 温度控制 -->
+                <div class="spec-card">
+                    <div class="spec-icon">🌡️</div>
+                    <h3 class="spec-title">温度控制</h3>
+                    <p class="spec-description">28±0.3℃智能恒温</p>
+                    <div class="progress-ring" data-percent="98">
+                        <div class="progress-circle"></div>
+                        <span class="progress-value">98%</span>
+                    </div>
+                </div>
+
+                <!-- 湿度管理 -->
+                <div class="spec-card">
+                    <div class="spec-icon">💧</div>
+                    <h3 class="spec-title">湿度管理</h3>
+                    <p class="spec-description">80% RH动态平衡</p>
+                    <div class="progress-ring" data-percent="95">
+                        <div class="progress-circle"></div>
+                        <span class="progress-value">95%</span>
+                    </div>
+                </div>
+
+                <!-- 时间控制 -->
+                <div class="spec-card">
+                    <div class="spec-icon">⏱️</div>
+                    <h3 class="spec-title">时间精度</h3>
+                    <p class="spec-description">±30秒/阶段</p>
+                    <div class="progress-ring" data-percent="99">
+                        <div class="progress-circle"></div>
+                        <span class="progress-value">99%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <div class="timeline-container">
+            <h2 class="section-headline">发酵工艺流程</h2>
+            <p class="section-subhead">从原料到成品的精准控制</p>
+
+            <!-- 时间轴轨道 -->
+            <div class="timeline-track">
+                <!-- 流程步骤 -->
+                <ul class="step-set">
+
+                    <li class="timeline-step">
+                        <div class="step-visual">
+                            <div class="dough-animation"></div>
+                            <span class="step-number">1</span>
+                        </div>
+                        <h3 class="step-title">原料混合</h3>
+                        <p class="step-desc">酶制剂精准添加</p>
+                    </li>
+
+                    <li class="timeline-step">
+                        <div class="step-visual">
+                            <div class="yeast-animation"></div>
+                            <span class="step-number">2</span>
+                        </div>
+                        <h3 class="step-title">一次发酵</h3>
+                        <p class="step-desc">酵母活性最大化</p>
+                    </li>
+
+                    <li class="timeline-step">
+                        <div class="step-visual">
+                            <div class="shape-animation"></div>
+                            <span class="step-number">3</span>
+                        </div>
+                        <h3 class="step-title">整形处理</h3>
+                        <p class="step-desc">面团结构重组</p>
+                    </li>
+
+                    <li class="timeline-step">
+                        <div class="step-visual">
+                            <div class="bake-animation"></div>
+                            <span class="step-number">4</span>
+                        </div>
+                        <h3 class="step-title">最终发酵</h3>
+                        <p class="step-desc">风味物质生成</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 进度指示器 -->
+            <div class="timeline-indicator-background">
+                <div class="timeline-indicator">
+                    <div class="indicator-dot active"></div>
+                    <div class="indicator-dot"></div>
+                    <div class="indicator-dot"></div>
+                    <div class="indicator-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="compare-section">
+        <div class="compare-container">
+            <h2 class="section-headline">工艺革新对比</h2>
+            <p class="section-subhead">传统发酵 vs 酶控技术</p>
+
+            <!-- 对比控制器 -->
+            <div class="compare-toggle">
+                <button class="toggle-option active">传统工艺</button>
+                <button class="toggle-option">酶控技术</button>
+                <div class="toggle-highlight"></div>
+            </div>
+
+            <!-- 对比内容 -->
+            <div class="compare-content">
+                <!-- 传统工艺 -->
+                <div class="compare-card active">
+                    <div class="compare-visual">
+                        <div class="dough-traditional"></div>
+                        <div class="stats-overlay">
+                            <div class="stat-item">
+                                <span class="stat-value">8h</span>
+                                <span class="stat-label">发酵时间</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">65%</span>
+                                <span class="stat-label">成功率</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="compare-list">
+                        <li>依赖环境温度</li>
+                        <li>人工经验判断</li>
+                        <li>品质波动较大</li>
+                    </ul>
+                </div>
+
+                <!-- 酶控技术 -->
+                <div class="compare-card">
+                    <div class="compare-visual">
+                        <div class="dough-enzyme"></div>
+                        <div class="stats-overlay">
+                            <div class="stat-item">
+                                <span class="stat-value">3h</span>
+                                <span class="stat-label">发酵时间</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">98%</span>
+                                <span class="stat-label">成功率</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="compare-list">
+                        <li>智能恒温系统</li>
+                        <li>实时生物传感</li>
+                        <li>品质高度稳定</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/bread.js"></script>
+</body>
+
+</html>

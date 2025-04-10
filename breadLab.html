@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>
+    <link rel="stylesheet" href="css/breadLab.css">
+    <title>面包酶实验室</title>
+</head>
+
+<body>
+    <header>
+        <h1>面包酶实验室</h1>
+    </header>
+
+    <section class="hero">
+        <h2>探索酶的神奇世界</h2>
+        <p>亲手调配不同的酶，观察它们如何影响面包的质地、体积和口感</p>
+        <button class="start-button" id="start-experiment">开始实验</button>
+    </section>
+
+    <section class="lab-container" id="lab">
+        <div class="enzyme-controls">
+            <div class="enzyme-card">
+                <div class="enzyme-icon">
+                    <img src="/api/placeholder/80/80" alt="淀粉酶图标">
+                </div>
+                <div class="enzyme-info">
+                    <h3>淀粉酶</h3>
+                    <p>分解淀粉产生糖分，影响面包发酵和体积</p>
+                    <div class="slider-container">
+                        <label>用量 <span id="amylase-value">50%</span></label>
+                        <input type="range" min="0" max="100" value="50" class="slider" id="amylase-slider">
+                    </div>
+                </div>
+            </div>
+
+            <div class="enzyme-card">
+                <div class="enzyme-icon">
+                    <img src="/api/placeholder/80/80" alt="脂肪酶图标">
+                </div>
+                <div class="enzyme-info">
+                    <h3>脂肪酶</h3>
+                    <p>改良面包组织结构，增加柔软度</p>
+                    <div class="slider-container">
+                        <label>用量 <span id="lipase-value">50%</span></label>
+                        <input type="range" min="0" max="100" value="50" class="slider" id="lipase-slider">
+                    </div>
+                </div>
+            </div>
+
+            <div class="enzyme-card">
+                <div class="enzyme-icon">
+                    <img src="/api/placeholder/80/80" alt="葡萄糖氧化酶图标">
+                </div>
+                <div class="enzyme-info">
+                    <h3>葡萄糖氧化酶</h3>
+                    <p>强化面团，改善面团抗拉性</p>
+                    <div class="slider-container">
+                        <label>用量 <span id="glucose-oxidase-value">50%</span></label>
+                        <input type="range" min="0" max="100" value="50" class="slider" id="glucose-oxidase-slider">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 添加在现有酶卡片之后 -->
+<div class="enzyme-card">
+    <div class="enzyme-icon" style="background: linear-gradient(120deg, #34c759, #30d158);">
+        <img src="/api/placeholder/80/80" alt="温度控制图标">
+    </div>
+    <div class="enzyme-info">
+        <h3>烘焙温度</h3>
+        <p>影响酶活性和面包烤色，决定面包表皮形成</p>
+        <div class="slider-container">
+            <label>温度 <span id="temperature-value">180°C</span></label>
+            <input type="range" min="150" max="220" value="180" class="slider" id="temperature-slider">
+        </div>
+    </div>
+</div>
+
+<div class="enzyme-card">
+    <div class="enzyme-icon" style="background: linear-gradient(120deg, #5e5ce6, #0a84ff);">
+        <img src="/api/placeholder/80/80" alt="时间控制图标">
+    </div>
+    <div class="enzyme-info">
+        <h3>发酵时间</h3>
+        <p>影响酶反应完成度和面包组织结构</p>
+        <div class="slider-container">
+            <label>时间 <span id="fermentation-value">60分钟</span></label>
+            <input type="range" min="30" max="120" value="60" class="slider" id="fermentation-slider">
+        </div>
+    </div>
+</div>
+        </div>
+
+        <div class="bread-preview">
+            <div class="bread-container">
+                <div class="bread-cross-section" id="bread-visualization">
+                    <!-- 面包可视化区域 -->
+                </div>
+                <div id="lottie-loading">
+                    <!-- 面包烘焙动画区域 -->
+                </div>
+            </div>
+
+            <div class="bread-status">
+                <div class="status-title">你的面包配方</div>
+                <div class="status-message">调整酶的用量，然后点击烘焙按钮查看结果</div>
+                <div class="status-effects">
+                    <div class="status-effect">
+                        <div class="effect-value" id="volume-value">--</div>
+                        <div class="effect-label">体积</div>
+                    </div>
+                    <div class="status-effect">
+                        <div class="effect-value" id="texture-value">--</div>
+                        <div class="effect-label">质地</div>
+                    </div>
+                    <div class="status-effect">
+                        <div class="effect-value" id="freshness-value">--</div>
+                        <div class="effect-label">保鲜度</div>
+                    </div>
+                </div>
+                <button class="bake-button" id="bake-button">开始烘焙</button>
+            </div>
+        </div>
+
+        <div class="knowledge-card">
+            <h3>酶的科学原理</h3>
+            <p>酶是生物催化剂，能加速特定的化学反应，但自身不改变。在面包制作中，不同种类的酶负责不同功能：淀粉酶分解淀粉产生糖分供酵母发酵；脂肪酶改良面包组织结构和柔软度；葡萄糖氧化酶增强面团筋力。</p>
+            <p>通过微调酶的用量，专业面包师能够精确控制面包的口感、体积和保质期。但用量不当会导致面包质量下降，比如面包发黏、质地粗糙或表皮烧焦等问题。</p>
+            <p>点击"分子视角"按钮，你可以看到酶在分子层面是如何工作的！</p>
+            <button class="bake-button" id="microscope-button">分子视角</button>
+        </div>
+    </section>
+
+    <div class="microscope-view" id="microscope-view">
+        <div class="microscope-container">
+            <button class="close-microscope" id="close-microscope">&times;</button>
+            <div class="microscope-header">
+                <h3>酶的分子作用</h3>
+            </div>
+            <div class="microscope-content">
+                <div class="microscope-canvas" id="microscope-canvas">
+                    <!-- 分子动画区域 -->
+                </div>
+                <div class="microscope-info">
+                    <p id="microscope-description">
+                        在这个微观世界中，你可以看到酶分子（彩色小球）如何与底物（灰色大分子）结合并催化反应。淀粉酶正在切断淀粉长链，脂肪酶在分解脂肪，葡萄糖氧化酶则在促进蛋白质交联。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="experiment-results" id="experiment-results">
+        <div class="results-container">
+            <div class="results-header">
+                <h3>面包烘焙结果</h3>
+            </div>
+            <div class="results-content">
+                <div class="results-summary">
+                    <h4 id="result-title">实验结果</h4>
+                    <p id="result-description">根据你选择的酶配方，这里是你的面包烘焙结果。</p>
+                </div>
+                <div class="results-details">
+                    <div class="details-card">
+                        <h5>科学解释</h5>
+                        <p id="science-explanation">这里将显示酶配方如何影响面包的科学解释。</p>
+                    </div>
+                    <div class="details-card">
+                        <h5>专家提示</h5>
+                        <p id="expert-tip">这里将显示如何改进配方的提示。</p>
+                    </div>
+                </div>
+                <div class="results-actions">
+                    <button class="results-button retry-button" id="try-again">再试一次</button>
+                    <button class="results-button share-button" id="share-result">分享结果</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/breadLab.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> -->
+</body>
+</html>
+        

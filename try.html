@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>动手探索酶的神奇作用</title>
+  <style>
+    body {
+      font-family: "微软雅黑", Arial, sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    header {
+      margin-bottom: 20px;
+    }
+    .control-panel {
+      margin-bottom: 20px;
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: inline-block;
+      text-align: left;
+    }
+    .control-panel label {
+      margin-right: 10px;
+    }
+    #experimentCanvas {
+      border: 2px solid #ccc;
+      background-color: #fff;
+      border-radius: 8px;
+    }
+    .info-box {
+      margin-top: 20px;
+      background: #e9f7ef;
+      padding: 15px;
+      border-radius: 8px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>动手探索酶的神奇作用</h1>
+    <p>在这里，你可以亲自模拟添加不同种类、不同用量的酶，观察它们如何影响面包的发酵和质地。</p>
+  </header>
+
+  <div class="control-panel">
+    <div>
+      <label for="enzymeType">选择酶种类：</label>
+      <select id="enzymeType">
+        <option value="amylase">α-淀粉酶</option>
+        <option value="lipase">脂肪酶</option>
+        <option value="xylanase">木聚糖酶</option>
+        <option value="oxidase">葡萄糖氧化酶</option>
+        <option value="protease">蛋白酶</option> 
+      </select>
+    </div>
+    <div style="margin-top:10px;">
+      <label for="enzymeAmount">酶的用量：</label>
+      <input type="range" id="enzymeAmount" min="0" max="100" value="50">
+      <span id="amountLabel">适量</span>
+    </div>
+    <div style="margin-top:10px;">
+      <button id="startExperiment">开始实验</button>
+    </div>
+  </div>
+
+  <canvas id="experimentCanvas" width="500" height="300"></canvas>
+
+  <div class="info-box">
+    <h2>实验说明</h2>
+    <p>
+      根据科学实验（如面包和酿酒的研究资料&#8203;:contentReference[oaicite:0]{index=0}），合适的酶量能优化面团结构、延长面包保鲜期，使面包更加松软，口感更佳。反之，用量不足或过多都会带来负面影响：
+    </p>
+    <ul>
+      <li><strong>用量过少：</strong> 发酵不充分，面团粘连，面包体积小，老化快。</li>
+      <li><strong>用量合适：</strong> 面团松软、体积饱满，口感佳。</li>
+      <li><strong>用量过多：</strong> 面团过度分解，产生黏性或过干、硬化现象。</li>
+    </ul>
+  </div>
+
+  <script>
+    // 获取DOM节点
+    const enzymeTypeEl = document.getElementById('enzymeType');
+    const enzymeAmountEl = document.getElementById('enzymeAmount');
+    const amountLabelEl = document.getElementById('amountLabel');
+    const startButton = document.getElementById('startExperiment');
+    const canvas = document.getElementById('experimentCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // 根据用量更新标签
+    enzymeAmountEl.addEventListener('input', () => {
+      const val = parseInt(enzymeAmountEl.value);
+      if (val < 30) {
+        amountLabelEl.textContent = "偏少";
+      } else if (val > 70) {
+        amountLabelEl.textContent = "偏多";
+      } else {
+        amountLabelEl.textContent = "适量";
+      }
+    });
+
+    // 模拟变量
+    let animationFrameId;
+    let animationProgress = 0; // 0到1，表示动画进度
+
+    // 启动实验，基于当前控制参数启动动画模拟
+    startButton.addEventListener('click', () => {
+      if(animationFrameId) cancelAnimationFrame(animationFrameId);
+      animationProgress = 0;
+      animateExperiment();
+    });
+
+    function animateExperiment() {
+      // 清空画布
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 获取当前设置
+      const enzymeType = enzymeTypeEl.value;
+      const enzymeAmount = parseInt(enzymeAmountEl.value);
+
+      // 根据用量模拟“面团”的状态
+      // 以动画进度 animationProgress 来表示发酵程度：0表示刚开始，1表示发酵完成
+      // 我们可以调节面团的尺寸、颜色和形状来表示不同情况
+      let doughRadius;
+      let doughColor;
+      
+      if (enzymeAmount < 30) {
+        // 用量不足：发酵不足、面团较小
+        doughRadius = 50 + animationProgress * 60 * (enzymeAmount/50);
+        doughColor = "rgba(200, 200, 240, 0.8)";
+      } else if (enzymeAmount > 70) {
+        // 用量过多：可能面团因过度反应而局部失衡，色彩更深或出现杂色
+        doughRadius = 50 + animationProgress * 60 * (70/enzymeAmount);
+        doughColor = "rgba(180, 120, 120, 0.9)";
+      } else {
+        // 适量：正常发酵，面团膨胀均匀
+        doughRadius = 50 + animationProgress * 100;
+        doughColor = "rgba(240, 220, 180, 0.9)";
+      }
+
+      // 在画布中央绘制面团（简单圆形表示）
+      const centerX = canvas.width/2;
+      const centerY = canvas.height/2;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, doughRadius, 0, Math.PI * 2);
+      ctx.fillStyle = doughColor;
+      ctx.fill();
+      
+      // 增加动画进度
+      animationProgress += 0.01;
+      if (animationProgress < 1) {
+        animationFrameId = requestAnimationFrame(animateExperiment);
+      } else {
+        // 发酵完成，显示结果提示
+        ctx.font = "20px sans-serif";
+        ctx.fillStyle = "#333";
+        ctx.textAlign = "center";
+        if (enzymeAmount < 30) {
+          ctx.fillText("发酵不足！面包体积小", centerX, centerY);
+        } else if (enzymeAmount > 70) {
+          ctx.fillText("过量添加！面包易变质", centerX, centerY);
+        } else {
+          ctx.fillText("成功发酵！面包松软可口", centerX, centerY);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

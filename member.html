@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创新研发团队 | TechStars</title>
+    <style>
+        :root {
+            --primary-color: #1d1d1f;
+            /* 主文本色 */
+            --secondary-color: #86868b;
+            /* 辅助文本色 */
+            --accent-color: #0071e3;
+            /* 强调色 */
+            --color-primary: #0071E3;
+            --color-tertiary: #2997ff;
+            --color-secondary: #32D74B;
+            --color-surface: rgba(255, 255, 255, 0.82);
+            --color-border: rgba(0, 0, 0, 0.08);
+            --text-primary: #1D1D1F;
+            --text-secondary: #86868B;
+
+            --gradient-blue: linear-gradient(45deg,
+                    #0071E3 0%,
+                    #64D2FF 100%);
+
+            --shadow-lifted: 0px 20px 40px rgba(0, 0, 0, 0.12);
+            --ai-gradient: linear-gradient(94deg, #0090F7, #BA62FC, #F2416B, #F55600);
+        }
+
+        /* 苹果风格重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'SF Pro Display', -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.47059;
+    color: var(--text-primary);
+    background: #FFFFFF;
+}
+
+            /* 动态导航栏 */
+            .nav-bar {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                min-width: 320px;
+                height: 53px;
+                max-height: 48px;
+                font-size: 17px;
+                z-index: 9999;
+                /* font-size: 17px; */
+                /* padding: 0 32px; */
+                backdrop-filter: saturate(180%) blur(24px);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                transition: all 0.36s cubic-bezier(0.32, 0.08, 0.24, 1);
+                user-select: none;
+            }
+
+            .theme-light .nav-bar {
+                background: rgba(255, 255, 255, 0.8);
+            }
+
+            .theme-dark .nav-bar {
+                background: rgba(22, 22, 23, .8);
+            }
+
+            .nav-container {
+                max-width: 1024px;
+                margin: 0 auto;
+                padding: 0 22px;
+            }
+
+            .nav-content {
+                max-width: 1024px;
+                margin: 0 auto;
+                box-sizing: border-box;
+                padding-top: 0;
+                padding-bottom: 0;
+                height: 48px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                list-style: none;
+            }
+
+            .nav-logo {
+                font-size: 20px;
+                font-weight: 500;
+                text-decoration: none;
+            }
+
+            .theme-light .nav-logo {
+                color: var(--text-primary);
+            }
+
+            .theme-dark .nav-logo {
+                color: rgba(255, 255, 255, .8);
+            }
+
+
+            .nav-content {
+                cursor: default;
+                /* margin: 0 -8px; */
+                width: auto;
+                display: flex;
+                justify-content: space-between;
+                -webkit-user-select: none;
+                user-select: none;
+                list-style: none;
+                /* gap: 32px; */
+            }
+
+            .nav-item {
+                box-sizing: border-box;
+                height: 48px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* .nav-item * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+            .nav-links {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                gap: 28px;
+                height: 100%;
+                flex-grow: 1;
+            }
+
+            .nav-link {
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 400;
+                letter-spacing: -.01em;
+                font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+                line-height: 1;
+                transition: color 0.3s ease;
+                display: inherit;
+            }
+
+            .theme-light .nav-link {
+                color: var(--text-secondary);
+            }
+
+            .theme-dark .nav-link {
+                color: rgba(255, 255, 255, .8);
+            }
+
+            .theme-light .nav-link:hover {
+                color: var(--color-primary);
+            }
+
+            .theme-dark .nav-link:hover {
+                color: #FFFFFF;
+            }
+
+            .nav-bar .nav-button {
+                padding: 10px 20px;
+                font-size: 10px;
+            }
+
+            .nav-bar .nav-search {
+                font-size: 12px;
+                font-weight: 400;
+                letter-spacing: -.01em;
+                font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+                line-height: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: rgba(255, 255, 255, .8);
+                position: relative;
+                z-index: 1;
+                padding: 0 calc(8px / var(--r-globalnav-text-zoom-scale, 1));
+                height: 44px;
+                background: no-repeat;
+                text-decoration: none;
+                white-space: nowrap;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                transition: color .32s cubic-bezier(.4, 0, .6, 1);
+            }
+
+            .nav-bar .nav-regular {
+                display: flex;
+                pointer-events: none;
+            }
+
+            .nav-bar .nav-regular svg {
+                fill: currentColor;
+                transform: translateZ(0);
+            }
+
+            /* 新增团队展示区 */
+            .team-section {
+                padding: 100px 20px;
+                background: #fbfbfd;
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 60px;
+            }
+
+            .section-title {
+                font-size: 40px;
+                margin-bottom: 15px;
+            }
+
+            .team-grid {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 30px;
+                padding: 0 20px;
+            }
+
+            .member-card {
+                background: white;
+                border-radius: 18px;
+                padding: 30px;
+                box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+                transition: transform 0.3s ease;
+            }
+
+            .member-card:hover {
+                transform: translateY(-10px);
+            }
+
+            .member-photo {
+                width: 160px;
+                height: 160px;
+                border-radius: 50%;
+                margin: -80px auto 20px;
+                object-fit: cover;
+                border: 4px solid white;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            }
+
+            .member-name {
+                font-size: 24px;
+                margin-bottom: 8px;
+                color: var(--primary-color);
+            }
+
+            .member-role {
+                color: var(--accent-color);
+                margin-bottom: 15px;
+                font-weight: 500;
+            }
+
+            .member-bio {
+                color: var(--secondary-color);
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+
+            .social-links {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .social-link {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background: #f5f5f7;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.3s;
+            }
+
+            .social-link:hover {
+                background: #e5e5e9;
+            }
+
+            /* 增加多列布局适配 */
+            @media (min-width: 1024px) {
+                .team-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+
+            @media (min-width: 768px) and (max-width: 1023px) {
+                .team-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            /* 调整卡片间距 */
+            .member-card {
+                margin-bottom: 30px;
+            }
+
+            /* 优化头像尺寸 */
+            .member-photo {
+                width: 180px;
+                height: 180px;
+                margin-top: -90px;
+            }
+
+            /* 统一简介高度 */
+            .member-bio {
+                height: 80px;
+                overflow: auto;
+                margin-bottom: 15px;
+            }
+
+            /* 添加角色图标 */
+            .member-role::before {
+                content: "· ";
+                color: var(--accent-color);
+                font-weight: bold;
+                font-size: 1.2em;
+            }
+    </style>
+</head>
+
+<body class="theme-dark">
+    <!-- 导航栏 -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <ul class="nav-content">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-logo">酶工厂</a>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-links">
+                        <a href="#intro" class="nav-link">面包酶</a>
+                        <a href="#food" class="nav-link">酿酒酶</a>
+                        <a href="#industry" class="nav-link">奶酪酶</a>
+                        <a href="#" class="nav-link">果汁酶</a>
+                        <a href="#" class="nav-link">调味品</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="member.html" role="button" class="nav-search">
+                        <span class="nav-regular">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15px" height="44px" viewBox="0 0 15 44">
+                                <path
+                                    d="M14.298,27.202l-3.87-3.87c0.701-0.929,1.122-2.081,1.122-3.332c0-3.06-2.489-5.55-5.55-5.55c-3.06,0-5.55,2.49-5.55,5.55 c0,3.061,2.49,5.55,5.55,5.55c1.251,0,2.403-0.421,3.332-1.122l3.87,3.87c0.151,0.151,0.35,0.228,0.548,0.228 s0.396-0.076,0.548-0.228C14.601,27.995,14.601,27.505,14.298,27.202z M1.55,20c0-2.454,1.997-4.45,4.45-4.45 c2.454,0,4.45,1.997,4.45,4.45S8.454,24.45,6,24.45C3.546,24.45,1.55,22.454,1.55,20z">
+                                </path>
+                            </svg>
+                        </span>
+                    </a>
+                </li>
+                <!-- <button class="ios-button nav-button">探索之旅</button> -->
+            </ul>
+    </nav>
+
+    <main>
+        <!-- 团队展示区 -->
+        <section class="team-section">
+            <div class="section-header">
+                <h2 class="section-title">创新研发团队</h2>
+                <p class="hero-subhead">5位专业领域精英组成核心力量</p>
+            </div>
+
+            <div class="team-grid">
+                <!-- 成员卡片1 -->
+                <div class="member-card">
+                    <img src="member1.jpg" alt="廖梓熙" class="member-photo">
+                    <h3 class="member-name">廖梓熙</h3>
+                    <p class="member-role">技术总监</p>
+                    <p class="member-bio">全栈开发专家，主导过3个百万级用户平台架构设计，擅长分布式系统与性能优化...</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📧</a>
+                        <a href="#" class="social-link">💻</a>
+                        <a href="#" class="social-link">📱</a>
+                    </div>
+                </div>
+
+                <!-- 成员卡片2 -->
+                <div class="member-card">
+                    <img src="member2.jpg" alt="吕夯" class="member-photo">
+                    <h3 class="member-name">吕夯</h3>
+                    <p class="member-role">UX设计师</p>
+                    <p class="member-bio">交互设计专家，荣获3项国际设计大奖，擅长将复杂需求转化为直观的用户体验...</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📧</a>
+                        <a href="#" class="social-link">🎨</a>
+                        <a href="#" class="social-link">📱</a>
+                    </div>
+                </div>
+
+                <!-- 成员卡片3 -->
+                <div class="member-card">
+                    <img src="member3.jpg" alt="马一铭" class="member-photo">
+                    <h3 class="member-name">马一铭</h3>
+                    <p class="member-role">数据分析师</p>
+                    <p class="member-bio">大数据专家，精通机器学习算法，成功构建多个预测模型准确率达95%以上...</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📧</a>
+                        <a href="#" class="social-link">📊</a>
+                        <a href="#" class="social-link">📱</a>
+                    </div>
+                </div>
+
+                <!-- 成员卡片4 -->
+                <div class="member-card">
+                    <img src="member4.jpg" alt="周玟序" class="member-photo">
+                    <h3 class="member-name">周玟序</h3>
+                    <p class="member-role">项目经理</p>
+                    <p class="member-bio">PMP认证专家，成功交付过20+大型IT项目，擅长敏捷开发与跨团队协作...</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📧</a>
+                        <a href="#" class="social-link">📑</a>
+                        <a href="#" class="social-link">📱</a>
+                    </div>
+                </div>
+
+                <!-- 成员卡片5 -->
+                <div class="member-card">
+                    <img src="member5.jpg" alt="李文韬" class="member-photo">
+                    <h3 class="member-name">李文韬</h3>
+                    <p class="member-role">安全工程师</p>
+                    <p class="member-bio">网络安全专家，持有CISSP认证，成功防御过多次高级持续性威胁攻击...</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📧</a>
+                        <a href="#" class="social-link">🔒</a>
+                        <a href="#" class="social-link">📱</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

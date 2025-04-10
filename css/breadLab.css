@@ -1,0 +1,536 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f7;
+    color: #1d1d1f;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+header h1 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    background: linear-gradient(180deg, #f5f5f7 0%, #fff 100%);
+}
+
+.hero h2 {
+    font-size: 56px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ff9500, #ff2d55);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+.hero p {
+    font-size: 24px;
+    font-weight: 400;
+    max-width: 600px;
+    margin-bottom: 40px;
+    color: #86868b;
+}
+
+.start-button {
+    background: linear-gradient(90deg, #ff9500, #ff2d55);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.start-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(255, 45, 85, 0.2);
+}
+
+.lab-container {
+    display: none;
+    min-height: 100vh;
+    padding-top: 48px;
+}
+
+.enzyme-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+}
+
+.enzyme-card {
+    background: white;
+    width: 280px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.enzyme-card:hover {
+    transform: translateY(-10px);
+}
+
+.enzyme-icon {
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, #ff9500, #ff3b30);
+}
+
+.enzyme-icon img {
+    width: 80px;
+    height: 80px;
+}
+
+.enzyme-info {
+    padding: 20px;
+}
+
+.enzyme-info h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.enzyme-info p {
+    font-size: 14px;
+    color: #86868b;
+    margin-bottom: 16px;
+    height: 60px;
+}
+
+.slider-container {
+    margin-bottom: 10px;
+}
+
+.slider-container label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.slider-container label span {
+    color: #ff3b30;
+    font-weight: 600;
+}
+
+.slider {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: #e0e0e0;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ff3b30;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.bread-preview {
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bread-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin-bottom: 30px;
+}
+
+.bread-cross-section {
+    width: 400px;
+    height: 400px;
+    border-radius: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+}
+
+.bread-status {
+    background-color: white;
+    padding: 30px;
+    border-radius: 18px;
+    width: 100%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.status-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.status-message {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #86868b;
+    margin-bottom: 20px;
+}
+
+.status-effects {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.status-effect {
+    text-align: center;
+    width: 100px;
+}
+
+.effect-value {
+    font-size: 36px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ff9500, #ff2d55);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+.effect-label {
+    font-size: 14px;
+    color: #86868b;
+}
+
+.bake-button {
+    background: linear-gradient(90deg, #ff9500, #ff2d55);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bake-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(255, 45, 85, 0.2);
+}
+
+.bake-button:disabled {
+    background: #e0e0e0;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.knowledge-card {
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+    max-width: 800px;
+    margin: 40px auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.knowledge-card h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #1d1d1f;
+}
+
+.knowledge-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #86868b;
+    margin-bottom: 20px;
+}
+
+.microscope-view {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.microscope-container {
+    width: 70%;
+    max-width: 800px;
+    background-color: #f5f5f7;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.microscope-header {
+    background: linear-gradient(90deg, #ff9500, #ff2d55);
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+.microscope-header h3 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.microscope-content {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.microscope-canvas {
+    width: 100%;
+    height: 300px;
+    background-color: #000;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.microscope-particle {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.close-microscope {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.microscope-info {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+}
+
+.microscope-info p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #1d1d1f;
+}
+
+.experiment-results {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 150;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.results-container {
+    width: 90%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(50px);
+    transition: transform 0.5s ease;
+}
+
+.results-header {
+    background: linear-gradient(90deg, #ff9500, #ff2d55);
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+.results-header h3 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.results-content {
+    padding: 30px;
+}
+
+.results-summary {
+    margin-bottom: 30px;
+}
+
+.results-summary h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.results-summary p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #86868b;
+}
+
+.results-details {
+    margin-bottom: 30px;
+}
+
+.details-card {
+    background-color: #f5f5f7;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.details-card h5 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #1d1d1f;
+}
+
+.details-card p {
+    font-size: 14px;
+    color: #86868b;
+    line-height: 1.5;
+}
+
+.results-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.results-button {
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.retry-button {
+    background: linear-gradient(90deg, #ff9500, #ff2d55);
+    color: white;
+    border: none;
+}
+
+.retry-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(255, 45, 85, 0.2);
+}
+
+.share-button {
+    background-color: transparent;
+    color: #ff3b30;
+    border: 2px solid #ff3b30;
+}
+
+.share-button:hover {
+    background-color: rgba(255, 59, 48, 0.1);
+}
+
+#lottie-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    z-index: 5;
+    display: none;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 24px;
+}
+
+.show-experiment-results {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.show-experiment-results .results-container {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 42px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .bread-container {
+        width: 300px;
+        height: 300px;
+    }
+
+    .bread-cross-section {
+        width: 300px;
+        height: 300px;
+    }
+
+    .microscope-container {
+        width: 90%;
+    }
+}
