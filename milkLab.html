@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>酶的神奇冒险</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+        }
+        body {
+            background-color: #f0f8ff;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        header {
+            background-color: #4285f4;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #4285f4;
+            margin: 20px 0;
+        }
+        .intro {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            background-color: #e0e0e0;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tab.active {
+            background-color: #4285f4;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 0 10px 10px 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            min-height: 400px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* 干酪制作游戏 */
+        .cheese-game {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background-color: #f9f5e3;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .milk-container {
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            background-color: #fff;
+            border: 3px solid #ccc;
+            border-radius: 0 0 20px 20px;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .milk {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 90%;
+            background-color: #fffafa;
+            border-radius: 0 0 17px 17px;
+            transition: all 3s;
+        }
+        .enzyme-selector {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            display: flex;
+            flex-direction: column;
+            z-index: 3;
+        }
+        .enzyme-btn {
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .enzyme-btn:hover {
+            background-color: #3367d6;
+            transform: scale(1.05);
+        }
+        .milk-status {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 3;
+        }
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: yellow;
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        /* 乳糖酶游戏 */
+        .lactose-game {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background-color: #e6f7ff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .intestine {
+            position: relative;
+            width: 80%;
+            height: 200px;
+            margin: 50px auto;
+            background-color: #ffcccb;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .lactose {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border: 2px solid #333;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            user-select: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .lactase {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #4285f4;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 20;
+        }
+        .glucose, .galactose {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 1s;
+        }
+        .glucose {
+            background-color: #ffeb3b;
+        }
+        .galactose {
+            background-color: #ff9800;
+        }
+        
+        .stats {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .quiz-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .quiz-btn:hover {
+            background-color: #3367d6;
+            transform: scale(1.05);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* 动画效果 */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #4285f4;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .info-box {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #4285f4;
+        }
+        
+        .feedback {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .microscope-view {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 3px solid #333;
+            border-radius: 50%;
+            overflow: hidden;
+            display: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>酶的神奇冒险</h1>
+        <p>跟随酶的脚步，探索乳制品加工的奇妙世界！</p>
+    </header>
+    
+    <div class="container">
+        <div class="intro">
+            <h2>欢迎来到酶的世界！</h2>
+            <p>酶是生物体内的催化剂，能够加速化学反应而不被消耗。在这个互动游戏中，你将探索两种重要的酶在食品工业中的应用：</p>
+            <ul>
+                <li>凝乳酶：如何将牛奶变成美味的奶酪</li>
+                <li>乳糖酶：如何制作低乳糖牛奶，帮助乳糖不耐受的人群</li>
+            </ul>
+            <p>通过有趣的互动实验，你将亲眼见证酶的神奇力量！</p>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="cheese">干酪制作实验室</div>
+            <div class="tab" data-tab="milk">低乳糖牛奶工厂</div>
+        </div>
+        
+        <div class="tab-content active" id="cheese-tab">
+            <h2>干酪制作实验室</h2>
+            <p>在这个实验中，你将学习不同类型的凝乳酶如何影响干酪的制作过程和最终品质。</p>
+            
+            <div class="cheese-game">
+                <div class="milk-container">
+                    <div class="milk"></div>
+                </div>
+                
+                <div class="enzyme-selector">
+                    <h3>选择凝乳酶类型：</h3>
+                    <button class="enzyme-btn" data-enzyme="calf">小牛凝乳酶</button>
+                    <button class="enzyme-btn" data-enzyme="lamb">羔羊凝乳酶</button>
+                    <button class="enzyme-btn" data-enzyme="papaya">木瓜凝乳酶</button>
+                    <button class="enzyme-btn" data-enzyme="prinsepia">青刺果凝乳酶</button>
+                    <button class="enzyme-btn" data-enzyme="mucor">毛霉凝乳酶</button>
+                    <button class="enzyme-btn" data-enzyme="reset">重置实验</button>
+                </div>
+                
+                <div class="milk-status">
+                    <h3>牛奶状态</h3>
+                    <p>凝固程度: <span id="coagulation">0%</span></p>
+                    <div class="progress-bar">
+                        <div class="progress" id="coagulation-progress"></div>
+                    </div>
+                    
+                    <p>质构: <span id="texture">流动态</span></p>
+                    <p>风味物质: <span id="flavor">无</span></p>
+                    <p>时间: <span id="time">0</span>分钟</p>
+                </div>
+                
+                <div class="particles" id="particles"></div>
+                <div class="microscope-view" id="microscope"></div>
+            </div>
+            
+            <div class="info-box">
+                <h3>科学小知识</h3>
+                <p id="cheese-info">凝乳酶是干酪生产中使牛奶凝固的关键酶，主要通过特异性裂解酪蛋白链中的部分多肽键，使牛奶凝结。不同类型的凝乳酶会影响干酪的质构和风味。</p>
+            </div>
+            
+            <button class="quiz-btn" id="cheese-quiz-btn">挑战酶知识测验！</button>
+        </div>
+        
+        <div class="tab-content" id="milk-tab">
+            <h2>低乳糖牛奶工厂</h2>
+            <p>在这个游戏中，你将操控乳糖酶分解乳糖，帮助乳糖不耐受的人们享用美味牛奶！</p>
+            
+            <div class="lactose-game">
+                <div class="stats">
+                    <h3>游戏状态</h3>
+                    <p>乳糖数量: <span id="lactose-count">10</span></p>
+                    <p>已分解: <span id="hydrolyzed">0</span></p>
+                    <p>得分: <span id="score">0</span></p>
+                    <p>时间: <span id="game-time">60</span>秒</p>
+                </div>
+                
+                <div class="intestine">
+                    <div id="lactase" class="lactase">酶</div>
+                </div>
+                
+                <div class="info-box">
+                    <h3>乳糖不耐受</h3>
+                    <p>约65%的人在婴儿期后会逐渐失去消化乳糖的能力。乳糖酶可以将乳糖分解为葡萄糖和半乳糖，帮助解决这个问题。</p>
+                </div>
+                
+                <button class="quiz-btn" id="start-lactose-game">开始游戏</button>
+            </div>
+            
+            <button class="quiz-btn" id="lactose-quiz-btn">挑战乳糖酶知识测验！</button>
+        </div>
+    </div>
+    
+    <div class="modal" id="cheese-quiz-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>干酪酶知识挑战</h2>
+            <div id="cheese-quiz-content">
+                <p>1. 哪种凝乳酶在研究中表现出最佳的干酪质构特性？</p>
+                <label><input type="radio" name="q1" value="a"> A. 小牛凝乳酶</label><br>
+                <label><input type="radio" name="q1" value="b"> B. 青刺果凝乳酶</label><br>
+                <label><input type="radio" name="q1" value="c"> C. 木瓜凝乳酶</label><br>
+                
+                <p>2. 凝乳酶的主要作用是什么？</p>
+                <label><input type="radio" name="q2" value="a"> A. 分解乳糖</label><br>
+                <label><input type="radio" name="q2" value="b"> B. 特异性裂解酪蛋白链中的部分多肽键</label><br>
+                <label><input type="radio" name="q2" value="c"> C. 增加牛奶的甜度</label><br>
+                
+                <p>3. 干酪成熟过程中，哪种酶负责进一步分解酪蛋白，形成风味物质？</p>
+                <label><input type="radio" name="q3" value="a"> A. 凝乳酶</label><br>
+                <label><input type="radio" name="q3" value="b"> B. 蛋白酶</label><br>
+                <label><input type="radio" name="q3" value="c"> C. 淀粉酶</label><br>
+                
+                <button class="quiz-btn" id="submit-cheese-quiz">提交答案</button>
+            </div>
+            <div id="cheese-quiz-result" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <div class="modal" id="lactose-quiz-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>乳糖酶知识挑战</h2>
+            <div id="lactose-quiz-content">
+                <p>1. 乳糖酶将乳糖分解为哪两种物质？</p>
+                <label><input type="radio" name="lq1" value="a"> A. 葡萄糖和果糖</label><br>
+                <label><input type="radio" name="lq1" value="b"> B. 葡萄糖和半乳糖</label><br>
+                <label><input type="radio" name="lq1" value="c"> C. 蔗糖和麦芽糖</label><br>
+                
+                <p>2. 乳糖酶在什么pH条件下最稳定？</p>
+                <label><input type="radio" name="lq2" value="a"> A. 酸性条件</label><br>
+                <label><input type="radio" name="lq2" value="b"> B. 碱性条件</label><br>
+                <label><input type="radio" name="lq2" value="c"> C. 中性条件</label><br>
+                
+                <p>3. 低乳糖牛奶适合哪类人群？</p>
+                <label><input type="radio" name="lq3" value="a"> A. 糖尿病患者</label><br>
+                <label><input type="radio" name="lq3" value="b"> B. 乳糖不耐受人群</label><br>
+                <label><input type="radio" name="lq3" value="c"> C. 高血压患者</label><br>
+                
+                <button class="quiz-btn" id="submit-lactose-quiz">提交答案</button>
+            </div>
+            <div id="lactose-quiz-result" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <div class="feedback" id="feedback"></div>
+    
+    <script>
+        // 切换标签页
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab + '-tab').classList.add('active');
+            });
+        });
+        
+        // 干酪制作实验
+        let cheeseTimer;
+        let cheeseTime = 0;
+        const coagulationProgress = document.getElementById('coagulation-progress');
+        const coagulationText = document.getElementById('coagulation');
+        const textureText = document.getElementById('texture');
+        const flavorText = document.getElementById('flavor');
+        const timeText = document.getElementById('time');
+        const particles = document.getElementById('particles');
+        const milk = document.querySelector('.milk');
+        const cheeseInfo = document.getElementById('cheese-info');
+        const microscope = document.getElementById('microscope');
+        
+        // 酶特性数据
+        const enzymeData = {
+            calf: {
+                coagulationSpeed: 100,
+                maxCoagulation: 95,
+                texture: "紧密、有弹性",
+                flavor: "温和、奶香浓郁",
+                color: "#f5f5dc",
+                info: "小牛凝乳酶是传统干酪生产中最常用的酶，能形成质地紧密、风味温和的干酪。"
+            },
+            lamb: {
+                coagulationSpeed: 90,
+                maxCoagulation: 90,
+                texture: "较紧密、略脆",
+                flavor: "浓郁、略带咸味",
+                color: "#f5f5dc",
+                info: "羔羊凝乳酶与小牛凝乳酶性质相似，但凝乳速度略慢，常用于某些特种干酪的制作。"
+            },
+            papaya: {
+                coagulationSpeed: 70,
+                maxCoagulation: 75,
+                texture: "疏松、较软",
+                flavor: "轻微果味、清淡",
+                color: "#fffacd",
+                info: "木瓜凝乳酶是一种植物来源的酶，凝乳能力较动物凝乳酶弱，但可作为素食干酪的制作选择。"
+            },
+            prinsepia: {
+                coagulationSpeed: 110,
+                maxCoagulation: 98,
+                texture: "非常紧密、高弹性",
+                flavor: "丰富、复杂、持久",
+                color: "#eee8aa",
+                info: "青刺果凝乳酶是一种来自青刺果的植物酶，研究表明它能够提供比传统凝乳酶更好的质构特性和风味。"
+            },
+            mucor: {
+                coagulationSpeed: 80,
+                maxCoagulation: 85,
+                texture: "中等紧实、细腻",
+                flavor: "特殊霉香、适中",
+                color: "#fafad2",
+                info: "毛霉凝乳酶是一种微生物来源的酶，常用于特种干酪制作，能够提供独特的风味特性。"
+            }
+        };
+        
+        function showFeedback(message) {
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = message;
+            feedback.style.opacity = 1;
+            
+            setTimeout(() => {
+                feedback.style.opacity = 0;
+            }, 2000);
+        }
+        
+        function resetCheeseExperiment() {
+            clearInterval(cheeseTimer);
+            cheeseTime = 0;
+            milk.style.backgroundColor = "#fffafa";
+            milk.style.transform = "scale(1)";
+            coagulationText.textContent = "0%";
+            coagulationProgress.style.width = "0%";
+            textureText.textContent = "流动态";
+            flavorText.textContent = "无";
+            timeText.textContent = "0";
+            particles.innerHTML = "";
+            cheeseInfo.textContent = "凝乳酶是干酪生产中使牛奶凝固的关键酶，主要通过特异性裂解酪蛋白链中的部分多肽键，使牛奶凝结。不同类型的凝乳酶会影响干酪的质构和风味。";
+        }
+        
+        document.querySelectorAll('.enzyme-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const enzymeType = btn.dataset.enzyme;
+                
+                if (enzymeType === 'reset') {
+                    resetCheeseExperiment();
+                    return;
+                }
+                
+                // 重置实验
+                resetCheeseExperiment();
+                
+                // 显示反馈
+                showFeedback(`已添加${btn.textContent}！`);
+                
+                // 创建酶粒子
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    particle.style.animationDelay = `${Math.random() * 2}s`;
+                    particles.appendChild(particle);
+                }
+                
+                // 更新信息
+                cheeseInfo.textContent = enzymeData[enzymeType].info;
+                
+                // 开始实验模拟
+                const enzyme = enzymeData[enzymeType];
+                let coagulation = 0;
+                
+                cheeseTimer = setInterval(() => {
+                    cheeseTime++;
+                    timeText.textContent = cheeseTime;
+                    
+                    // 计算凝固度
+                    if (coagulation < enzyme.maxCoagulation) {
+                        coagulation += enzyme.coagulationSpeed / 60;
+                        if (coagulation > enzyme.maxCoagulation) {
+                            coagulation = enzyme.maxCoagulation;
+                        }
+                    }
+                    
+                    // 更新UI
+                    coagulationText.textContent = `${Math.round(coagulation)}%`;
+                    coagulationProgress.style.width = `${coagulation}%`;
+                    
+                    // 更新牛奶外观
+                    milk.style.backgroundColor = enzyme.color;
+                    milk.style.transform = `scale(${1 - coagulation/200})`;
+                    
+                    // 更新质构和风味
+                    if (coagulation > 60) {
+                        textureText.textContent = enzyme.texture;
+                        flavorText.textContent = enzyme.flavor;
+                    } else if (coagulation > 30) {
+                        textureText.textContent = "半固态";
+                        flavorText.textContent = "开始形成";
+                    } else {
+                        textureText.textContent = "流动态";
+                        flavorText.textContent = "无";
+                    }
+                    
+                    // 30分钟后停止实验
+                    if (cheeseTime >= 30) {
+                        clearInterval(cheeseTimer);
+                        showFeedback("实验结束！");
+                    }
+                }, 1000);
+            });
+        });
+        
+        // 显微镜效果
+        document.querySelector('.cheese-game').addEventListener('mousemove', (e) => {
+            const rect = document.querySelector('.cheese-game').getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            microscope.style.left = `${x - 75}px`;
+            microscope.style.top = `${y - 75}px`;
+            
+            if (coagulationProgress.style.width !== "0%") {
+                microscope.style.display = 'block';
+                
+                // 随机生成酶微观效果
+                microscope.innerHTML = '';
+                const coagulation = parseInt(coagulationProgress.style.width);
+                
+                for (let i = 0; i < coagulation / 5; i++) {
+                    const microParticle = document.createElement('div');
+                    microParticle.style.position = 'absolute';
+                    microParticle.style.width = '8px';
+                    microParticle.style.height = '8px';
+                    microParticle.style.backgroundColor = '#4285f4';
+                    microParticle.style.borderRadius = '50%';
+                    microParticle.style.left = `${Math.random() * 150}px`;
+                    microParticle.style.top = `${Math.random() * 150}px`;
+                    microscope.appendChild(microParticle);
+                    
+                    const line = document.createElement('div');
+                    line.style.position = 'absolute';
+                    line.style.width = `${10 + Math.random() * 20}px`;
+                    line.style.height = '2px';
+                    line.style.backgroundColor = '#333';
+                    line.style.left = `${Math.random() * 150}px`;
+                    line.style.top = `${Math.random() * 150}px`;
+                    line.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    microscope.appendChild(line);
+                }
+            } else {
+                microscope.style.display = 'none';
+            }
+        });
+        
+        document.querySelector('.cheese-game').addEventListener('mouseleave', () => {
+            microscope.style.display = 'none';
+        
+        });
+        
+        // 乳糖酶游戏
+        let lactoseGameTimer;
+        let lactoseGameTime = 60;
+        let score = 0;
+        let hydrolyzedCount = 0;
+        let lactoseCount = 10;
+        let lactoses = [];
+        let gameRunning = false;
+        
+        const lactase = document.getElementById('lactase');
+        const intestine = document.querySelector('.intestine');
+        const lactoseCountEl = document.getElementById('lactose-count');
+        const hydrolyzedEl =document.getElementById('hydrolyzed');
+        const scoreEl = document.getElementById('score');
+        const gameOverEl = document.getElementById('game-over');
+        const restartBtn = document.getElementById('restart-btn');
+        const lactoseGame = document.getElementById('lactose-game');
+        const lactoseGameContainer = document.getElementById('lactose-game-container');
+        const lactoseGameInstructions = document.getElementById('lactose-game-instructions');
+        const lactoseGameStartBtn = document.getElementById('lactose-game-start-btn');
+        const lactoseGameStopBtn = document.getElementById('lactose-game-stop-btn');
+        const lactoseGameResetBtn = document.getElementById('lactose-game-reset-btn');
+        const lactoseGameInstructionsCloseBtn = document.getElementById('lactose-game-instructions-close-btn');
+        const lactoseGameInstructionsOpenBtn = document.getElementById('lactose-game-instructions-open-btn');
+        
+        
+        // 补充乳糖酶游戏的代码
+document.getElementById('lactose-quiz-btn').addEventListener('click', () => {
+    document.getElementById('lactose-quiz-modal').style.display = 'flex';
+});
+
+document.getElementById('cheese-quiz-btn').addEventListener('click', () => {
+    document.getElementById('cheese-quiz-modal').style.display = 'flex';
+});
+
+// 关闭模态框
+document.querySelectorAll('.close').forEach(close => {
+    close.addEventListener('click', () => {
+        document.getElementById('cheese-quiz-modal').style.display = 'none';
+        document.getElementById('lactose-quiz-modal').style.display = 'none';
+    });
+});
+
+// 提交乳酪测验答案
+document.getElementById('submit-cheese-quiz').addEventListener('click', () => {
+    const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+    const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+    const q3 = document.querySelector('input[name="q3"]:checked')?.value;
+    
+    let correct = 0;
+    if (q1 === 'b') correct++;
+    if (q2 === 'b') correct++;
+    if (q3 === 'b') correct++;
+    
+    document.getElementById('cheese-quiz-content').style.display = 'none';
+    document.getElementById('cheese-quiz-result').style.display = 'block';
+    document.getElementById('cheese-quiz-result').innerHTML = `
+        <h3>测验结果</h3>
+        <p>你答对了${correct}道题，总分：${correct * 33}分！</p>
+        
+        <div class="info-box">
+            <h4>正确答案：</h4>
+            <p>1. B. 青刺果凝乳酶</p>
+            <p>2. B. 特异性裂解酪蛋白链中的部分多肽键</p>
+            <p>3. B. 蛋白酶</p>
+        </div>
+        
+        <button class="quiz-btn" onclick="document.getElementById('cheese-quiz-modal').style.display='none';">关闭</button>
+    `;
+});
+
+// 提交乳糖酶测验答案
+document.getElementById('submit-lactose-quiz').addEventListener('click', () => {
+    const q1 = document.querySelector('input[name="lq1"]:checked')?.value;
+    const q2 = document.querySelector('input[name="lq2"]:checked')?.value;
+    const q3 = document.querySelector('input[name="lq3"]:checked')?.value;
+    
+    let correct = 0;
+    if (q1 === 'b') correct++;
+    if (q2 === 'c') correct++;
+    if (q3 === 'b') correct++;
+    
+    document.getElementById('lactose-quiz-content').style.display = 'none';
+    document.getElementById('lactose-quiz-result').style.display = 'block';
+    document.getElementById('lactose-quiz-result').innerHTML = `
+        <h3>测验结果</h3>
+        <p>你答对了${correct}道题，总分：${correct * 33}分！</p>
+        
+        <div class="info-box">
+            <h4>正确答案：</h4>
+            <p>1. B. 葡萄糖和半乳糖</p>
+            <p>2. C. 中性条件</p>
+            <p>3. B. 乳糖不耐受人群</p>
+        </div>
+        
+        <button class="quiz-btn" onclick="document.getElementById('lactose-quiz-modal').style.display='none';">关闭</button>
+    `;
+});
+
+// 乳糖酶游戏
+document.getElementById('start-lactose-game').addEventListener('click', function() {
+    if (gameRunning) return;
+    
+    gameRunning = true;
+    lactoseGameTime = 60;
+    score = 0;
+    hydrolyzedCount = 0;
+    lactoseCount = 10;
+    lactoses = [];
+    
+    document.getElementById('score').textContent = score;
+    document.getElementById('lactose-count').textContent = lactoseCount;
+    document.getElementById('hydrolyzed').textContent = hydrolyzedCount;
+    document.getElementById('game-time').textContent = lactoseGameTime;
+    
+    this.textContent = "游戏进行中...";
+    this.disabled = true;
+    
+    // 创建乳糖分子
+    spawnLactose(lactoseCount);
+    
+    // 启动游戏计时器
+    lactoseGameTimer = setInterval(() => {
+        lactoseGameTime--;
+        document.getElementById('game-time').textContent = lactoseGameTime;
+        
+        if (lactoseGameTime <= 0 || hydrolyzedCount >= 10) {
+            endGame();
+        }
+        
+        // 每15秒新增一批乳糖
+        if (lactoseGameTime % 15 === 0 && lactoseGameTime > 0) {
+            spawnLactose(3);
+            lactoseCount += 3;
+            document.getElementById('lactose-count').textContent = lactoseCount;
+        }
+    }, 1000);
+    
+    // 让乳糖酶可拖动
+    makeDraggable(lactase);
+});
+
+function spawnLactose(count) {
+    for (let i = 0; i < count; i++) {
+        const lactose = document.createElement('div');
+        lactose.classList.add('lactose');
+        lactose.textContent = '乳糖';
+        lactose.dataset.id = Date.now() + i;
+        
+        const rect = intestine.getBoundingClientRect();
+        const x = Math.random() * (rect.width - 60);
+        const y = Math.random() * (rect.height - 60);
+        
+        lactose.style.left = `${x}px`;
+        lactose.style.top = `${y}px`;
+        
+        intestine.appendChild(lactose);
+        lactoses.push(lactose);
+        
+        // 随机移动
+        animateLactose(lactose);
+    }
+}
+
+function animateLactose(lactose) {
+    const rect = intestine.getBoundingClientRect();
+    const speed = 0.5 + Math.random() * 1;
+    let dx = (Math.random() > 0.5 ? 1 : -1) * speed;
+    let dy = (Math.random() > 0.5 ? 1 : -1) * speed;
+    
+    function move() {
+        if (!gameRunning) return;
+        
+        const x = parseFloat(lactose.style.left);
+        const y = parseFloat(lactose.style.top);
+        
+        // 边界检测
+        if (x <= 0 || x >= rect.width - 60) dx *= -1;
+        if (y <= 0 || y >= rect.height - 60) dy *= -1;
+        
+        lactose.style.left = `${x + dx}px`;
+        lactose.style.top = `${y + dy}px`;
+        
+        requestAnimationFrame(move);
+    }
+    
+    requestAnimationFrame(move);
+}
+
+function makeDraggable(element) {
+    let offsetX, offsetY, isDragging = false;
+    
+    element.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - element.getBoundingClientRect().left;
+        offsetY = e.clientY - element.getBoundingClientRect().top;
+        element.style.cursor = 'grabbing';
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        
+        const rect = intestine.getBoundingClientRect();
+        let x = e.clientX - rect.left - offsetX;
+        let y = e.clientY - rect.top - offsetY;
+        
+        // 边界检测
+        x = Math.max(0, Math.min(x, rect.width - element.offsetWidth));
+        y = Math.max(0, Math.min(y, rect.height - element.offsetHeight));
+        
+        element.style.left = `${x}px`;
+        element.style.top = `${y}px`;
+        
+        // 检测碰撞
+        checkCollision();
+    });
+    
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        element.style.cursor = 'grab';
+    });
+}
+
+function checkCollision() {
+    const lactaseRect = lactase.getBoundingClientRect();
+    
+    lactoses.forEach((lactose, index) => {
+        if (!lactose.dataset.hydrolyzed) {
+            const lactoseRect = lactose.getBoundingClientRect();
+            
+            if (
+                lactaseRect.left < lactoseRect.right &&
+                lactaseRect.right > lactoseRect.left &&
+                lactaseRect.top < lactoseRect.bottom &&
+                lactaseRect.bottom > lactoseRect.top
+            ) {
+                // 碰撞发生，分解乳糖
+                hydrolyzeLactose(lactose);
+                lactoses.splice(index, 1);
+            }
+        }
+    });
+}
+
+function hydrolyzeLactose(lactose) {
+    lactose.dataset.hydrolyzed = true;
+    lactose.style.opacity = 0.5;
+    
+    // 创建分解产物
+    const glucose = document.createElement('div');
+    glucose.classList.add('glucose');
+    glucose.textContent = '葡萄糖';
+    glucose.style.left = lactose.style.left;
+    glucose.style.top = lactose.style.top;
+    
+    const galactose = document.createElement('div');
+    galactose.classList.add('galactose');
+    galactose.textContent = '半乳糖';
+    galactose.style.left = `${parseFloat(lactose.style.left) + 40}px`;
+    galactose.style.top = lactose.style.top;
+    
+    intestine.appendChild(glucose);
+    intestine.appendChild(galactose);
+    
+    // 动画效果
+    setTimeout(() => {
+        glucose.style.opacity = 1;
+        galactose.style.opacity = 1;
+        
+        glucose.style.left = `${parseFloat(glucose.style.left) - 30}px`;
+        galactose.style.left = `${parseFloat(galactose.style.left) + 30}px`;
+        
+        // 更新分数
+        score += 10;
+        hydrolyzedCount++;
+        document.getElementById('score').textContent = score;
+        document.getElementById('hydrolyzed').textContent = hydrolyzedCount;
+        
+        // 移除原乳糖
+        setTimeout(() => {
+            lactose.remove();
+            
+            // 移除产物
+            setTimeout(() => {
+                glucose.remove();
+                galactose.remove();
+            }, 2000);
+        }, 500);
+    }, 100);
+    
+    showFeedback("乳糖被分解了！+10分");
+}
+
+function endGame() {
+    clearInterval(lactoseGameTimer);
+    gameRunning = false;
+    
+    document.getElementById('start-lactose-game').textContent = "再来一局";
+    document.getElementById('start-lactose-game').disabled = false;
+    
+    // 显示结果
+    let message = "";
+    if (hydrolyzedCount >= 10) {
+        message = `恭喜你！成功分解了所有乳糖，得分：${score}！`;
+    } else {
+        message = `游戏结束！你分解了${hydrolyzedCount}个乳糖，得分：${score}！`;
+    }
+    
+    // 清理游戏元素
+    lactoses.forEach(lactose => lactose.remove());
+    document.querySelectorAll('.glucose, .galactose').forEach(el => el.remove());
+    
+    // 显示结果
+    showModal(message);
+}
+
+function showModal(message) {
+    const modal = document.createElement('div');
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    modal.style.display = 'flex';
+    modal.style.justifyContent = 'center';
+    modal.style.alignItems = 'center';
+    modal.style.zIndex = '200';
+    
+    const content = document.createElement('div');
+    content.style.backgroundColor = 'white';
+    content.style.padding = '20px';
+    content.style.borderRadius = '10px';
+    content.style.maxWidth = '400px';
+    content.style.textAlign = 'center';
+    
+    content.innerHTML = `
+        <h2>游戏结果</h2>
+        <p>${message}</p>
+        <button class="quiz-btn">确定</button>
+    `;
+    
+    modal.appendChild(content);
+    document.body.appendChild(modal);
+    
+    content.querySelector('button').addEventListener('click', () => {
+        modal.remove();
+    });
+}
+
+// 初始化相关元素位置
+lactase.style.position = 'absolute';
+lactase.style.left = '20px';
+lactase.style.top = '20px';
+lactase.style.cursor = 'grab';
+</script>
+</body>
+</html>

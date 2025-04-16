@@ -5,1135 +5,581 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>面包酶制剂 | 全新体验</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
-    :root {
-      --apple-black: #000;
-      --apple-white: #f5f5f7;
-      --apple-blue: #0071e3;
-      --apple-text: #86868b;
-      --apple-highlight: #2997ff;
-    }
-
-    body {
-      background-color: var(--apple-white);
-      color: var(--apple-black);
-      overflow-x: hidden;
-      font-size: 17px;
-      line-height: 1.47059;
-      font-weight: 400;
-      letter-spacing: -0.022em;
-    }
-
-    .ribbon {
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: saturate(180%) blur(20px);
-      height: 44px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .ribbon nav {
-      width: 100%;
-      max-width: 980px;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 22px;
-    }
-
-    .ribbon a {
-      color: #f5f5f7;
-      text-decoration: none;
-      font-size: 12px;
-      opacity: 0.8;
-      transition: opacity 0.3s ease;
-    }
-
-    .ribbon a:hover {
-      opacity: 1;
-    }
-
-    .container {
-      max-width: 100%;
-      margin: 0 auto;
-    }
-
-    header {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero {
-      position: relative;
-      height: 736px;
-      width: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, #000 0%, #121212 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero-object {
-      position: absolute;
-      width: 60%;
-      height: 60%;
-      background: radial-gradient(circle at center, rgba(65, 155, 249, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
-      border-radius: 50%;
-      filter: blur(50px);
-      animation: pulse 6s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-
-      0%,
-      100% {
-        transform: scale(1);
-        opacity: 0.8;
-      }
-
-      50% {
-        transform: scale(1.1);
-        opacity: 1;
-      }
-    }
-
-    .hero-text {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 20px;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeIn 1s forwards 0.5s;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    h1 {
-      font-size: 56px;
-      line-height: 1.07143;
-      font-weight: 600;
-      letter-spacing: -0.005em;
-      background: linear-gradient(90deg, #f0f0f0, #ffffff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 6px;
-    }
-
-    h2 {
-      font-size: 48px;
-      line-height: 1.10722;
-      font-weight: 600;
-      letter-spacing: -0.003em;
-      margin-bottom: 20px;
-    }
-
-    h3 {
-      font-size: 28px;
-      line-height: 1.14286;
-      font-weight: 600;
-      letter-spacing: 0.007em;
-      margin-bottom: 15px;
-    }
-
-    .section-head {
-      font-size: 80px;
-      line-height: 1.05;
-      font-weight: 700;
-      letter-spacing: -0.015em;
-      margin-bottom: 20px;
-    }
-
-    .full-bleed .section-head {
-      color: var(--apple-white);
-    }
-
-    .eyebrow {
-      font-size: 21px;
-      line-height: 1.19048;
-      font-weight: 600;
-      letter-spacing: 0.011em;
-      margin-bottom: 8px;
-      color: var(--apple-highlight);
-    }
-
-    .subtitle {
-      font-size: 28px;
-      line-height: 1.14286;
-      font-weight: 400;
-      letter-spacing: 0.004em;
-      color: var(--apple-text);
-    }
-
-    p {
-      font-size: 17px;
-      line-height: 1.47059;
-      font-weight: 400;
-      letter-spacing: -0.022em;
-      margin-bottom: 20px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .section {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .full-bleed {
-      padding: 200px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .content-block {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 100px 20px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .content-block.theme-dark h2,.content-block.theme-dark p:not(:first-child){
-      color: var(--apple-white);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      max-width: 980px;
-      margin: 60px auto 0;
-      padding: 0 20px;
-    }
-
-    .grid-item {
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 18px;
-      padding: 30px;
-      text-align: left;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      backdrop-filter: blur(20px);
-    }
-
-    .grid-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .grid-item h3 {
-      font-size: 24px;
-      margin-bottom: 15px;
-      color: var(--apple-white);
-    }
-
-    .grid-item p {
-      font-size: 17px;
-      color: var(--apple-text);
-    }
-
-    /* Horizontal Carousel - iPhone style */
-    .carousel-container {
-      position: relative;
-      width: 100%;
-      padding: 60px 0;
-      overflow: hidden;
-    }
-
-    .carousel-wrapper {
-      position: relative;
-    }
-
-    .carousel-track {
-      display: flex;
-      transition: transform 0.5s ease;
-      /* margin-left: 10%; */
-      padding: 0 calc((100vw - 500px - 20px) / 2);
-    }
-
-    .carousel-item {
-      flex: 0 0 80%;
-      max-width: 500px;
-      min-width: 500px;
-      padding: 0 20px;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .carousel-image {
-      width: 100%;
-      height: 300px;
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 18px;
-      margin-bottom: 20px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .carousel-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .carousel-item:hover .carousel-image img {
-      transform: scale(1.05);
-    }
-
-    .carousel-content {
-      text-align: left;
-    }
-
-    .carousel-content h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .carousel-nav {
-      display: flex;
-      justify-content: center;
-      margin-top: 30px;
-    }
-
-    .carousel-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      margin: 0 5px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .carousel-dot.active {
-      background: var(--apple-white);
-      transform: scale(1.2);
-    }
-
-    .sticky-container {
-      height: 300vh;
-      position: relative;
-    }
-
-    .sticky-element {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .sticky-content {
-      max-width: 980px;
-      width: 100%;
-      padding: 0 20px;
-      text-align: center;
-      z-index: 2;
-    }
-
-    .compare-table {
-      width: 100%;
-      max-width: 980px;
-      margin: 60px auto;
-      border-spacing: 0;
-      border-collapse: separate;
-      border-radius: 18px;
-      overflow: hidden;
-    }
-
-    .compare-table th {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 18px 20px;
-      text-align: left;
-      font-weight: 600;
-      font-size: 17px;
-    }
-
-    .compare-table td {
-      background: rgba(255, 255, 255, 0.04);
-      padding: 18px 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 17px;
-      line-height: 1.47059;
-    }
-
-    .highlight {
-      color: var(--apple-highlight);
-      font-weight: 500;
-    }
-
-    .section-label {
-      position: absolute;
-      font-size: 500px;
-      font-weight: 700;
-      opacity: 0.03;
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .animated-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      background: radial-gradient(circle at 50% 50%, #222 0%, #000 70%);
-      z-index: -1;
-    }
-
-    .parallax-item {
-      will-change: transform;
-      transition: transform 0.1s linear;
-    }
-
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Apple-style buttons */
-    .pill-button {
-      display: inline-block;
-      background: var(--apple-blue);
-      color: white;
-      padding: 12px 22px;
-      border-radius: 980px;
-      text-decoration: none;
-      font-size: 17px;
-      font-weight: 400;
-      margin-top: 20px;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 8px rgba(0, 113, 227, 0.3);
-    }
-
-    .pill-button:hover {
-      background: #0077ed;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 15px rgba(0, 113, 227, 0.4);
-    }
-
-    /* iPhone-style video module */
-    .video-section {
-      position: relative;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .video-container {
-      position: relative;
-      width: 100%;
-      max-width: 1200px;
-      height: 70vh;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
-    }
-
-    .video-placeholder {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .play-button {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .play-button:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: scale(1.1);
-    }
-
-    .play-button:before {
-      content: '';
-      width: 0;
-      height: 0;
-      border-top: 15px solid transparent;
-      border-bottom: 15px solid transparent;
-      border-left: 25px solid white;
-      margin-left: 5px;
-    }
-
-    /* iPhone-style feature comparison */
-    .feature-compare {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
-      max-width: 980px;
-      margin: 60px auto 0;
-      border-radius: 18px;
-      overflow: hidden;
-    }
-
-    .feature-item {
-      background: rgba(255, 255, 255, 0.04);
-      padding: 40px;
-      text-align: center;
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    .feature-item:hover {
-      background: rgba(255, 255, 255, 0.06);
-      transform: translateY(-5px);
-    }
-
-    .feature-icon {
-      font-size: 40px;
-      margin-bottom: 20px;
-      color: var(--apple-highlight);
-    }
-
-    .feature-title {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .feature-description {
-      color: var(--apple-text);
-      font-size: 17px;
-      max-width: 300px;
-      margin: 0 auto;
-    }
-
-    /* Apple-style footer */
-    footer {
-      background: #f5f5f7;
-      color: #86868b;
-      padding: 20px;
-      font-size: 12px;
-      line-height: 1.33341;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-    }
-
-    .footer-content {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 17px 0;
-    }
-
-    .footer-content p {
-      font-size: 12px;
-      line-height: 1.33341;
-      color: #86868b;
-    }
-
-    /* Animation classes */
-    .anim-blur-in {
-      filter: blur(10px);
-      opacity: 0;
-      animation: blurFadeIn 1s forwards;
-    }
-
-    @keyframes blurFadeIn {
-      to {
-        filter: blur(0);
-        opacity: 1;
-      }
-    }
-
-    .anim-scale-in {
-      transform: scale(0.9);
-      opacity: 0;
-      animation: scaleIn 1s forwards;
-    }
-
-    @keyframes scaleIn {
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 1068px) {
-
-      h1,
-      .section-head {
-        font-size: 64px;
-      }
-
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .feature-compare {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 734px) {
-
-      h1,
-      .section-head {
-        font-size: 48px;
-      }
-
-      h2 {
-        font-size: 40px;
-      }
-
-      .eyebrow {
-        font-size: 19px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        height: 548px;
-      }
-
-      .carousel-item {
-        flex: 0 0 90%;
-      }
-    }
-
-    /* iPhone-style scroll-triggered animations */
-    .scroll-sequence {
-      height: 300vh;
-      position: relative;
-    }
-
-    .scroll-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .scroll-content {
-      width: 100%;
-      max-width: 980px;
-      padding: 0 20px;
-      position: relative;
-    }
-
-    .scroll-item {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .scroll-item.active {
-      opacity: 1;
-    }
-
-    .scroll-image {
-      width: 50%;
-      padding-right: 40px;
-    }
-
-    .scroll-text {
-      width: 50%;
-      text-align: left;
-    }
-  </style>
+  <link rel="stylesheet" href="css/bread.css">
 </head>
 
-<body>
+<body class="theme-dark">
   <!-- Navigation Ribbon -->
-  <div class="ribbon">
-    <nav>
-      <a href="#">面包酶制剂</a>
-      <a href="#">了解更多</a>
-    </nav>
-  </div>
-
+  <!-- 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <ul class="nav-content">
+        <li class="nav-item">
+          <a href="index.html" class="nav-logo">酶工厂</a>
+        </li>
+        <li class="nav-item">
+          <div class="nav-links">
+            <a href="index.html#bread" class="nav-link">面包酶</a>
+            <a href="index.html#wine" class="nav-link">酿酒酶</a>
+            <a href="index.html#cheese" class="nav-link">奶酪酶</a>
+            <a href="juice_seasoning.html" class="nav-link">果汁酶与调味品</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="member.html" role="button" class="nav-search">
+            <span class="nav-regular">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15px" height="44px" viewBox="0 0 15 44">
+                <path
+                  d="M14.298,27.202l-3.87-3.87c0.701-0.929,1.122-2.081,1.122-3.332c0-3.06-2.489-5.55-5.55-5.55c-3.06,0-5.55,2.49-5.55,5.55 c0,3.061,2.49,5.55,5.55,5.55c1.251,0,2.403-0.421,3.332-1.122l3.87,3.87c0.151,0.151,0.35,0.228,0.548,0.228 s0.396-0.076,0.548-0.228C14.601,27.995,14.601,27.505,14.298,27.202z M1.55,20c0-2.454,1.997-4.45,4.45-4.45 c2.454,0,4.45,1.997,4.45,4.45S8.454,24.45,6,24.45C3.546,24.45,1.55,22.454,1.55,20z">
+                </path>
+              </svg>
+            </span>
+          </a>
+        </li>
+        <!-- <button class="ios-button nav-button">探索之旅</button> -->
+      </ul>
+  </nav>
+  <svg style="display: none;" width='1440px' height='300px' viewBox='0 0 1440 300' xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <filter id="glow-1" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" Height="200%">
+        <feGaussianBlur in="SourceGraphic" data-target-blur="4" stdDeviation="4" result="blur4" />
+        <feGaussianBlur in="SourceGraphic" data-target-blur="19" stdDeviation="19" result="blur19" />
+        <feGaussianBlur in="SourceGraphic" data-target-blur="9" stdDeviation="9" result="blur9" />
+        <feGaussianBlur in="SourceGraphic" data-target-blur="30" stdDeviation="30" result="blur30" />
+        <feColorMatrix in="blur4" result="color-0-blur" type="matrix" values="1 0 0 0 0
+                          0 0.9803921568627451 0 0 0
+                          0 0 0.9647058823529412 0 0
+                          0 0 0 0.8 0" />
+        <feOffset in="color-0-blur" result="layer-0-offsetted" dx="0" dy="0" data-target-offset-y="0" />
+        <feColorMatrix in="blur19" result="color-1-blur" type="matrix" values="0.8156862745098039 0 0 0 0
+                          0 0.49411764705882355 0 0 0
+                          0 0 0.2627450980392157 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-1-blur" result="layer-1-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+        <feColorMatrix in="blur9" result="color-2-blur" type="matrix" values="1 0 0 0 0
+                          0 0.6666666666666666 0 0 0
+                          0 0 0.36470588235294116 0 0
+                          0 0 0 0.65 0" />
+        <feOffset in="color-2-blur" result="layer-2-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+        <feColorMatrix in="blur30" result="color-3-blur" type="matrix" values="1 0 0 0 0
+                          0 0.611764705882353 0 0 0
+                          0 0 0.39215686274509803 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-3-blur" result="layer-3-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+        <feColorMatrix in="blur30" result="color-4-blur" type="matrix" values="0.4549019607843137 0 0 0 0
+                          0 0.16470588235294117 0 0 0
+                          0 0 0 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-4-blur" result="layer-4-offsetted" dx="0" dy="16" data-target-offset-y="16" />
+        <feColorMatrix in="blur30" result="color-5-blur" type="matrix" values="0.4235294117647059 0 0 0 0
+                          0 0.19607843137254902 0 0 0
+                          0 0 0.11372549019607843 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-5-blur" result="layer-5-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+        <feColorMatrix in="blur30" result="color-6-blur" type="matrix" values="0.21176470588235294 0 0 0 0
+                          0 0.10980392156862745 0 0 0
+                          0 0 0.07450980392156863 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-6-blur" result="layer-6-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+        <feColorMatrix in="blur30" result="color-7-blur" type="matrix" values="0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0.68 0" />
+        <feOffset in="color-7-blur" result="layer-7-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+        <feMerge>
+          <feMergeNode in="layer-0-offsetted" />
+          <feMergeNode in="layer-1-offsetted" />
+          <feMergeNode in="layer-2-offsetted" />
+          <feMergeNode in="layer-3-offsetted" />
+          <feMergeNode in="layer-4-offsetted" />
+          <feMergeNode in="layer-5-offsetted" />
+          <feMergeNode in="layer-6-offsetted" />
+          <feMergeNode in="layer-7-offsetted" />
+          <feMergeNode in="layer-0-offsetted" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <filter id="glow-1-safari" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" x="-50%" y="-50%"
+        width="200%" Height="200%">
+        <feGaussianBlur in="SourceGraphic" data-target-blur="4" stdDeviation="4" result="blur4" />
+        <feGaussianBlur in="SourceGraphic" data-target-blur="19" stdDeviation="19" result="blur19" />
+        <feGaussianBlur in="SourceGraphic" data-target-blur="9" stdDeviation="9" result="blur9" />
+        <feGaussianBlur in="SourceGraphic" data-target-blur="30" stdDeviation="30" result="blur30" />
+        <feColorMatrix in="blur4" result="color-0-blur" type="matrix" values="1 0 0 0 0
+                          0 0.9803921568627451 0 0 0
+                          0 0 0.9647058823529412 0 0
+                          0 0 0 0.8 0" />
+        <feOffset in="color-0-blur" result="layer-0-offsetted" dx="0" dy="0" data-target-offset-y="0" />
+        <feColorMatrix in="blur19" result="color-1-blur" type="matrix" values="0.8156862745098039 0 0 0 0
+                          0 0.49411764705882355 0 0 0
+                          0 0 0.2627450980392157 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-1-blur" result="layer-1-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+        <feColorMatrix in="blur9" result="color-2-blur" type="matrix" values="1 0 0 0 0
+                          0 0.6666666666666666 0 0 0
+                          0 0 0.36470588235294116 0 0
+                          0 0 0 0.65 0" />
+        <feOffset in="color-2-blur" result="layer-2-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+        <feColorMatrix in="blur30" result="color-3-blur" type="matrix" values="1 0 0 0 0
+                          0 0.611764705882353 0 0 0
+                          0 0 0.39215686274509803 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-3-blur" result="layer-3-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+        <feColorMatrix in="blur30" result="color-4-blur" type="matrix" values="0.4549019607843137 0 0 0 0
+                          0 0.16470588235294117 0 0 0
+                          0 0 0 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-4-blur" result="layer-4-offsetted" dx="0" dy="16" data-target-offset-y="16" />
+        <feColorMatrix in="blur30" result="color-5-blur" type="matrix" values="0.4235294117647059 0 0 0 0
+                          0 0.19607843137254902 0 0 0
+                          0 0 0.11372549019607843 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-5-blur" result="layer-5-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+        <feColorMatrix in="blur30" result="color-6-blur" type="matrix" values="0.21176470588235294 0 0 0 0
+                          0 0.10980392156862745 0 0 0
+                          0 0 0.07450980392156863 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-6-blur" result="layer-6-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+        <feColorMatrix in="blur30" result="color-7-blur" type="matrix" values="0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0.68 0" />
+        <feOffset in="color-7-blur" result="layer-7-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+        <feMerge>
+          <feMergeNode in="layer-0-offsetted" />
+          <feMergeNode in="layer-1-offsetted" />
+          <feMergeNode in="layer-2-offsetted" />
+          <feMergeNode in="layer-3-offsetted" />
+          <feMergeNode in="layer-4-offsetted" />
+          <feMergeNode in="layer-5-offsetted" />
+          <feMergeNode in="layer-6-offsetted" />
+          <feMergeNode in="layer-7-offsetted" />
+          <feMergeNode in="layer-0-offsetted" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <filter id="glow-1-safari-18" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" x="-50%" y="-50%"
+        width="200%" Height="200%">
+        <feGaussianBlur in="SourceGraphic" data-target-blur="4" stdDeviation="4" result="blur4" />
+        <feGaussianBlur in="SourceGraphic" data-target-blur="12" stdDeviation="12" result="blur12" />
+        <feGaussianBlur in="SourceGraphic" data-target-blur="9" stdDeviation="9" result="blur9" />
+        <feGaussianBlur in="SourceGraphic" data-target-blur="12" stdDeviation="12" result="blur12" />
+        <feColorMatrix in="blur4" result="color-0-blur" type="matrix" values="1 0 0 0 0
+                          0 0.9803921568627451 0 0 0
+                          0 0 0.9647058823529412 0 0
+                          0 0 0 0.8 0" />
+        <feOffset in="color-0-blur" result="layer-0-offsetted" dx="0" dy="0" data-target-offset-y="0" />
+        <feColorMatrix in="blur12" result="color-1-blur" type="matrix" values="0.8156862745098039 0 0 0 0
+                          0 0.49411764705882355 0 0 0
+                          0 0 0.2627450980392157 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-1-blur" result="layer-1-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+        <feColorMatrix in="blur9" result="color-2-blur" type="matrix" values="1 0 0 0 0
+                          0 0.6666666666666666 0 0 0
+                          0 0 0.36470588235294116 0 0
+                          0 0 0 0.65 0" />
+        <feOffset in="color-2-blur" result="layer-2-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+        <feColorMatrix in="blur12" result="color-3-blur" type="matrix" values="1 0 0 0 0
+                          0 0.611764705882353 0 0 0
+                          0 0 0.39215686274509803 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-3-blur" result="layer-3-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+        <feColorMatrix in="blur12" result="color-4-blur" type="matrix" values="0.4549019607843137 0 0 0 0
+                          0 0.16470588235294117 0 0 0
+                          0 0 0 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-4-blur" result="layer-4-offsetted" dx="0" dy="16" data-target-offset-y="16" />
+        <feColorMatrix in="blur12" result="color-5-blur" type="matrix" values="0.4235294117647059 0 0 0 0
+                          0 0.19607843137254902 0 0 0
+                          0 0 0.11372549019607843 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-5-blur" result="layer-5-offsetted" dx="0" dy="20" data-target-offset-y="20" />
+        <feColorMatrix in="blur12" result="color-6-blur" type="matrix" values="0.21176470588235294 0 0 0 0
+                          0 0.10980392156862745 0 0 0
+                          0 0 0.07450980392156863 0 0
+                          0 0 0 1 0" />
+        <feOffset in="color-6-blur" result="layer-6-offsetted" dx="0" dy="20" data-target-offset-y="20" />
+        <feColorMatrix in="blur12" result="color-7-blur" type="matrix" values="0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0.68 0" />
+        <feOffset in="color-7-blur" result="layer-7-offsetted" dx="0" dy="20" data-target-offset-y="20" />
+        <feMerge>
+          <feMergeNode in="layer-0-offsetted" />
+          <feMergeNode in="layer-1-offsetted" />
+          <feMergeNode in="layer-2-offsetted" />
+          <feMergeNode in="layer-3-offsetted" />
+          <feMergeNode in="layer-4-offsetted" />
+          <feMergeNode in="layer-5-offsetted" />
+          <feMergeNode in="layer-6-offsetted" />
+          <feMergeNode in="layer-7-offsetted" />
+          <feMergeNode in="layer-0-offsetted" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <filter id="glow-1-ios" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" x="-50%" y="-50%"
+        width="200%" Height="200%">
+        <feGaussianBlur in="SourceGraphic" data-target-blur="4" stdDeviation="4" result="blur4" />
+        <feGaussianBlur in="SourceGraphic" data-target-blur="12" stdDeviation="12" result="blur12" />
+        <feGaussianBlur in="SourceGraphic" data-target-blur="9" stdDeviation="9" result="blur9" />
+        <feGaussianBlur in="SourceGraphic" data-target-blur="12" stdDeviation="12" result="blur12" />
+        <feColorMatrix in="blur4" result="color-0-blur" type="matrix" values="1 0 0 0 0
+                        0 0.9803921568627451 0 0 0
+                        0 0 0.9647058823529412 0 0
+                        0 0 0 0.8 0" />
+        <feOffset in="color-0-blur" result="layer-0-offsetted" dx="0" dy="0" data-target-offset-y="0" />
+        <feColorMatrix in="blur12" result="color-1-blur" type="matrix" values="0.8156862745098039 0 0 0 0
+                        0 0.49411764705882355 0 0 0
+                        0 0 0.2627450980392157 0 0
+                        0 0 0 1 0" />
+        <feOffset in="color-1-blur" result="layer-1-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+        <feColorMatrix in="blur9" result="color-2-blur" type="matrix" values="1 0 0 0 0
+                        0 0.6666666666666666 0 0 0
+                        0 0 0.36470588235294116 0 0
+                        0 0 0 0.65 0" />
+        <feOffset in="color-2-blur" result="layer-2-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+        <feColorMatrix in="blur12" result="color-3-blur" type="matrix" values="1 0 0 0 0
+                        0 0.611764705882353 0 0 0
+                        0 0 0.39215686274509803 0 0
+                        0 0 0 1 0" />
+        <feOffset in="color-3-blur" result="layer-3-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+        <feColorMatrix in="blur12" result="color-4-blur" type="matrix" values="0.4549019607843137 0 0 0 0
+                        0 0.16470588235294117 0 0 0
+                        0 0 0 0 0
+                        0 0 0 1 0" />
+        <feOffset in="color-4-blur" result="layer-4-offsetted" dx="0" dy="12" data-target-offset-y="12" />
+        <feColorMatrix in="blur12" result="color-5-blur" type="matrix" values="0.4235294117647059 0 0 0 0
+                        0 0.19607843137254902 0 0 0
+                        0 0 0.11372549019607843 0 0
+                        0 0 0 1 0" />
+        <feOffset in="color-5-blur" result="layer-5-offsetted" dx="0" dy="12" data-target-offset-y="12" />
+        <feColorMatrix in="blur12" result="color-6-blur" type="matrix" values="0.21176470588235294 0 0 0 0
+                        0 0.10980392156862745 0 0 0
+                        0 0 0.07450980392156863 0 0
+                        0 0 0 1 0" />
+        <feOffset in="color-6-blur" result="layer-6-offsetted" dx="0" dy="12" data-target-offset-y="12" />
+        <feColorMatrix in="blur12" result="color-7-blur" type="matrix" values="0 0 0 0 0
+                        0 0 0 0 0
+                        0 0 0 0 0
+                        0 0 0 0.68 0" />
+        <feOffset in="color-7-blur" result="layer-7-offsetted" dx="0" dy="12" data-target-offset-y="12" />
+        <feMerge>
+          <feMergeNode in="layer-0-offsetted" />
+          <feMergeNode in="layer-1-offsetted" />
+          <feMergeNode in="layer-2-offsetted" />
+          <feMergeNode in="layer-3-offsetted" />
+          <feMergeNode in="layer-4-offsetted" />
+          <feMergeNode in="layer-5-offsetted" />
+          <feMergeNode in="layer-6-offsetted" />
+          <feMergeNode in="layer-7-offsetted" />
+          <feMergeNode in="layer-0-offsetted" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+  </svg>
   <div class="container">
     <section class="bread-part">
-    <!-- Hero Section -->
-    <header class="hero">
-      <div class="hero-image">
+      <!-- Hero Section -->
+      <header class="hero">
+        <div class="hero-image">
+          <!-- <div class="animated-bg"></div> -->
+          <div class="hero-object"></div>
+        </div>
+        <div class="hero-text">
+          <p class="eyebrow">全新研究</p>
+          <h1>面包酶制剂</h1>
+          <p class="subtitle">革命性的面包品质提升体验</p>
+        </div>
+      </header>
+
+      <!-- Overview Section -->
+      <section class="full-bleed">
+        <div class="animated-bg" style="background-image: url(images/bread/hero-bg.jpg);"></div>
+        <div class="content-block fade-up">
+          <h2 class="section-head">概览</h2>
+          <p class="subtitle">面包酶制剂种类丰富，作用颇多。面包酶制剂对面粉的品质、面团的操作性、面包产品得率以及面包的体积和柔软度、延长面包保质期等都有良好的改善作用。</p>
+          <!-- <a href="#" class="pill-button">了解更多</a> -->
+        </div>
+      </section>
+
+      <!-- iPhone-style video section -->
+      <section class="video-section">
+        <div class="video-container">
+          <div class="video-placeholder">
+            <a class="play-button" href="https://www.bilibili.com/video/BV1ju411H7PZ/?share_source=copy_web&vd_source=859d6fcb69258977a2761c00c6c794d8" target="_blank"></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Feature comparison - iPhone style -->
+      <section class="section">
+        <div class="content-block fade-up">
+          <p class="eyebrow">核心优势</p>
+          <h2>提升面包品质的关键</h2>
+
+          <div class="feature-compare">
+            <div class="feature-item">
+              <div class="feature-icon">●</div>
+              <div class="feature-title">增强面团弹性</div>
+              <p class="feature-description">酶制剂能够强化面筋网络结构，提升面团弹性与韧性，改善面包体积与质地。</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">●</div>
+              <div class="feature-title">延长保质期</div>
+              <p class="feature-description">特定酶制剂可延缓面包老化过程，保持更长时间的新鲜度与柔软口感。</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">●</div>
+              <div class="feature-title">提高生产效率</div>
+              <p class="feature-description">通过改善面团操作性，减少生产时间，提高生产效率与产品一致性。</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">●</div>
+              <div class="feature-title">增强风味特性</div>
+              <p class="feature-description">部分酶制剂可促进风味前体物质转化，提升面包的香气与口感体验。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- iPhone-style horizontal carousel -->
+      <section class="section">
+        <div class="content-block fade-up">
+          <p class="eyebrow">酶制剂分类</p>
+          <h2>按照作用受体的不同，主要分为多种类型</h2>
+        </div>
+
+        <div class="carousel-container">
+          <div class="carousel-wrapper">
+            <div class="carousel-track">
+              <div class="carousel-item" data-index="0">
+                <div class="carousel-image">
+                  <img src="images/enzyme/淀粉酶.png" alt="水解酶" />
+                </div>
+                <div class="carousel-content">
+                  <h3>水解酶</h3>
+                  <p>木聚糖酶、淀粉酶、蛋白酶、葡聚糖酶、脂肪酶等，通过水解作用改善面团品质和面包结构。</p>
+                </div>
+              </div>
+              <div class="carousel-item" data-index="1">
+                <div class="carousel-image">
+                  <img src="images/enzyme/葡萄糖氧化酶.png" alt="氧化酶" />
+                </div>
+                <div class="carousel-content">
+                  <h3>氧化酶</h3>
+                  <p>脂肪氧合酶、葡萄糖氧化酶等，通过氧化作用强化面筋网络，提高面包组织稳定性。</p>
+                </div>
+              </div>
+              <div class="carousel-item" data-index="2">
+                <div class="carousel-image">
+                  <img src="images/enzyme/Transglutaminase.jpg" alt="转移酶" />
+                </div>
+                <div class="carousel-content">
+                  <h3>转移酶</h3>
+                  <p>转谷氨酰胺酶等，通过分子间交联作用，增强面筋蛋白网络，提高面团强度与稳定性。</p>
+                </div>
+              </div>
+              <div class="carousel-item" data-index="3">
+                <div class="carousel-image">
+                  <img src="images/bread/hero-bg.jpg" alt="复合酶" />
+                </div>
+                <div class="carousel-content">
+                  <h3>复合酶制剂</h3>
+                  <p>多种酶按特定比例复配，产生协同效应，全面提升面包品质，满足不同工艺需求。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-bg">
+            <div class="carousel-nav">
+              <div class="carousel-dot active" data-slide="0"></div>
+              <div class="carousel-dot" data-slide="1"></div>
+              <div class="carousel-dot" data-slide="2"></div>
+              <div class="carousel-dot" data-slide="3"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- iPhone-style scroll-triggered sequence -->
+      <section class="scroll-sequence bread-part">
+        <div class="scroll-sticky">
+          <div class="scroll-content">
+            <div class="scroll-item" id="scroll-1">
+              <div class="scroll-image">
+                <img src="images/enzyme/α-淀粉酶.png" alt="α-淀粉酶" />
+              </div>
+              <div class="scroll-text">
+                <p class="eyebrow">核心技术</p>
+                <h2>α-淀粉酶</h2>
+                <p>α-淀粉酶可水解淀粉分子内部α-1,4-糖苷键，生成低聚糖和糊精，为酵母发酵提供更多可发酵糖分，同时减缓面包老化过程。</p>
+              </div>
+            </div>
+            <div class="scroll-item" id="scroll-2">
+              <div class="scroll-image">
+                <img src="images/enzyme/β-amylase.png" alt="麦芽糖α-淀粉酶" />
+              </div>
+              <div class="scroll-text">
+                <p class="eyebrow">创新技术</p>
+                <h2>麦芽糖α-淀粉酶</h2>
+                <p>麦芽糖α-淀粉酶专一性水解直链淀粉，生成麦芽糖等低聚糖，显著延缓面包老化，保持柔软口感长达7天以上。</p>
+              </div>
+            </div>
+            <div class="scroll-item" id="scroll-3">
+              <div class="scroll-image">
+                <img src="images/enzyme/脂肪酶.png" alt="脂肪酶" />
+              </div>
+              <div class="scroll-text">
+                <p class="eyebrow">品质提升</p>
+                <h2>脂肪酶</h2>
+                <p>脂肪酶催化油脂水解生成单酰基甘油和脂肪酸，这些产物具有良好的乳化性能，提升面包体积和柔软度，并能部分替代乳化剂的使用。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bacterial Amylase Section -->
+      <section class="section">
+        <div class="content-block fade-up">
+          <p class="eyebrow">淀粉酶种类</p>
+          <h2>细菌α-淀粉酶</h2>
+          <p>细菌α-淀粉酶与真菌α-淀粉酶的作用机理基本相同。但它们的性质却不尽相同，尤其是耐热性的差异极大。细菌α-淀粉酶的最适pH值是5.0，最适温度范围为80~90℃。</p>
+          <p>细菌α-淀粉酶与真菌α-淀粉酶相比，在焙烤应用中的优点是：<span class="highlight">抗老化效果好、能够改善面包芯的品质</span>。</p>
+        </div>
+      </section>
+
+      <!-- Maltogenic Amylase Section -->
+      <section class="section">
         <div class="animated-bg"></div>
-        <div class="hero-object"></div>
-      </div>
-      <div class="hero-text">
-        <p class="eyebrow">全新研究</p>
-        <h1>面包酶制剂</h1>
-        <p class="subtitle">革命性的面包品质提升体验</p>
-      </div>
-    </header>
-
-    <!-- Overview Section -->
-    <section class="full-bleed">
-      <div class="animated-bg"></div>
-      <div class="content-block fade-up">
-        <h2 class="section-head">概览</h2>
-        <p class="subtitle">面包酶制剂种类丰富，作用颇多。面包酶制剂对面粉的品质、面团的操作性、面包产品得率以及面包的体积和柔软度、延长面包保质期等都有良好的改善作用。</p>
-        <a href="#" class="pill-button">了解更多</a>
-      </div>
-    </section>
-
-    <!-- iPhone-style video section -->
-    <section class="video-section">
-      <div class="video-container">
-        <div class="video-placeholder">
-          <div class="play-button"></div>
+        <div class="content-block fade-up theme-dark">
+          <p class="eyebrow">创新技术</p>
+          <h2>麦芽糖α-淀粉酶</h2>
+          <p>麦芽糖α-淀粉酶是一类新型的酶制剂。比如丹麦诺维信公司的产品麦芽糖α-淀粉酶，它就是一种通过遗传工程改造，由枯草杆菌的菌株生产的一种纯的麦芽糖α-淀粉酶。</p>
+          <p>它的最佳作用条件为45~75℃，pH适用范围为4.8~6.0。麦芽糖α-淀粉酶可以改良小麦淀粉，延长面包芯在贮存的过程中的保鲜期。</p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Feature comparison - iPhone style -->
-    <section class="section">
-      <div class="content-block fade-up">
-        <p class="eyebrow">核心优势</p>
-        <h2>提升面包品质的关键</h2>
-
-        <div class="feature-compare">
-          <div class="feature-item">
-            <div class="feature-icon">●</div>
-            <div class="feature-title">增强面团弹性</div>
-            <p class="feature-description">酶制剂能够强化面筋网络结构，提升面团弹性与韧性，改善面包体积与质地。</p>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">●</div>
-            <div class="feature-title">延长保质期</div>
-            <p class="feature-description">特定酶制剂可延缓面包老化过程，保持更长时间的新鲜度与柔软口感。</p>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">●</div>
-            <div class="feature-title">提高生产效率</div>
-            <p class="feature-description">通过改善面团操作性，减少生产时间，提高生产效率与产品一致性。</p>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">●</div>
-            <div class="feature-title">增强风味特性</div>
-            <p class="feature-description">部分酶制剂可促进风味前体物质转化，提升面包的香气与口感体验。</p>
-          </div>
+      <!-- Lipase Section -->
+      <section class="section">
+        <div class="content-block fade-up">
+          <p class="eyebrow">蛋白质改良</p>
+          <h2>脂肪酶</h2>
+          <p>脂肪酶可以很好地改良面包内部组织结构以及面包芯柔软度等指标。实验结果显示，和对照组相比较之下，添加脂肪酶后，面团的面包品质、流变学性质都得到了较为明显的改善。</p>
+          <!-- <div class="pill-button">了解更多</div> -->
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- iPhone-style horizontal carousel -->
-    <section class="section">
-      <div class="content-block fade-up">
-        <p class="eyebrow">酶制剂分类</p>
-        <h2>按照作用受体的不同，主要分为多种类型</h2>
-      </div>
+      <!-- Carousel Section -->
+      <!-- <section class="section">
+        <div class="content-block fade-up">
+          <p class="eyebrow">精选亮点</p>
+          <h2>酶制剂应用</h2>
+          <p>发现不同酶制剂在面包和酿酒工艺中的独特应用</p>
+        </div>
 
-      <div class="carousel-container">
-        <div class="carousel-wrapper">
-          <div class="carousel-track">
-            <div class="carousel-item" data-index="0">
-              <div class="carousel-image">
-                <img src="/api/placeholder/600/400" alt="水解酶" />
+        <div class="carousel-container">
+          <div class="carousel-wrapper">
+            <div class="carousel-track">
+              <div class="carousel-item">
+                <div class="carousel-image">
+                  <img src="images/enzyme/淀粉酶.png" alt="淀粉酶应用">
+                </div>
+                <div class="carousel-content">
+                  <h3>淀粉酶</h3>
+                  <p>改善面团特性、体积、发酵性能，延缓面包制品老化时间</p>
+                </div>
               </div>
-              <div class="carousel-content">
-                <h3>水解酶</h3>
-                <p>木聚糖酶、淀粉酶、蛋白酶、葡聚糖酶、脂肪酶等，通过水解作用改善面团品质和面包结构。</p>
+              <div class="carousel-item">
+                <div class="carousel-image">
+                  <img src="images/enzyme/脂肪酶.png" alt="脂肪酶应用">
+                </div>
+                <div class="carousel-content">
+                  <h3>脂肪酶</h3>
+                  <p>改良面包内部组织结构以及面包芯柔软度</p>
+                </div>
               </div>
-            </div>
-            <div class="carousel-item" data-index="1">
-              <div class="carousel-image">
-                <img src="/api/placeholder/600/400" alt="氧化酶" />
+              <div class="carousel-item">
+                <div class="carousel-image">
+                  <img src="images/enzyme/葡萄糖氧化酶.png" alt="葡萄糖氧化酶应用">
+                </div>
+                <div class="carousel-content">
+                  <h3>葡萄糖氧化酶</h3>
+                  <p>改良面团的粉质特性和显微结构，提升面团的抗拉能力</p>
+                </div>
               </div>
-              <div class="carousel-content">
-                <h3>氧化酶</h3>
-                <p>脂肪氧合酶、葡萄糖氧化酶等，通过氧化作用强化面筋网络，提高面包组织稳定性。</p>
-              </div>
-            </div>
-            <div class="carousel-item" data-index="2">
-              <div class="carousel-image">
-                <img src="/api/placeholder/600/400" alt="转移酶" />
-              </div>
-              <div class="carousel-content">
-                <h3>转移酶</h3>
-                <p>转谷氨酰胺酶等，通过分子间交联作用，增强面筋蛋白网络，提高面团强度与稳定性。</p>
-              </div>
-            </div>
-            <div class="carousel-item" data-index="3">
-              <div class="carousel-image">
-                <img src="/api/placeholder/600/400" alt="复合酶" />
-              </div>
-              <div class="carousel-content">
-                <h3>复合酶制剂</h3>
-                <p>多种酶按特定比例复配，产生协同效应，全面提升面包品质，满足不同工艺需求。</p>
+              <div class="carousel-item">
+                <div class="carousel-image">
+                  <img src="images/enzyme/水解酶.jpg" alt="复合酶应用">
+                </div>
+                <div class="carousel-content">
+                  <h3>复合酶制剂</h3>
+                  <p>产生协同作用，效果优于单一酶制剂</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="carousel-nav">
-          <div class="carousel-dot active" data-slide="0"></div>
-          <div class="carousel-dot" data-slide="1"></div>
-          <div class="carousel-dot" data-slide="2"></div>
-          <div class="carousel-dot" data-slide="3"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- iPhone-style scroll-triggered sequence -->
-    <section class="scroll-sequence bread-part">
-      <div class="scroll-sticky">
-        <div class="scroll-content">
-          <div class="scroll-item" id="scroll-1">
-            <div class="scroll-image">
-              <img src="/api/placeholder/500/500" alt="α-淀粉酶" />
-            </div>
-            <div class="scroll-text">
-              <p class="eyebrow">核心技术</p>
-              <h2>α-淀粉酶</h2>
-              <p>α-淀粉酶可水解淀粉分子内部α-1,4-糖苷键，生成低聚糖和糊精，为酵母发酵提供更多可发酵糖分，同时减缓面包老化过程。</p>
-            </div>
-          </div>
-          <div class="scroll-item" id="scroll-2">
-            <div class="scroll-image">
-              <img src="/api/placeholder/500/500" alt="麦芽糖α-淀粉酶" />
-            </div>
-            <div class="scroll-text">
-              <p class="eyebrow">创新技术</p>
-              <h2>麦芽糖α-淀粉酶</h2>
-              <p>麦芽糖α-淀粉酶专一性水解直链淀粉，生成麦芽糖等低聚糖，显著延缓面包老化，保持柔软口感长达7天以上。</p>
-            </div>
-          </div>
-          <div class="scroll-item" id="scroll-3">
-            <div class="scroll-image">
-              <img src="/api/placeholder/500/500" alt="脂肪酶" />
-            </div>
-            <div class="scroll-text">
-              <p class="eyebrow">品质提升</p>
-              <h2>脂肪酶</h2>
-              <p>脂肪酶催化油脂水解生成单酰基甘油和脂肪酸，这些产物具有良好的乳化性能，提升面包体积和柔软度，并能部分替代乳化剂的使用。</p>
-            </div>
+          <div class="carousel-nav">
+            <div class="carousel-dot active"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
           </div>
         </div>
-      </div>
-    </section>
+      </section> -->
 
-    <!-- Bacterial Amylase Section -->
-    <section class="section">
-      <div class="content-block fade-up">
-        <p class="eyebrow">淀粉酶种类</p>
-        <h2>细菌α-淀粉酶</h2>
-        <p>细菌α-淀粉酶与真菌α-淀粉酶的作用机理基本相同。但它们的性质却不尽相同，尤其是耐热性的差异极大。细菌α-淀粉酶的最适pH值是5.0，最适温度范围为80~90℃。</p>
-        <p>细菌α-淀粉酶与真菌α-淀粉酶相比，在焙烤应用中的优点是：<span class="highlight">抗老化效果好、能够改善面包芯的品质</span>。</p>
-      </div>
-    </section>
+      <!-- Sticky Comparison Section -->
+      <section class="sticky-container">
+        <div class="sticky-element">
+          <div class="sticky-content">
+            <p class="eyebrow">用量控制</p>
+            <h2>酶制剂用量的关键影响</h2>
+            <p>精准控制酶的用量对面包品质至关重要</p>
 
-    <!-- Maltogenic Amylase Section -->
-    <section class="section">
-      <div class="animated-bg"></div>
-      <div class="content-block fade-up theme-dark">
-        <p class="eyebrow">创新技术</p>
-        <h2>麦芽糖α-淀粉酶</h2>
-        <p>麦芽糖α-淀粉酶是一类新型的酶制剂。比如丹麦诺维信公司的产品麦芽糖α-淀粉酶，它就是一种通过遗传工程改造，由枯草杆菌的菌株生产的一种纯的麦芽糖α-淀粉酶。</p>
-        <p>它的最佳作用条件为45~75℃，pH适用范围为4.8~6.0。麦芽糖α-淀粉酶可以改良小麦淀粉，延长面包芯在贮存的过程中的保鲜期。</p>
-      </div>
-    </section>
-
-    <!-- Lipase Section -->
-    <section class="section">
-      <div class="content-block fade-up">
-        <p class="eyebrow">蛋白质改良</p>
-        <h2>脂肪酶</h2>
-        <p>脂肪酶可以很好地改良面包内部组织结构以及面包芯柔软度等指标。实验结果显示，和对照组相比较之下，添加脂肪酶后，面团的面包品质、流变学性质都得到了较为明显的改善。</p>
-        <div class="pill-button">了解更多</div>
-      </div>
-    </section>
-
-    <!-- Carousel Section -->
-    <section class="section">
-      <div class="content-block fade-up">
-        <p class="eyebrow">精选亮点</p>
-        <h2>酶制剂应用</h2>
-        <p>发现不同酶制剂在面包和酿酒工艺中的独特应用</p>
-      </div>
-
-      <div class="carousel-container">
-        <div class="carousel-wrapper">
-          <div class="carousel-track">
-            <div class="carousel-item">
-              <div class="carousel-image">
-                <img src="/api/placeholder/400/300" alt="淀粉酶应用">
-              </div>
-              <div class="carousel-content">
-                <h3>淀粉酶</h3>
-                <p>改善面团特性、体积、发酵性能，延缓面包制品老化时间</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="carousel-image">
-                <img src="/api/placeholder/400/300" alt="脂肪酶应用">
-              </div>
-              <div class="carousel-content">
-                <h3>脂肪酶</h3>
-                <p>改良面包内部组织结构以及面包芯柔软度</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="carousel-image">
-                <img src="/api/placeholder/400/300" alt="葡萄糖氧化酶应用">
-              </div>
-              <div class="carousel-content">
-                <h3>葡萄糖氧化酶</h3>
-                <p>改良面团的粉质特性和显微结构，提升面团的抗拉能力</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="carousel-image">
-                <img src="/api/placeholder/400/300" alt="复合酶应用">
-              </div>
-              <div class="carousel-content">
-                <h3>复合酶制剂</h3>
-                <p>产生协同作用，效果优于单一酶制剂</p>
-              </div>
+            <div class="compare-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>酶制剂</th>
+                    <th>用量过少</th>
+                    <th>用量过多</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="highlight">淀粉酶</span></td>
+                    <td>发酵缓慢，面包体积小，老化快</td>
+                    <td>面包内部发黏，表皮过深，甚至烧焦</td>
+                  </tr>
+                  <tr>
+                    <td><span class="highlight">脂肪酶</span></td>
+                    <td>面包柔软度不足，老化速度加快</td>
+                    <td>面团发干硬化，产生异味影响风味</td>
+                  </tr>
+                  <tr>
+                    <td><span class="highlight">木聚糖酶</span></td>
+                    <td>面团持气性不足，面包体积小</td>
+                    <td>面团发黏难操作，发酵受阻</td>
+                  </tr>
+                  <tr>
+                    <td><span class="highlight">葡萄糖氧化酶</span></td>
+                    <td>面团筋力不足，结构松散</td>
+                    <td>面团干硬，口感变差</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-        <div class="carousel-nav">
-          <div class="carousel-dot active"></div>
-          <div class="carousel-dot"></div>
-          <div class="carousel-dot"></div>
-          <div class="carousel-dot"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sticky Comparison Section -->
-    <section class="sticky-container">
-      <div class="sticky-element">
-        <div class="sticky-content">
-          <p class="eyebrow">用量控制</p>
-          <h2>酶制剂用量的关键影响</h2>
-          <p>精准控制酶的用量对面包品质至关重要</p>
-
-          <div class="compare-table">
-            <table>
-              <thead>
-                <tr>
-                  <th>酶制剂</th>
-                  <th>用量过少</th>
-                  <th>用量过多</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="highlight">淀粉酶</span></td>
-                  <td>发酵缓慢，面包体积小，老化快</td>
-                  <td>面包内部发黏，表皮过深，甚至烧焦</td>
-                </tr>
-                <tr>
-                  <td><span class="highlight">脂肪酶</span></td>
-                  <td>面包柔软度不足，老化速度加快</td>
-                  <td>面团发干硬化，产生异味影响风味</td>
-                </tr>
-                <tr>
-                  <td><span class="highlight">木聚糖酶</span></td>
-                  <td>面团持气性不足，面包体积小</td>
-                  <td>面团发黏难操作，发酵受阻</td>
-                </tr>
-                <tr>
-                  <td><span class="highlight">葡萄糖氧化酶</span></td>
-                  <td>面团筋力不足，结构松散</td>
-                  <td>面团干硬，口感变差</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-  </section>
-    <!-- Wine Making Section -->
-    <section class="full-bleed">
-      <div class="animated-bg"></div>
-      <div class="section-label">酿酒</div>
-      <div class="content-block fade-up">
-        <h2 class="section-head">酶在酿酒中的应用</h2>
-        <p class="subtitle">各种酶制剂在酿酒工艺中扮演着不可替代的角色</p>
-      </div>
-    </section>
-
-    <!-- Feature Grid -->
-    <section class="section">
-      <div class="content-block fade-up">
-        <h2>酿酒中的核心酶类</h2>
-        <p>探索不同酶制剂在酿酒工艺中的特定作用</p>
-      </div>
-
-      <div class="grid">
-        <div class="grid-item parallax-item">
-          <h3>淀粉酶</h3>
-          <p>包括α-淀粉酶和β-淀粉酶，将淀粉分解为可发酵糖，是啤酒、黄酒等酿造的基础。</p>
-        </div>
-        <div class="grid-item parallax-item">
-          <h3>葡萄糖苷酶</h3>
-          <p>分解短链糊精为葡萄糖，改善醪液流动性，用于清酒、黄酒的糖化阶段。</p>
-        </div>
-        <div class="grid-item parallax-item">
-          <h3>蛋白酶</h3>
-          <p>分解蛋白质为氨基酸和小肽，为酵母提供氮源，促进发酵，影响口感和风味。</p>
-        </div>
-        <div class="grid-item parallax-item">
-          <h3>酯酶</h3>
-          <p>催化酸与醇合成酯类物质，赋予酒类果香或花香，用于白酒、朗姆酒等。</p>
-        </div>
-        <div class="grid-item parallax-item">
-          <h3>脱支酶</h3>
-          <p>切断支链淀粉的α-1,6糖苷键，释放直链糊精，提高淀粉利用率。</p>
-        </div>
-        <div class="grid-item parallax-item">
-          <h3>果胶酶</h3>
-          <p>分解果胶，提高果汁出汁率，减少浑浊，用于葡萄酒、苹果酒的酿造。</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Video Section -->
-    <section class="video-section">
-      <div class="video-container">
-        <div class="video-placeholder">
-          <div class="play-button"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Case Studies Section -->
-    <section class="scroll-sequence wine-part">
-      <div class="scroll-sticky">
-        <div class="scroll-content">
-          <div class="scroll-item active">
-            <div class="scroll-image">
-              <img src="/api/placeholder/500/400" alt="啤酒酿造">
-            </div>
-            <div class="scroll-text">
-              <p class="eyebrow">案例研究</p>
-              <h3>啤酒酿造</h3>
-              <p>蛋白酶不足会导致冷浑浊；α-淀粉酶过多会使酒精度过高且泡沫稳定性差。精准掌控酶的平衡，才能酿造出优质啤酒。</p>
-            </div>
-          </div>
-          <div class="scroll-item">
-            <div class="scroll-image">
-              <img src="/api/placeholder/500/400" alt="白酒固态发酵">
-            </div>
-            <div class="scroll-text">
-              <p class="eyebrow">案例研究</p>
-              <h3>白酒固态发酵</h3>
-              <p>酯酶不足会导致香味淡薄；蛋白酶过多会使杂醇油含量升高，饮后易"上头"。通过控制酶活性来平衡风味。</p>
-            </div>
-          </div>
-          <div class="scroll-item">
-            <div class="scroll-image">
-              <img src="/api/placeholder/500/400" alt="葡萄酒自然发酵">
-            </div>
-            <div class="scroll-text">
-              <p class="eyebrow">案例研究</p>
-              <h3>葡萄酒自然发酵</h3>
-              <p>果胶酶不足会导致酒液浑浊且陈年潜力差；野生酶系失衡会产生异味（如醋酸菌污染）。合理应用酶制剂可确保葡萄酒品质稳定。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Feature Comparison -->
-    <section class="section">
-      <div class="content-block fade-up">
-        <h2>面包与酿酒中酶的比较</h2>
-        <p>探索同类酶制剂在不同领域的应用差异</p>
-      </div>
-
-      <div class="feature-compare">
-        <div class="feature-item">
-          <div class="feature-icon">🍞</div>
-          <div class="feature-title">面包中的淀粉酶</div>
-          <p class="feature-description">改善面包体积和质地，延缓老化，最适温度45~75℃</p>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">🍺</div>
-          <div class="feature-title">酿酒中的淀粉酶</div>
-          <p class="feature-description">产生可发酵糖分，影响酒体风味，最适温度50~65℃</p>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">🧬</div>
-          <div class="feature-title">面包中的蛋白酶</div>
-          <p class="feature-description">改良面筋结构，影响弹性和韧性</p>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">🔬</div>
-          <div class="feature-title">酿酒中的蛋白酶</div>
-          <p class="feature-description">为酵母提供氮源，参与美拉德反应生成香气</p>
-        </div>
-      </div>
+      </section>
     </section>
 
     <footer>
       <div class="footer-content">
-        <p>© 2025 食品酶技术研究中心. 保留所有权利.</p>
-        <p>参考文献：周素梅, 马学斌.淀粉酶对面包品质及贮存性的研究, 粮食加工, 1998.</p>
+        <p>© 大分子：从材料到生命第三组</p>
+        <p>2025 春学期</p>
       </div>
     </footer>
 

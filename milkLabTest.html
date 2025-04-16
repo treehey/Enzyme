@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>酶的奇幻旅程</title>
+    <style>
+        :root {
+            --primary: #0071e3;
+            --secondary: #86c6ff;
+            --text: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --background: #f5f5f7;
+            --card: #ffffff;
+            --success: #34c759;
+            --warning: #ff9500;
+            --danger: #ff3b30;
+            --border-radius: 16px;
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f5f7 0%, #e5e5ea 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), #9866ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 113, 227, 0.5);
+        }
+
+        .btn.secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 20px;
+        }
+
+        .btn.secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            transition: var(--transition);
+            padding: 20px 0;
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo img {
+            height: 36px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), #9866ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .card {
+            background-color: var(--card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        /* Game Area */
+        .game-area {
+            background-color: var(--card);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            background-color: #f0f0f5;
+            padding: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 12px;
+            position: relative;
+            z-index: 2;
+            color: var(--text-secondary);
+        }
+
+        .tab.active {
+            color: var(--primary);
+        }
+
+        .tab-slider {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: calc(50% - 5px);
+            height: calc(100% - 10px);
+            background-color: white;
+            border-radius: 12px;
+            transition: var(--transition);
+            z-index: 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Cheese Lab */
+        .cheese-lab {
+            display: flex;
+            /* height: 600px; */
+        }
+
+        .simulation-container {
+            display: flex;
+            flex-direction: column;
+            flex: 2;
+        }
+
+        .info-box {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #4285f4;
+        }
+
+        .lab-simulation {
+            flex: 2;
+            position: relative;
+            background-color: #f8f8fa;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .lab-controls {
+            flex: 1;
+            padding: 0 30px;
+            max-width: 350px;
+        }
+
+        .milk-container {
+            position: absolute;
+            width: 250px;
+            height: 400px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9));
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px 20px 100px 100px;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .milk {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 95%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 0 0 97px 97px;
+            transition: all 3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .milk-bubble {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: bubble 4s infinite ease-in-out;
+        }
+
+        @keyframes bubble {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1.1);
+                opacity: 0.9;
+            }
+        }
+
+        .enzyme-selector {
+            margin-bottom: 30px;
+        }
+
+        .enzyme-selector h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .enzyme-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background-color: #f5f5f7;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .enzyme-btn:hover {
+            background-color: #eaeaed;
+        }
+
+        .enzyme-btn.active {
+            border-color: var(--primary);
+            background-color: rgba(0, 113, 227, 0.1);
+            color: var(--primary);
+        }
+
+        .enzyme-btn.active::after {
+            content: '✓';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .milk-status {
+            background-color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .milk-status h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .status-item {
+            margin-bottom: 15px;
+        }
+
+        .status-item p {
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .status-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #f0f0f5;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 4px;
+        }
+
+        /* Lactose Factory */
+        .lactose-factory {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(to bottom, #f0f7ff, #e6f2ff);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .intestine-track {
+            position: relative;
+            width: 90%;
+            height: 300px;
+            margin: 50px auto;
+            background-color: #ffdbdb;
+            border-radius: 40px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intestine-inner {
+            position: absolute;
+            width: 98%;
+            height: 80%;
+            background: linear-gradient(to right, #ffecec, #ffe0e0);
+            border-radius: 30px;
+            z-index: 1;
+        }
+
+        .lactose {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            transform-origin: center center;
+            cursor: pointer;
+        }
+
+        .lactose::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px dashed rgba(0, 0, 0, 0.1);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .lactase {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 113, 227, 0.3);
+            z-index: 20;
+            cursor: grab;
+            transition: transform 0.3s ease;
+        }
+
+        .lactase:hover {
+            transform: scale(1.1);
+        }
+
+        .lactase:active {
+            cursor: grabbing;
+        }
+
+        .glucose,
+        .galactose {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            z-index: 5;
+        }
+
+        .glucose {
+            background-color: #ffeb3b;
+        }
+
+        .galactose {
+            background-color: #ff9800;
+        }
+
+        .game-stats {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            min-width: 200px;
+            z-index: 30;
+        }
+
+        .game-stats h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .game-controls {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            z-index: 30;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #f5f5f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close:hover {
+            background-color: #e5e5ea;
+        }
+
+        .close::before,
+        .close::after {
+            content: '';
+            width: 15px;
+            height: 2px;
+            background-color: var(--text);
+            position: absolute;
+        }
+
+        .close::before {
+            transform: rotate(45deg);
+        }
+
+        .close::after {
+            transform: rotate(-45deg);
+        }
+
+        .modal h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Quiz */
+        .quiz-question {
+            margin-bottom: 30px;
+        }
+
+        .quiz-question p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .option-label {
+            display: block;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            background-color: #f5f5f7;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .option-label:hover {
+            background-color: #eaeaed;
+        }
+
+        .option-label input {
+            display: none;
+        }
+
+        .option-label.selected {
+            border: 2px solid var(--primary);
+            background-color: rgba(0, 113, 227, 0.1);
+            padding: 13px;
+        }
+
+        .option-label.correct {
+            border: 2px solid var(--success);
+            background-color: rgba(52, 199, 89, 0.1);
+            padding: 13px;
+        }
+
+        .option-label.incorrect {
+            border: 2px solid var(--danger);
+            background-color: rgba(255, 59, 48, 0.1);
+            padding: 13px;
+        }
+
+        .option-label::after {
+            content: '';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #d1d1d6;
+            transition: var(--transition);
+        }
+
+        .option-label.selected::after {
+            border-color: var(--primary);
+            background-color: var(--primary);
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .result-score {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .result-message {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        /* Microscope */
+        .microscope-view {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            overflow: hidden;
+            display: none;
+            z-index: 40;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1.2);
+                opacity: 0.9;
+            }
+        }
+
+        /* Feedback toast */
+        #feedback-div {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            /* align-items: center; */
+        }
+
+        .feedback {
+            /* position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px); */
+            padding: 15px 30px;
+
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 30px;
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 200;
+            text-align: center;
+        }
+
+        .feedback.active {
+            /* transform: translateX(-50%) translateY(0); */
+            opacity: 1;
+        }
+
+        /* Achievements */
+        .achievements {
+            padding: 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+        }
+
+        .achievements h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .achievement-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .badge {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #f5f5f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 20px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .badge.unlocked {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 113, 227, 0.3);
+        }
+
+        .badge::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .badge:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* AR View Button */
+        .ar-view-btn {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 15px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 5;
+        }
+
+        .ar-view-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .ar-view-btn img {
+            width: 24px;
+            margin-right: 8px;
+        }
+
+        /* Apple-style footer */
+  footer {
+    background: #f5f5f7;
+    color: #86868b;
+    padding: 20px;
+    font-size: 12px;
+    line-height: 1.33341;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .footer-content {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 17px 0;
+  }
+
+  .footer-content p {
+    font-size: 12px;
+    line-height: 1.33341;
+    color: #86868b;
+  }
+
+        /* Animations */
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            nav .logo {
+                font-size: 15px;
+            }
+            .nav-links {
+                font-size: 15px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                max-width: 90%;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .cheese-lab {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .lab-controls {
+                padding: 30px 0 0 0;
+                max-width: 100%;
+            }
+
+            .lab-simulation {
+                height: 400px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <!-- <img src="https://cdn.iconscout.com/icon/free/png-256/free-molecule-1502442-1273330.png" alt="Logo"> -->
+                酶的奇幻旅程
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">关于</a></li>
+                <li><a href="#games">互动游戏</a></li>
+                <li><a href="#explore">探索更多</a></li>
+                <li><a href="#quiz">测验</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="particles"></div>
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1>酶的奇幻旅程</h1>
+                <p>探索酶在乳制品中的神奇世界，成为微观世界的冒险家</p>
+                <a href="#games" class="btn">开始探索</a>
+                <a href="#about" class="btn secondary">了解更多</a>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+            <div class="section-header">
+                <h2>神奇的酶世界</h2>
+                <p>酶是生物体内催化代谢反应的特殊蛋白质，在乳制品加工中扮演着至关重要的角色</p>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/cheese/cheese-bg.jpg" alt="干酪制作">
+                    </div>
+                    <div class="card-badge">凝乳酶</div>
+                    <div class="card-content">
+                        <h3>干酪制作的魔法师</h3>
+                        <p>凝乳酶是干酪生产中的关键角色，它能特异性裂解酪蛋白链中的部分多肽键，让牛奶凝结成为美味干酪的第一步。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://cdn.pixabay.com/photo/2017/07/05/15/41/milk-2474993_1280.jpg" alt="低乳糖牛奶">
+                    </div>
+                    <div class="card-badge">乳糖酶</div>
+                    <div class="card-content">
+                        <h3>低乳糖奶的守护者</h3>
+                        <p>乳糖酶能将乳糖分解为更易消化的葡萄糖和半乳糖，让乳糖不耐受人群也能享受牛奶的营养。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://cdn.pixabay.com/photo/2016/06/08/19/46/cereal-1444495_1280.jpg" alt="风味增强">
+                    </div>
+                    <div class="card-badge">蛋白酶</div>
+                    <div class="card-content">
+                        <h3>风味的创造者</h3>
+                        <p>蛋白酶在干酪成熟过程中分解蛋白质，产生丰富的肽和氨基酸，为干酪创造独特风味和口感。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="games" class="container">
+            <div class="section-header">
+                <h2>互动实验室</h2>
+                <p>通过有趣的实验，体验酶的神奇作用</p>
+            </div>
+
+            <div class="game-area">
+                <div class="tabs">
+                    <div class="tab active" data-tab="cheese">干酪实验室</div>
+                    <div class="tab" data-tab="lactose">乳糖酶工厂</div>
+                    <div class="tab-slider"></div>
+                </div>
+
+                <div class="tab-content active" id="cheese-lab">
+                    <div class="cheese-lab">
+                        <div class="simulation-container">
+                            <div class="lab-simulation">
+                                <div class="milk-container">
+                                    <div class="milk"></div>
+                                    <div class="milk-bubble" style="width: 20px; height: 20px; top: 40%; left: 30%;">
+                                    </div>
+                                    <div class="milk-bubble" style="width: 15px; height: 15px; top: 60%; left: 70%;">
+                                    </div>
+                                    <div class="milk-bubble" style="width: 12px; height: 12px; top: 30%; left: 50%;">
+                                    </div>
+                                </div>
+                                <div class="particles"></div>
+                                <div class="microscope-view"></div>
+                                <button class="ar-view-btn">
+                                    <img src="https://cdn.iconscout.com/icon/free/png-256/free-augmented-reality-1851296-1569156.png"
+                                        alt="AR">
+                                    AR视图
+                                </button>
+                            </div>
+                            <div class="info-box">
+                                <h3>科学小知识</h3>
+                                <p id="cheese-info">凝乳酶是干酪生产中使牛奶凝固的关键酶，主要通过特异性裂解酪蛋白链中的部分多肽键，使牛奶凝结。不同类型的凝乳酶会影响干酪的质构和风味。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="lab-controls">
+                            <div class="milk-status">
+                                <h3>牛奶状态</h3>
+                                <div class="status-item">
+                                    <p>凝固程度 <span class="status-value">0%</span></p>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width:0%"></div>
+                                    </div>
+                                </div>
+                                <div class="status-item">
+                                    <p>风味形成 <span class="status-value">0%</span></p>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width:0%"></div>
+                                    </div>
+                                </div>
+                                <div class="status-item">
+                                    <p>质构发展 <span class="status-value">0%</span></p>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width:0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="enzyme-selector">
+                                <h3>选择酶类型</h3>
+                                <button class="enzyme-btn" data-enzyme="calf">小牛凝乳酶</button>
+                                <button class="enzyme-btn" data-enzyme="lamb">羔羊凝乳酶</button>
+                                <button class="enzyme-btn" data-enzyme="papaya">木瓜凝乳酶</button>
+                                <button class="enzyme-btn" data-enzyme="prinsepia">青刺果凝乳酶</button>
+                                <button class="enzyme-btn" data-enzyme="mucor">毛霉凝乳酶</button>
+                            </div>
+                            <div class="achievements">
+                                <h3>成就</h3>
+                                <div class="achievement-badges">
+                                    <div class="badge" data-tooltip="初次使用凝乳酶">🧀</div>
+                                    <div class="badge" data-tooltip="尝试所有凝乳酶">🔬</div>
+                                    <div class="badge" data-tooltip="制作完美干酪">✨</div>
+                                    <div class="badge" data-tooltip="观察微观世界">🔍</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="lactose-factory">
+                    <div class="lactose-factory">
+                        <div class="intestine-track">
+                            <div class="intestine-inner"></div>
+                        </div>
+                        <div class="lactose" style="top: 150px; left: 200px;">乳糖</div>
+                        <div class="lactase" style="top: 300px; left: 100px;">乳糖酶</div>
+                        <div class="game-stats">
+                            <h3>游戏统计</h3>
+                            <div class="stat-item">
+                                <span>已分解乳糖</span>
+                                <span class="stat-value">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>葡萄糖</span>
+                                <span class="stat-value">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>半乳糖</span>
+                                <span class="stat-value">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>分解率</span>
+                                <span class="stat-value">0%</span>
+                            </div>
+                        </div>
+                        <div class="game-controls">
+                            <button class="btn" id="start-game">开始游戏</button>
+                            <button class="btn secondary" id="reset-game">重置</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="explore" class="container">
+            <div class="section-header">
+                <h2>探索酶的世界</h2>
+                <p>了解更多关于酶在乳制品中的应用</p>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/enzyme/凝乳酶.png" alt="研究历史">
+                    </div>
+                    <div class="card-content">
+                        <h3>凝乳酶研究成果</h3>
+                        <p>六种不同凝乳酶的对比研究显示，动物凝乳酶在凝乳特性、干酪出品率及品质方面表现最佳，尤其是小牛皱胃酶与羔羊皱胃酶。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/enzyme/青刺果.jpg" alt="青刺果">
+                    </div>
+                    <div class="card-content">
+                        <h3>青刺果凝乳酶的魔力</h3>
+                        <p>青刺果凝乳酶加工的干酪在硬度、凝聚性等方面显著优于其他凝乳酶，能够形成更强劲稳定的胶束体系，提供更好的口感。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/enzyme/乳糖酶.jpg" alt="乳糖酶工艺">
+                    </div>
+                    <div class="card-content">
+                        <h3>乳糖酶应用工艺</h3>
+                        <p>在35℃下水解5小时或低温9℃水解20-24小时，中性乳糖酶能有效将乳糖水解为葡萄糖和半乳糖，降低乳糖含量。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="container">
+            <div class="section-header">
+                <h2>知识挑战</h2>
+                <p>测试你对酶的了解</p>
+            </div>
+            <div class="game-area">
+                <div id="quiz-container">
+                    <div class="quiz-question">
+                        <p>1. 哪种凝乳酶在干酪生产中表现最佳？</p>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="a"> 木瓜凝乳酶
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="b"> 小牛凝乳酶
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="c"> 毛霉凝乳酶
+                        </label>
+                    </div>
+
+                    <div class="quiz-question">
+                        <p>2. 乳糖酶的主要作用是什么？</p>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="a"> 将乳糖分解为葡萄糖和半乳糖
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="b"> 使牛奶凝固成干酪
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q2" value="c"> 分解脂肪球膜
+                        </label>
+                    </div>
+
+                    <div class="quiz-question">
+                        <p>3. 青刺果凝乳酶的优势在于？</p>
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="a"> 成本低廉
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="b"> 制作速度快
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q3" value="c"> 改善干酪质构特性
+                        </label>
+                    </div>
+
+                    <div class="quiz-question">
+                        <p>4. 制作低乳糖牛奶的最佳温度条件是？</p>
+                        <label class="option-label">
+                            <input type="radio" name="q4" value="a"> 5℃左右
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q4" value="b"> 35℃左右
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q4" value="c"> 60℃左右
+                        </label>
+                    </div>
+
+                    <div class="quiz-question">
+                        <p>5. 蛋白酶在干酪中的主要作用是？</p>
+                        <label class="option-label">
+                            <input type="radio" name="q5" value="a"> 凝固牛奶
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5" value="b"> 分解蛋白质形成风味物质
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5" value="c"> 降低乳糖含量
+                        </label>
+                    </div>
+
+                    <button class="btn" id="submit-quiz">提交答案</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+          <p>© 大分子：从材料到生命第三组</p>
+          <p>2025 春学期</p>
+        </div>
+      </footer>
+
+    <div class="modal" id="quiz-result-modal">
+        <div class="modal-content">
+            <div class="close">&times;</div>
+            <h2>测验结果</h2>
+            <div class="quiz-result">
+                <div class="result-score">0/5</div>
+                <div class="result-message">再试一次，你可以做得更好！</div>
+                <button class="btn" id="retry-quiz">重新测验</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="enzyme-info-modal">
+        <div class="modal-content">
+            <div class="close">&times;</div>
+            <h2>酶的详细信息</h2>
+            <div id="enzyme-detail-content"></div>
+        </div>
+    </div>
+
+    <!-- <div class="feedback" id="feedback-toast"></div> -->
+    <div id="feedback-div"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Create particles
+            const particlesContainers = document.querySelectorAll('.particles');
+            particlesContainers.forEach(container => {
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.width = Math.random() * 10 + 5 + 'px';
+                    particle.style.height = particle.style.width;
+                    particle.style.opacity = Math.random() * 0.5 + 0.2;
+                    particle.style.backgroundColor = `hsl(${Math.random() * 40 + 200}, 80%, 60%)`;
+                    particle.style.animationDelay = Math.random() * 5 + 's';
+                    container.appendChild(particle);
+                }
+            });
+
+            // Header scroll effect
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const tabSlider = document.querySelector('.tab-slider');
+
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('click', () => {
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    // Update tab slider position
+                    tabSlider.style.left = `${index * 50 + 0.5}%`;
+
+                    // Show active content
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    const contentId = tab.dataset.tab === 'cheese' ? 'cheese-lab' : 'lactose-factory';
+                    document.getElementById(contentId).classList.add('active');
+                });
+            });
+
+            // Cheese Lab Functionality
+            const enzymeBtns = document.querySelectorAll('.enzyme-btn');
+            const milk = document.querySelector('.milk');
+            const progressBars = document.querySelectorAll('.progress');
+            const statusValues = document.querySelectorAll('.status-value');
+            const badges = document.querySelectorAll('.badge');
+            const milkBubbles = document.querySelectorAll('.milk-bubble');
+
+            let selectedEnzyme = null;
+            let processStarted = false;
+            let processCompleted = false;
+            let triedEnzymes = new Set();
+
+            enzymeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (processStarted && !processCompleted) {
+                        showFeedback('请等待当前过程完成');
+                        return;
+                    }
+
+                    // Reset if already completed
+                    if (processCompleted) {
+                        resetCheeseLab();
+                    }
+
+                    // Select enzyme
+                    enzymeBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    selectedEnzyme = btn.dataset.enzyme;
+                    triedEnzymes.add(selectedEnzyme);
+
+                    // Update achievement if tried all enzymes
+                    if (triedEnzymes.size === enzymeBtns.length) {
+                        badges[1].classList.add('unlocked');
+                        showFeedback('成就解锁：尝试所有凝乳酶！');
+                    }
+
+                    // First time using rennet enzyme
+                    if (!badges[0].classList.contains('unlocked')) {
+                        badges[0].classList.add('unlocked');
+                        showFeedback('成就解锁：初次使用凝乳酶！');
+                    }
+
+                    // Start cheese making process
+                    startCheeseProcess();
+                });
+            });
+
+            function startCheeseProcess() {
+                processStarted = true;
+                processCompleted = false;
+
+                // Different effects based on enzyme type
+                let coagulationSpeed, flavorDevelopment, textureQuality;
+
+                switch (selectedEnzyme) {
+                    case 'calf':
+                        coagulationSpeed = 80;
+                        flavorDevelopment = 75;
+                        textureQuality = 80;
+                        break;
+                    case 'lamb':
+                        coagulationSpeed = 75;
+                        flavorDevelopment = 70;
+                        textureQuality = 75;
+                        break;
+                    case 'papaya':
+                        coagulationSpeed = 60;
+                        flavorDevelopment = 65;
+                        textureQuality = 60;
+                        break;
+                    case 'prinsepia':
+                        coagulationSpeed = 90;
+                        flavorDevelopment = 85;
+                        textureQuality = 95;
+                        break;
+                    case 'mucor':
+                        coagulationSpeed = 80;
+                        flavorDevelopment = 70;
+                        textureQuality = 70;
+                        break;
+                    default:
+                        coagulationSpeed = 70;
+                        flavorDevelopment = 70;
+                        textureQuality = 70;
+                }
+
+                // 酶特性数据
+                const enzymeData = {
+                    calf: {
+                        texture: "紧密、有弹性",
+                        flavor: "温和、奶香浓郁",
+                        color: "#f5f5dc",
+                        info: "小牛凝乳酶是传统干酪生产中最常用的酶，能形成质地紧密、风味温和的干酪。"
+                    },
+                    lamb: {
+                        texture: "较紧密、略脆",
+                        flavor: "浓郁、略带咸味",
+                        color: "#f5f5dc",
+                        info: "羔羊凝乳酶与小牛凝乳酶性质相似，但凝乳速度略慢，常用于某些特种干酪的制作。"
+                    },
+                    papaya: {
+                        texture: "疏松、较软",
+                        flavor: "轻微果味、清淡",
+                        color: "#fffacd",
+                        info: "木瓜凝乳酶是一种植物来源的酶，凝乳能力较动物凝乳酶弱，但可作为素食干酪的制作选择。"
+                    },
+                    prinsepia: {
+                        texture: "非常紧密、高弹性",
+                        flavor: "丰富、复杂、持久",
+                        color: "#eee8aa",
+                        info: "青刺果凝乳酶是一种来自青刺果的植物酶，研究表明它能够提供比传统凝乳酶更好的质构特性和风味。"
+                    },
+                    mucor: {
+                        texture: "中等紧实、细腻",
+                        flavor: "特殊霉香、适中",
+                        color: "#fafad2",
+                        info: "毛霉凝乳酶是一种微生物来源的酶，常用于特种干酪制作，能够提供独特的风味特性。"
+                    }
+                };
+
+                // Visual changes to milk
+                milk.style.backgroundColor = 'rgba(255, 253, 240, 0.9)';
+
+                const cheeseInfo = document.getElementById('cheese-info');
+                // 更新信息
+                cheeseInfo.textContent = enzymeData[selectedEnzyme].info;
+
+                // Animate bubbles
+                milkBubbles.forEach(bubble => {
+                    bubble.style.animationDuration = '2s';
+                });
+
+                // Update progress bars over time
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 1;
+
+                    // Update coagulation progress
+                    var coagulationProgress = Math.min(progress * coagulationSpeed / 100, 100);
+                    progressBars[0].style.width = `${coagulationProgress}%`;
+                    statusValues[0].textContent = `${Math.round(coagulationProgress)}%`;
+
+                    // Update flavor progress after some delay
+                    if (progress > 30) {
+                        var flavorProgress = Math.min((progress - 30) * flavorDevelopment / 70, 100);
+                        progressBars[1].style.width = `${flavorProgress}%`;
+                        statusValues[1].textContent = `${Math.round(flavorProgress)}%`;
+                    }
+
+                    // Update texture progress after more delay
+                    if (progress > 60) {
+                        var textureProgress = Math.min((progress - 60) * textureQuality / 40, 100);
+                        progressBars[2].style.width = `${textureProgress}%`;
+                        statusValues[2].textContent = `${Math.round(textureProgress)}%`;
+                    }
+
+                    // Visual changes based on progress
+                    if (progress > 50) {
+                        milk.style.height = `${95 - (progress - 50) * 0.5}%`;
+                        milk.style.backgroundColor = 'rgba(255, 250, 220, 0.9)';
+                    }
+
+                    if (progress > 70) {
+                        milk.style.backgroundColor = 'rgba(255, 245, 200, 0.9)';
+                    }
+
+                    // Complete process
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        processCompleted = true;
+
+                        // Perfect cheese achievement if using prinsepia
+                        if (selectedEnzyme === 'prinsepia' &&
+                            Math.round(coagulationProgress) > 85 &&
+                            Math.round(flavorProgress) > 80 &&
+                            Math.round(textureProgress) > 90) {
+                            badges[2].classList.add('unlocked');
+                            showFeedback('成就解锁：制作完美干酪！');
+                        }
+
+                        // Show completion feedback
+                        showFeedback('干酪制作完成！');
+                    }
+                }, 100);
+            }
+
+            function resetCheeseLab() {
+                processStarted = false;
+                processCompleted = false;
+
+                // Reset progress bars
+                progressBars.forEach(bar => {
+                    bar.style.width = '0%';
+                });
+
+                // Reset status values
+                statusValues.forEach(value => {
+                    value.textContent = '0%';
+                });
+
+                // Reset milk appearance
+                milk.style.height = '95%';
+                milk.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+
+                // Reset bubbles
+                milkBubbles.forEach(bubble => {
+                    bubble.style.animationDuration = '4s';
+                });
+
+                // Deselect enzyme
+                enzymeBtns.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                selectedEnzyme = null;
+            }
+
+            // Microscope view functionality
+            const labSimulation = document.querySelector('.lab-simulation');
+            const milk_con = document.querySelector('.milk');
+            const microscopeView = document.querySelector('.microscope-view');
+            let microscopeActive = false;
+
+            milk_con.addEventListener('mousemove', function (e) {
+                if (!microscopeActive) return;
+
+                const rect = labSimulation.getBoundingClientRect();
+                const x = e.clientX - rect.left - microscopeView.offsetWidth / 2;
+                const y = e.clientY - rect.top - microscopeView.offsetHeight / 2;
+
+                // Keep microscope within boundaries
+                const maxX = rect.width - microscopeView.offsetWidth;
+                const maxY = rect.height - microscopeView.offsetHeight;
+
+                microscopeView.style.left = `${Math.max(0, Math.min(maxX, x))}px`;
+                microscopeView.style.top = `${Math.max(0, Math.min(maxY, y))}px`;
+
+                if (microscopeActive && processStarted) {
+                    // 随机生成酶微观效果
+                    microscopeView.innerHTML = '';
+                        const coagulationProgress = document.querySelectorAll('.progress-bar .progress')[0];
+                        const coagulation = parseInt(coagulationProgress.style.width);
+                        for (let i = 0; i < coagulation / 5; i++) {
+                            const microParticle = document.createElement('div');
+                            microParticle.style.position = 'absolute';
+                            microParticle.style.width = '8px';
+                            microParticle.style.height = '8px';
+                            microParticle.style.backgroundColor = '#4285f4';
+                            microParticle.style.borderRadius = '50%';
+                            microParticle.style.left = `${Math.random() * 150}px`;
+                            microParticle.style.top = `${Math.random() * 150}px`;
+                            microscopeView.appendChild(microParticle);
+
+                            const line = document.createElement('div');
+                            line.style.position = 'absolute';
+                            line.style.width = `${10 + Math.random() * 20}px`;
+                            line.style.height = '2px';
+                            line.style.backgroundColor = '#333';
+                            line.style.left = `${Math.random() * 150}px`;
+                            line.style.top = `${Math.random() * 150}px`;
+                            line.style.transform = `rotate(${Math.random() * 360}deg)`;
+                            microscopeView.appendChild(line);
+                        }
+                }
+            });
+
+            // AR view button functionality
+            const arViewBtn = document.querySelector('.ar-view-btn');
+
+            arViewBtn.addEventListener('click', function () {
+                // Toggle microscope view
+                microscopeActive = !microscopeActive;
+
+                if (microscopeActive) {
+                    microscopeView.style.display = 'block';
+                    showFeedback('显微镜视图已激活');
+
+                    // Unlock achievement if not already
+                    if (!badges[3].classList.contains('unlocked')) {
+                        badges[3].classList.add('unlocked');
+                        showFeedback('成就解锁：观察微观世界！');
+                    }
+
+                    // Set content based on current process stage
+                    if (processStarted) {
+                        // if (processCompleted) {
+                        //     microscopeView.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:12px;text-align:center;padding:10px;z-index:1;">看！形成了紧密的蛋白质网络结构</div>`;
+                        // } else {
+                        //     microscopeView.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:12px;text-align:center;padding:10px;z-index:1;">酶正在切割酪蛋白链，形成小团块</div>`;
+                        // }
+                        
+                    } else {
+                        microscopeView.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:12px;text-align:center;padding:10px;z-index:1;">牛奶中的脂肪球和蛋白质分子</div>`;
+                    }
+                } else {
+                    microscopeView.style.display = 'none';
+                    showFeedback('显微镜视图已关闭');
+                }
+            });
+
+            // Lactose Factory Game
+            const startGameBtn = document.getElementById('start-game');
+            const resetGameBtn = document.getElementById('reset-game');
+            const lactoseFactory = document.querySelector('.lactose-factory');
+            const lactase = document.querySelector('.lactase');
+            const statValues = document.querySelectorAll('.stat-value');
+
+            let gameActive = false;
+            let lactoseBroken = 0;
+            let glucoseCount = 0;
+            let galactoseCount = 0;
+            let lactoseTotal = 10;
+
+            startGameBtn.addEventListener('click', function () {
+                if (gameActive) return;
+
+                gameActive = true;
+                this.disabled = true;
+
+                // Create lactose molecules
+                clearLactoseFactory();
+                createLactoseMolecules();
+
+                // Make lactase draggable
+                makeLactaseDraggable();
+
+                showFeedback('游戏开始！拖动乳糖酶去分解乳糖');
+            });
+
+            resetGameBtn.addEventListener('click', function () {
+                gameActive = false;
+                startGameBtn.disabled = false;
+
+                // Reset stats
+                lactoseBroken = 0;
+                glucoseCount = 0;
+                galactoseCount = 0;
+
+                updateLactoseStats();
+                clearLactoseFactory();
+
+                // Reset lactase position
+                lactase.style.top = '300px';
+                lactase.style.left = '100px';
+
+                showFeedback('游戏已重置');
+            });
+
+            function createLactoseMolecules() {
+                for (let i = 0; i < lactoseTotal; i++) {
+                    const lactose = document.createElement('div');
+                    lactose.className = 'lactose';
+                    lactose.className = 'lactose';
+                    lactose.style.top = `${Math.random() * 300 + 100}px`;
+                    lactose.style.left = `${Math.random() * 400 + 100}px`;
+                    lactose.textContent = '乳糖';
+                    lactose.dataset.broken = 'false';
+                    lactoseFactory.appendChild(lactose);
+                }
+            }
+
+            function makeLactaseDraggable() {
+                let isDragging = false;
+                let offsetX, offsetY;
+
+                lactase.addEventListener('mousedown', function (e) {
+                    if (!gameActive) return;
+                    isDragging = true;
+                    offsetX = e.clientX - parseInt(lactase.style.left);
+                    offsetY = e.clientY - parseInt(lactase.style.top);
+                    e.preventDefault();
+                });
+
+                document.addEventListener('mousemove', function (e) {
+                    if (!isDragging) return;
+
+                    const x = e.clientX - offsetX;
+                    const y = e.clientY - offsetY;
+                    const rect = lactoseFactory.getBoundingClientRect();
+                    const maxX = rect.width - lactase.offsetWidth;
+                    const maxY = rect.height - lactase.offsetHeight;
+
+                    lactase.style.left = `${Math.max(0, Math.min(maxX, x))}px`;
+                    lactase.style.top = `${Math.max(0, Math.min(maxY, y))}px`;
+
+                    // Check collision with lactose molecules
+                    checkLactoseCollision();
+                });
+
+                document.addEventListener('mouseup', function () {
+                    isDragging = false;
+                });
+            }
+
+            function checkLactoseCollision() {
+                const lactoses = document.querySelectorAll('.lactose');
+                const lactaseRect = lactase.getBoundingClientRect();
+
+                lactoses.forEach(lactose => {
+                    if (lactose.dataset.broken === 'true') return;
+
+                    const lactoseRect = lactose.getBoundingClientRect();
+
+                    if (
+                        lactaseRect.left < lactoseRect.right &&
+                        lactaseRect.right > lactoseRect.left &&
+                        lactaseRect.top < lactoseRect.bottom &&
+                        lactaseRect.bottom > lactoseRect.top
+                    ) {
+                        // Collision detected
+                        breakLactose(lactose);
+                    }
+                });
+            }
+
+            function breakLactose(lactose) {
+                // Mark as broken
+                lactose.dataset.broken = 'true';
+                lactose.style.opacity = '0.3';
+
+
+                // Create glucose and galactose
+                createSugar('glucose', lactose);
+                createSugar('galactose', lactose);
+
+                // Update stats
+                lactoseBroken++;
+                glucoseCount++;
+                galactoseCount++;
+                updateLactoseStats();
+
+                // Check game completion
+                if (lactoseBroken >= lactoseTotal) {
+                    setTimeout(() => {
+                        showFeedback('恭喜！你已成功分解所有乳糖！');
+                        gameActive = false;
+                        startGameBtn.disabled = false;
+                    }, 1000);
+                }
+            }
+
+            function createSugar(type, lactose) {
+                const sugar = document.createElement('div');
+                sugar.className = type;
+
+
+                const rect = lactose.getBoundingClientRect();
+                const factoryRect = lactoseFactory.getBoundingClientRect();
+
+                // Position relative to lactose
+                sugar.style.top = `${rect.top - factoryRect.top + (type === 'glucose' ? -20 : 20)}px`;
+                sugar.style.left = `${rect.left - factoryRect.left + (type === 'glucose' ? -20 : 20)}px`;
+
+                sugar.textContent = type === 'glucose' ? '葡萄糖' : '半乳糖';
+                lactoseFactory.appendChild(sugar);
+
+                // Animate sugar movement
+                const targetY = type === 'glucose' ? -50 : 50;
+                const targetX = type === 'glucose' ? -50 : 50;
+
+                sugar.animate([
+                    { transform: 'translate(0, 0)' },
+                    { transform: `translate(${targetX}px, ${targetY}px)` }
+                ], {
+                    duration: 1000,
+                    fill: 'forwards'
+                });
+
+                // Remove after animation
+                setTimeout(() => {
+                    sugar.remove();
+                }, 1000);
+            }
+
+            function updateLactoseStats() {
+                // Update stat values
+                statValues[0].textContent = lactoseBroken;
+                statValues[1].textContent = glucoseCount;
+                statValues[2].textContent = galactoseCount;
+                statValues[3].textContent = `${Math.round(lactoseBroken / lactoseTotal * 100)}%`;
+            }
+
+            function clearLactoseFactory() {
+                // Remove all lactose, glucose and galactose elements
+                const lactoses = document.querySelectorAll('.lactose:not(.lactase)');
+                const glucoses = document.querySelectorAll('.glucose');
+                const galactoses = document.querySelectorAll('.galactose');
+
+
+                lactoses.forEach(el => el.remove());
+                glucoses.forEach(el => el.remove());
+                galactoses.forEach(el => el.remove());
+            }
+
+            // Quiz functionality
+            const submitQuizBtn = document.getElementById('submit-quiz');
+            const quizResultModal = document.getElementById('quiz-result-modal');
+            const resultScore = document.querySelector('.result-score');
+            const resultMessage = document.querySelector('.result-message');
+            const retryQuizBtn = document.getElementById('retry-quiz');
+            const closeButtons = document.querySelectorAll('.close');
+
+            // 在Quiz功能代码最上方添加：
+            document.querySelectorAll('.option-label').forEach(label => {
+                label.addEventListener('click', function () {
+                    // 添加当前选中的selected类
+                    this.classList.add('selected');
+                    this.querySelector('input').checked = true;
+                    document.querySelectorAll('.option-label').forEach(label => {
+                        if (label !== this && label.querySelector('input').name == this.querySelector('input').name) {
+                            label.classList.remove('selected');
+                            label.querySelector('input').checked = false;
+                        }
+                    });
+                });
+            });
+
+            // Correct answers
+            const correctAnswers = {
+                q1: 'b',
+                q2: 'a',
+                q3: 'c',
+                q4: 'b',
+                q5: 'b'
+            };
+
+            submitQuizBtn.addEventListener('click', function () {
+                // Calculate score
+                let score = 0;
+                let totalQuestions = 5;
+
+
+                for (let i = 1; i <= totalQuestions; i++) {
+                    const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
+                    if (selectedOption && selectedOption.value === correctAnswers[`q${i}`]) {
+                        score++;
+                    }
+                }
+
+
+                // Update result
+                resultScore.textContent = `${score}/${totalQuestions}`;
+
+
+                // Set message based on score
+                if (score === totalQuestions) {
+                    resultMessage.textContent = '太棒了！你是酶学专家！';
+                } else if (score >= 3) {
+                    resultMessage.textContent = '不错的表现！再接再厉！';
+                } else {
+                    resultMessage.textContent = '再试一次，你可以做得更好！';
+                }
+
+
+                // Show modal
+                quizResultModal.style.display = 'flex';
+            });
+
+            retryQuizBtn.addEventListener('click', function () {
+                // Hide modal
+                quizResultModal.style.display = 'none';
+
+                // Reset all selections
+                const radioButtons = document.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach(radio => {
+                    radio.checked = false;
+                });
+            });
+
+            // Modal close functionality
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    this.closest('.modal').style.display = 'none';
+                });
+            });
+
+            // Enzyme info modal functionality
+            const enzymeInfoModal = document.getElementById('enzyme-info-modal');
+            const enzymeDetailContent = document.getElementById('enzyme-detail-content');
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                card.addEventListener('click', function () {
+                    const title = this.querySelector('h3').textContent;
+                    const description = this.querySelector('p').textContent;
+                    const badgeText = this.querySelector('.card-badge')?.textContent || '';
+
+                    // Create content for modal
+                    let content = `<h3>${title}</h3>`;
+                    if (badgeText) {
+                        content += `<div class="badge">${badgeText}</div>`;
+                    }
+                    content += `<p>${description}</p>`;
+
+                    // Add more detailed info based on enzyme type
+                    if (badgeText === '凝乳酶') {
+                        content += `
+<div class="enzyme-details">
+    <h4>凝乳酶在干酪中的作用</h4>
+    <p>凝乳酶是干酪生产中使牛奶凝固的关键酶，主要通过特异性裂解酪蛋白链中的部分多肽键，使牛奶凝结。它能有效地凝固乳，并在胃中较长时间保留乳蛋白沉淀物，使沉淀物充分暴露于蛋白水解酶，为后续的蛋白质分解和风味物质形成奠定基础。</p>
+    <h4>研究发现</h4>
+    <p>动物源性凝乳酶在凝乳特性、干酪出品率及干酪品质方面表现出最为优秀的特性，特别是小牛皱胃酶和羔羊皱胃酶。而青刺果凝乳酶可显著改善干酪的质构特性，形成更强劲稳定的胶束体系。</p>
+</div>`;
+                    } else if (badgeText === '乳糖酶') {
+                        content += `
+<div class="enzyme-details">
+    <h4>乳糖酶在乳制品中的应用</h4>
+    <p>乳糖酶能够催化乳糖的水解反应，将乳糖分解为葡萄糖和半乳糖。这一过程模拟了人体小肠中乳糖酶的作用，使得原本难以被人体直接吸收的乳糖转化为可被人体直接吸收的小分子单糖。</p>
+    <h4>应用参数</h4>
+    <p>在35℃下水解5小时或低温9℃左右水解20-24小时，中性乳糖酶能有效将乳糖水解为葡萄糖和半乳糖，降低乳糖含量80%以上。</p>
+</div>`;
+                    } else if (badgeText === '蛋白酶') {
+                        content += `
+<div class="enzyme-details">
+    <h4>蛋白酶对干酪风味的影响</h4>
+    <p>在干酪成熟过程中，蛋白酶能够进一步分解凝乳酶作用后的酪蛋白，将其分解成较小的肽和氨基酸。这一过程不仅影响干酪的质构，还对风味物质的形成起着关键作用。</p>
+    <h4>风味形成机制</h4>
+    <p>蛋白酶分解产生的游离氨基酸与脂肪酸等其他风味物质相互作用，共同构成干酪的复杂风味。不同种类的蛋白酶可能产生不同的游离氨基酸谱，从而影响干酪的最终风味。</p>
+</div>`;
+                    }
+
+                    // Set content and show modal
+                    enzymeDetailContent.innerHTML = content;
+                    enzymeInfoModal.style.display = 'flex';
+                });
+            });
+
+            // Feedback toast functionality
+            function showFeedback(message) {
+                const feedback = document.getElementById('feedback-div');
+                const feedback2 = document.createElement('div');
+                feedback2.classList.add('feedback-toast');
+                feedback2.classList.add('feedback');
+                feedback2.textContent = message;
+                feedback2.classList.add('active');
+                feedback.appendChild(feedback2);
+                // feedback.textContent = message;
+                // feedback.classList.add('active');
+
+                setTimeout(() => {
+                    // feedback.classList.remove('active');
+                    feedback2.remove();
+                }, 3000);
+            }
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

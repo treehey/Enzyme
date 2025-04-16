@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>酶的魔力 - 酿造世界的无形推手</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #1d1d1f;
+            line-height: 1.5;
+            background: linear-gradient(#1D1D1F 48px, #fff 0%);
+        }
+        
+        /* 动态导航栏 */
+  .nav-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    min-width: 320px;
+    height: 53px;
+    max-height: 48px;
+    font-size: 17px;
+    z-index: 9999;
+    /* font-size: 17px; */
+    /* padding: 0 32px; */
+    backdrop-filter: saturate(180%) blur(24px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.36s cubic-bezier(0.32, 0.08, 0.24, 1);
+    user-select: none;
+  }
+
+  .theme-light .nav-bar {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .theme-dark .nav-bar {
+    background: rgba(22, 22, 23, .8);
+  }
+
+  .nav-container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+
+  .nav-content {
+    max-width: 1024px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+  }
+
+  .nav-logo {
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .theme-light .nav-logo {
+    color: var(--text-primary);
+  }
+
+  .theme-dark .nav-logo {
+    color: rgba(255, 255, 255, .8);
+  }
+
+
+  .nav-content {
+    cursor: default;
+    /* margin: 0 -8px; */
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    -webkit-user-select: none;
+    user-select: none;
+    list-style: none;
+    /* gap: 32px; */
+  }
+
+  .nav-item {
+    box-sizing: border-box;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* .nav-item * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+  .nav-links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 28px;
+    height: 100%;
+    flex-grow: 1;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    line-height: 1;
+    transition: color 0.3s ease;
+    display: inherit;
+  }
+
+  .theme-light .nav-link {
+    color: var(--text-secondary);
+  }
+
+  .theme-dark .nav-link {
+    color: rgba(255, 255, 255, .8);
+  }
+
+  .theme-light .nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  .theme-dark .nav-link:hover {
+    color: #FFFFFF;
+  }
+
+  .nav-bar .nav-button {
+    padding: 10px 20px;
+    font-size: 10px;
+  }
+
+  .nav-bar .nav-search {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, .8);
+    position: relative;
+    z-index: 1;
+    padding: 0 calc(8px / var(--r-globalnav-text-zoom-scale, 1));
+    height: 44px;
+    background: no-repeat;
+    text-decoration: none;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    transition: color .32s cubic-bezier(.4, 0, .6, 1);
+  }
+
+  .nav-bar .nav-regular {
+    display: flex;
+    pointer-events: none;
+  }
+
+  .nav-bar .nav-regular svg {
+    fill: currentColor;
+    transform: translateZ(0);
+  }
+        
+        .hero {
+            margin-top: 48px;
+            text-align: center;
+            padding: 180px 20px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(start\ \(2\).jpg) center/cover no-repeat;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            height: 100ch;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255,215,0,0.1) 0%, rgba(139,69,19,0.3) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 400;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+        }
+        
+        .explore-btn {
+            display: inline-block;
+            background-color: white;
+            color: #1d1d1f;
+            padding: 12px 28px;
+            border-radius: 980px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+            z-index: 3;
+            position: relative;
+        }
+        
+        .explore-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section {
+            padding: 100px 20px;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        
+        .section-dark {
+            background-color: #f5f5f7;
+        }
+        
+        .section-title {
+            font-size: 40px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .grid-reversed {
+            direction: rtl;
+        }
+        
+        .grid-reversed .grid-text {
+            direction: ltr;
+        }
+        
+        .grid-img {
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 42px rgba(0, 0, 0, 0.15);
+            transition: transform 0.5s;
+        }
+        
+        .grid-img:hover {
+            transform: scale(1.02);
+        }
+        
+        .grid-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .grid-text h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .grid-text p {
+            font-size: 17px;
+            color: #86868b;
+            margin-bottom: 16px;
+        }
+        
+        .learn-more {
+            color: #0066cc;
+            font-size: 17px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .learn-more::after {
+            content: "→";
+            margin-left: 6px;
+            transition: transform 0.3s;
+        }
+        
+        .learn-more:hover::after {
+            transform: translateX(3px);
+        }
+        
+        .showcase {
+            padding: 120px 20px;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url(酒.png) center/cover no-repeat fixed;
+            color: white;
+            position: relative;
+        }
+        
+        .showcase::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255,215,0,0.1) 0%, rgba(139,69,19,0.2) 100%);
+        }
+        
+        .showcase-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .showcase-title {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .showcase-subtitle {
+            font-size: 24px;
+            font-weight: 400;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            opacity: 0.9;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #1d1d1f;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .card p {
+            font-size: 14px;
+            color: #424245;
+        }
+        
+        .timeline-section {
+            padding: 100px 20px;
+            background-color: #f5f5f7;
+        }
+        
+        .timeline-title {
+            font-size: 40px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: #c8c8c8;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 60px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+        
+        .timeline-item-content {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            width: 90%;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .timeline-item-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -15px;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            border: 4px solid #0066cc;
+            transform: translateX(50%);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-item-content::after {
+            right: auto;
+            left: -15px;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item-content h3 {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-item-content p {
+            margin: 0;
+            color: #515154;
+        }
+        
+        .data-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #f5f5f7 0%, #e5e5e7 100%);
+        }
+        
+        .data-title {
+            font-size: 40px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        
+        .data-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .data-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .data-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+        
+        .data-card p {
+            color: #515154;
+            margin-bottom: 15px;
+        }
+        
+        .data-highlight {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .data-number {
+            font-size: 40px;
+            font-weight: 700;
+            color: #0066cc;
+            margin-right: 15px;
+        }
+        
+        .data-label {
+            font-size: 16px;
+            color: #86868b;
+        }
+        
+        .cta {
+            text-align: center;
+            padding: 120px 20px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('end1.jpg') center/cover no-repeat;
+            color: white;
+            position: relative;
+        }
+        
+        .cta::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255,215,0,0.1) 0%, rgba(139,69,19,0.15) 100%);
+            z-index: 1;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta h2 {
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .cta p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .quiz-section {
+            padding: 100px 20px;
+            background-color: white;
+        }
+        
+        .quiz-title {
+            font-size: 40px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f5f5f7;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quiz-question {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .quiz-option {
+            background: white;
+            border: 1px solid #d2d2d7;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quiz-option:hover {
+            border-color: #0066cc;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quiz-btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 980px;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-btn:hover {
+            background: #0052a3;
+            transform: scale(1.05);
+        }
+        
+        .footer {
+            background-color: #f5f5f7;
+            padding: 40px 20px;
+            font-size: 12px;
+            color: #86868b;
+        }
+        
+        .footer-content {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        
+        .footer p {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #d2d2d7;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer-column {
+            width: 25%;
+        }
+        
+        .footer-column h3 {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1d1d1f;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-column a {
+            color: #515154;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: #0066cc;
+        }
+        
+        .divider {
+            height: 1px;
+            background: #d2d2d7;
+            margin: 30px 0;
+        }
+        
+        .note {
+            background-color: rgba(0, 102, 204, 0.1);
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        
+        .note strong {
+            color: #0066cc;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #515154;
+            border-left: 3px solid #86868b;
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+        
+        .tip {
+            background-color: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        
+        .tip strong {
+            color: #28a745;
+        }
+        
+        /* Apple-style footer */
+  footer {
+    background: #f5f5f7;
+    color: #86868b;
+    padding: 20px;
+    font-size: 12px;
+    line-height: 1.33341;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .footer-content {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 17px 0;
+  }
+
+  .footer-content p {
+    font-size: 12px;
+    line-height: 1.33341;
+    color: #86868b;
+  }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero h2 {
+                font-size: 20px;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                padding-right: 0;
+                padding-left: 60px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+            }
+            
+            .timeline-item-content {
+                width: 100%;
+            }
+            
+            .timeline-item-content::after {
+                left: -40px;
+                right: auto;
+                transform: translateX(0);
+            }
+            
+            .timeline-item:nth-child(even) .timeline-item-content::after {
+                left: -40px;
+                transform: translateX(0);
+            }
+            
+            .footer-links {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body class="theme-dark">
+    <!-- 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <ul class="nav-content">
+        <li class="nav-item">
+          <a href="../index.html" class="nav-logo">酶工厂</a>
+        </li>
+        <li class="nav-item">
+          <div class="nav-links">
+            <a href="../index.html#bread" class="nav-link">面包酶</a>
+            <a href="../index.html#wine" class="nav-link">酿酒酶</a>
+            <a href="../index.html#cheese" class="nav-link">奶酪酶</a>
+            <a href="../juice_seasoning.html" class="nav-link">果汁酶与调味品</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="member.html" role="button" class="nav-search">
+            <span class="nav-regular">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15px" height="44px" viewBox="0 0 15 44">
+                <path
+                  d="M14.298,27.202l-3.87-3.87c0.701-0.929,1.122-2.081,1.122-3.332c0-3.06-2.489-5.55-5.55-5.55c-3.06,0-5.55,2.49-5.55,5.55 c0,3.061,2.49,5.55,5.55,5.55c1.251,0,2.403-0.421,3.332-1.122l3.87,3.87c0.151,0.151,0.35,0.228,0.548,0.228 s0.396-0.076,0.548-0.228C14.601,27.995,14.601,27.505,14.298,27.202z M1.55,20c0-2.454,1.997-4.45,4.45-4.45 c2.454,0,4.45,1.997,4.45,4.45S8.454,24.45,6,24.45C3.546,24.45,1.55,22.454,1.55,20z">
+                </path>
+              </svg>
+            </span>
+          </a>
+        </li>
+        <!-- <button class="ios-button nav-button">探索之旅</button> -->
+      </ul>
+  </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>酶的魔力</h1>
+            <h2>探索酿酒工业中那些隐形的生物催化剂，它们如何将简单的谷物与果实转化为醇厚的美酒</h2>
+            <a href="#intro" class="explore-btn">探索奥秘</a>
+        </div>
+    </section>
+    
+    <section class="section" id="intro">
+        <h2 class="section-title">生物催化的奥秘</h2>
+        <div class="grid">
+            <div class="grid-img">
+                <img src="酿酶.jpg" alt="酶分子结构示意图" />
+            </div>
+            <div class="grid-text">
+                <h3>什么是酶？</h3>
+                <p>酶是由蛋白质构成的生物催化剂，在特定温度、pH值和湿度条件下，能够加速生化反应速率数百万倍，同时自身不会被消耗。在酿酒过程中，各种酶扮演着至关重要的角色，精确地催化复杂的生化转化过程。</p>
+                <p>每种酶都有其特定的作用位点，称为"活性中心"，它与特定分子（称为"底物"）结合，形成"酶-底物复合物"，然后将底物转化为产物。这种"锁钥"式的专一性使酶成为生物体内精确控制化学反应的理想工具。</p>
+                <div class="note">
+                    <strong>科学小知识：</strong> 一个酶分子每秒可以催化数千次反应，而且不会消耗自身。酿酒过程中使用的酶通常是从微生物中提取的，具有较高的热稳定性和pH稳定性。
+                </div>
+                <a href="https://www.bilibili.com/video/BV1Vh4y1Z7ut/?share_source=copy_web&vd_source=07a9cb8d3cbfa508afc57f58b56d7982" class="learn-more">了解酶的化学结构</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section section-dark" id="process">
+        <h2 class="section-title">从原料到美酒</h2>
+        <div class="grid grid-reversed">
+            <div class="grid-img">
+                <img src="啤酒酿造.jpg" alt="酿酒流程图" />
+            </div>
+            <div class="grid-text">
+                <h3>酶促反应链</h3>
+                <p>酿酒是一系列复杂的生化反应链，从原料的加工处理到最终的发酵和陈酿，每一个环节都离不开特定酶的参与。以啤酒酿造为例，整个过程主要包括麦芽制备、糖化、醪液过滤、煮沸、发酵和陈酿等步骤。</p>
+                <p>在麦芽制备过程中，大麦中的内源酶被激活，尤其是淀粉酶和蛋白酶，将大麦中的大分子物质分解为可溶性小分子。而在糖化过程中，麦芽中的α-淀粉酶和β-淀粉酶协同作用，将淀粉分解为麦芽糖和葡萄糖，为后续酵母发酵提供基础。</p>
+                <div class="quote">
+                    "酶是酿酒师的'无形助手'，没有它们的参与，我们就无法将简单的谷物转化为复杂风味的酒精饮料。" —— 酿酒大师 Michael Jackson
+                </div>
+                <a href="https://www.bilibili.com/video/BV1ZV4y1378D/?share_source=copy_web&vd_source=07a9cb8d3cbfa508afc57f58b56d7982" class="learn-more">探索酿酒工艺流程</a>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="grid" style="margin-top: 60px;">
+            <div class="grid-img">
+                <img src="发酵过程.png" alt="酵母发酵过程" />
+            </div>
+            <div class="grid-text">
+                <h3>发酵的生物化学</h3>
+                <p>酵母细胞内拥有完整的酶系统，能够完成酒精发酵的全过程。在无氧条件下，酵母通过糖酵解途径将葡萄糖分解为丙酮酸，再通过丙酮酸脱羧酶将丙酮酸转化为乙醛，最后由乙醇脱氢酶将乙醛还原为乙醇（酒精）。</p>
+                <p>这一过程可以通过以下反应式表示：</p>
+                <p>C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂ + 能量</p>
+                <p>除了主要产物乙醇外，发酵过程还会产生各种高级醇类、酯类和有机酸等次生代谢产物，这些物质在极低浓度下对酒的风味起着决定性作用。</p>
+                <div class="tip">
+                    <strong>酿酒小技巧：</strong> 控制发酵温度是调控酶活性的关键。啤酒发酵通常在10-20℃进行，而白酒发酵则在28-32℃的温度条件下进行，这些温度范围正是相应酶系统活性的最佳区间。
+                </div>
+                <a href="https://www.bilibili.com/video/BV1Xh4119793/?share_source=copy_web&vd_source=07a9cb8d3cbfa508afc57f58b56d7982" class="learn-more">深入了解发酵生化原理</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="showcase" id="enzymes">
+        <div class="showcase-content">
+            <h2 class="showcase-title">关键酶类</h2>
+            <p class="showcase-subtitle">探索酿酒过程中那些不可或缺的生物催化剂</p>
+            
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon">🌾</div>
+                    <h3>淀粉酶</h3>
+                    <p>负责将谷物中的淀粉分解为麦芽糖和葡萄糖，为后续发酵提供原料。主要包括：</p>
+                    <p>①α-淀粉酶：随机切断淀粉分子内部的α-1,4-糖苷键，生成低聚糖和糊精</p>
+                    <p>②β-淀粉酶：从淀粉非还原端逐步切断，产生麦芽糖</p>
+                    <p>③糖化酶：将低聚糖进一步水解为葡萄糖</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🍯</div>
+                    <h3>糖化酶</h3>
+                    <p>将二糖进一步分解为单糖，如将麦芽糖分解为葡萄糖。主要包括：</p>
+                    <p>①麦芽糖酶：水解麦芽糖生成两分子葡萄糖</p>
+                    <p>②蔗糖酶：水解蔗糖生成葡萄糖和果糖</p>
+                    <p>③乳糖酶：水解乳糖生成葡萄糖和半乳糖</p>
+                    <p>这些单糖是酵母发酵的直接底物，影响发酵效率</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🧫</div>
+                    <h3>酵母酶系</h3>
+                    <p>酵母细胞内含有丰富的酶系统，其中关键的有：</p>
+                    <p>①丙酮酸脱羧酶：催化丙酮酸脱羧生成乙醛</p>
+                    <p>②乙醛脱氢酶：催化乙醛还原为乙醇</p>
+                    <p>③酯酶：催化醇类和酸类形成酯类化合物，赋予酒独特的香气</p>
+                    <p>④β-葡聚糖酶：分解β-葡聚糖，降低麦汁粘度</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🧪</div>
+                    <h3>蛋白酶</h3>
+                    <p>蛋白酶家族在酿酒中发挥多种作用：</p>
+                    <p>①分解原料中的蛋白质，释放氨基酸，为酵母生长提供氮源</p>
+                    <p>②通过蛋白降解影响酒的体态和泡沫稳定性</p>
+                    <p>③参与酒的澄清过程，防止蛋白质浑浊</p>
+                    <p>④释放的氨基酸在后续反应中形成特定风味物质</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🍇</div>
+                    <h3>果胶酶</h3>
+                    <p>在果酒生产中，分解果胶物质，提高出汁率，使酒液澄清，防止"果胶悬浊"现象。主要包括：</p>
+                    <p>①原果胶酶：将不溶性原果胶转化为可溶性果胶</p>
+                    <p>②果胶裂解酶：通过β-消除反应切断果胶的α-1,4糖苷键</p>
+                    <p>③果胶酯酶：去除果胶中的甲氧基(—OCH₃),生成低酯果胶和甲醇</p>
+                    <p>④聚半乳糖醛酸酶：切割果胶链的α-1,4键，降低果汁黏度</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">✨</div>
+                    <h3>β-葡聚糖酶</h3>
+                    <p>β-葡聚糖酶家族在啤酒酿造中发挥重要作用：</p>
+                    <p>①分解大麦中的β-葡聚糖，降低麦汁粘度</p>
+                    <p>②加速过滤，提高生产效率</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" id="applications">
+            <h2 class="section-title">行业应用案例</h2>
+            <div class="grid">
+                <div class="grid-img">
+                    <img src="酿酒厂.jpg" alt="现代酿酒工厂" />
+                </div>
+                <div class="grid-text">
+                    <h3>现代酿酒工业的革新</h3>
+                    <p>通过添加外源酶制剂，现代酿酒工业实现了生产过程的精确控制。例如，在啤酒酿造中添加蛋白酶和β-葡聚糖酶，可以显著提高澄清度和过滤效率。</p>
+                    <p>在白酒生产中，添加特定的糖化酶和淀粉酶复合制剂，能够提高原料利用率达15%以上，同时改善风味特性。</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-reversed" style="margin-top: 80px;">
+                <div class="grid-img">
+                    <img src="研究.jpg" alt="酶工程技术" />
+                </div>
+                <div class="grid-text">
+                    <h3>酶工程与未来展望</h3>
+                    <p>酶工程技术为酿酒工业带来了革命性变化。通过基因工程手段改造酶的结构，科学家们创造出了更稳定、更高效的酶制剂。</p>
+                    <p>未来，定向进化和蛋白质设计将使我们能够创造出完全定制化的酶，为特定酿造需求量身打造，实现更环保、更高效的生产流程。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta">
+            <h2>探索酶的无限可能</h2>
+            <p>从古老的酿酒艺术到现代生物技术，酶始终是连接传统与创新的桥梁</p>
+            <a href="../index.html" class="explore-btn">返回首页</a>
+        </section>
+        
+        <footer>
+            <div class="footer-content">
+              <p>© 大分子：从材料到生命第三组</p>
+              <p>2025 春学期</p>
+            </div>
+          </footer>
+    </body>
+    </html>

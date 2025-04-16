@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>酿酒应用 - 酶</title>
+  <link rel="stylesheet" href="css/bread.css">
+</head>
+<body class="theme-dark">
+    <!-- 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <ul class="nav-content">
+        <li class="nav-item">
+          <a href="index.html" class="nav-logo">酶工厂</a>
+        </li>
+        <li class="nav-item">
+          <div class="nav-links">
+            <a href="index.html#bread" class="nav-link">面包酶</a>
+            <a href="index.html#wine" class="nav-link">酿酒酶</a>
+            <a href="index.html#cheese" class="nav-link">奶酪酶</a>
+            <a href="juice_seasoning.html" class="nav-link">果汁酶与调味品</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="member.html" role="button" class="nav-search">
+            <span class="nav-regular">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15px" height="44px" viewBox="0 0 15 44">
+                <path
+                  d="M14.298,27.202l-3.87-3.87c0.701-0.929,1.122-2.081,1.122-3.332c0-3.06-2.489-5.55-5.55-5.55c-3.06,0-5.55,2.49-5.55,5.55 c0,3.061,2.49,5.55,5.55,5.55c1.251,0,2.403-0.421,3.332-1.122l3.87,3.87c0.151,0.151,0.35,0.228,0.548,0.228 s0.396-0.076,0.548-0.228C14.601,27.995,14.601,27.505,14.298,27.202z M1.55,20c0-2.454,1.997-4.45,4.45-4.45 c2.454,0,4.45,1.997,4.45,4.45S8.454,24.45,6,24.45C3.546,24.45,1.55,22.454,1.55,20z">
+                </path>
+              </svg>
+            </span>
+          </a>
+        </li>
+        <!-- <button class="ios-button nav-button">探索之旅</button> -->
+      </ul>
+  </nav>
+    <svg style="display: none;" width='1440px' height='300px' viewBox='0 0 1440 300' xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <filter id="glow-1" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" Height="200%">
+          <feGaussianBlur in="SourceGraphic" data-target-blur="4" stdDeviation="4" result="blur4" />
+          <feGaussianBlur in="SourceGraphic" data-target-blur="19" stdDeviation="19" result="blur19" />
+          <feGaussianBlur in="SourceGraphic" data-target-blur="9" stdDeviation="9" result="blur9" />
+          <feGaussianBlur in="SourceGraphic" data-target-blur="30" stdDeviation="30" result="blur30" />
+          <feColorMatrix in="blur4" result="color-0-blur" type="matrix" values="1 0 0 0 0
+                            0 0.9803921568627451 0 0 0
+                            0 0 0.9647058823529412 0 0
+                            0 0 0 0.8 0" />
+          <feOffset in="color-0-blur" result="layer-0-offsetted" dx="0" dy="0" data-target-offset-y="0" />
+          <feColorMatrix in="blur19" result="color-1-blur" type="matrix" values="0.8156862745098039 0 0 0 0
+                            0 0.49411764705882355 0 0 0
+                            0 0 0.2627450980392157 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-1-blur" result="layer-1-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+          <feColorMatrix in="blur9" result="color-2-blur" type="matrix" values="1 0 0 0 0
+                            0 0.6666666666666666 0 0 0
+                            0 0 0.36470588235294116 0 0
+                            0 0 0 0.65 0" />
+          <feOffset in="color-2-blur" result="layer-2-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+          <feColorMatrix in="blur30" result="color-3-blur" type="matrix" values="1 0 0 0 0
+                            0 0.611764705882353 0 0 0
+                            0 0 0.39215686274509803 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-3-blur" result="layer-3-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+          <feColorMatrix in="blur30" result="color-4-blur" type="matrix" values="0.4549019607843137 0 0 0 0
+                            0 0.16470588235294117 0 0 0
+                            0 0 0 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-4-blur" result="layer-4-offsetted" dx="0" dy="16" data-target-offset-y="16" />
+          <feColorMatrix in="blur30" result="color-5-blur" type="matrix" values="0.4235294117647059 0 0 0 0
+                            0 0.19607843137254902 0 0 0
+                            0 0 0.11372549019607843 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-5-blur" result="layer-5-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+          <feColorMatrix in="blur30" result="color-6-blur" type="matrix" values="0.21176470588235294 0 0 0 0
+                            0 0.10980392156862745 0 0 0
+                            0 0 0.07450980392156863 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-6-blur" result="layer-6-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+          <feColorMatrix in="blur30" result="color-7-blur" type="matrix" values="0 0 0 0 0
+                            0 0 0 0 0
+                            0 0 0 0 0
+                            0 0 0 0.68 0" />
+          <feOffset in="color-7-blur" result="layer-7-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+          <feMerge>
+            <feMergeNode in="layer-0-offsetted" />
+            <feMergeNode in="layer-1-offsetted" />
+            <feMergeNode in="layer-2-offsetted" />
+            <feMergeNode in="layer-3-offsetted" />
+            <feMergeNode in="layer-4-offsetted" />
+            <feMergeNode in="layer-5-offsetted" />
+            <feMergeNode in="layer-6-offsetted" />
+            <feMergeNode in="layer-7-offsetted" />
+            <feMergeNode in="layer-0-offsetted" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <filter id="glow-1-safari" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" x="-50%" y="-50%"
+          width="200%" Height="200%">
+          <feGaussianBlur in="SourceGraphic" data-target-blur="4" stdDeviation="4" result="blur4" />
+          <feGaussianBlur in="SourceGraphic" data-target-blur="19" stdDeviation="19" result="blur19" />
+          <feGaussianBlur in="SourceGraphic" data-target-blur="9" stdDeviation="9" result="blur9" />
+          <feGaussianBlur in="SourceGraphic" data-target-blur="30" stdDeviation="30" result="blur30" />
+          <feColorMatrix in="blur4" result="color-0-blur" type="matrix" values="1 0 0 0 0
+                            0 0.9803921568627451 0 0 0
+                            0 0 0.9647058823529412 0 0
+                            0 0 0 0.8 0" />
+          <feOffset in="color-0-blur" result="layer-0-offsetted" dx="0" dy="0" data-target-offset-y="0" />
+          <feColorMatrix in="blur19" result="color-1-blur" type="matrix" values="0.8156862745098039 0 0 0 0
+                            0 0.49411764705882355 0 0 0
+                            0 0 0.2627450980392157 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-1-blur" result="layer-1-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+          <feColorMatrix in="blur9" result="color-2-blur" type="matrix" values="1 0 0 0 0
+                            0 0.6666666666666666 0 0 0
+                            0 0 0.36470588235294116 0 0
+                            0 0 0 0.65 0" />
+          <feOffset in="color-2-blur" result="layer-2-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+          <feColorMatrix in="blur30" result="color-3-blur" type="matrix" values="1 0 0 0 0
+                            0 0.611764705882353 0 0 0
+                            0 0 0.39215686274509803 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-3-blur" result="layer-3-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+          <feColorMatrix in="blur30" result="color-4-blur" type="matrix" values="0.4549019607843137 0 0 0 0
+                            0 0.16470588235294117 0 0 0
+                            0 0 0 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-4-blur" result="layer-4-offsetted" dx="0" dy="16" data-target-offset-y="16" />
+          <feColorMatrix in="blur30" result="color-5-blur" type="matrix" values="0.4235294117647059 0 0 0 0
+                            0 0.19607843137254902 0 0 0
+                            0 0 0.11372549019607843 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-5-blur" result="layer-5-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+          <feColorMatrix in="blur30" result="color-6-blur" type="matrix" values="0.21176470588235294 0 0 0 0
+                            0 0.10980392156862745 0 0 0
+                            0 0 0.07450980392156863 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-6-blur" result="layer-6-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+          <feColorMatrix in="blur30" result="color-7-blur" type="matrix" values="0 0 0 0 0
+                            0 0 0 0 0
+                            0 0 0 0 0
+                            0 0 0 0.68 0" />
+          <feOffset in="color-7-blur" result="layer-7-offsetted" dx="0" dy="64" data-target-offset-y="64" />
+          <feMerge>
+            <feMergeNode in="layer-0-offsetted" />
+            <feMergeNode in="layer-1-offsetted" />
+            <feMergeNode in="layer-2-offsetted" />
+            <feMergeNode in="layer-3-offsetted" />
+            <feMergeNode in="layer-4-offsetted" />
+            <feMergeNode in="layer-5-offsetted" />
+            <feMergeNode in="layer-6-offsetted" />
+            <feMergeNode in="layer-7-offsetted" />
+            <feMergeNode in="layer-0-offsetted" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <filter id="glow-1-safari-18" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" x="-50%" y="-50%"
+          width="200%" Height="200%">
+          <feGaussianBlur in="SourceGraphic" data-target-blur="4" stdDeviation="4" result="blur4" />
+          <feGaussianBlur in="SourceGraphic" data-target-blur="12" stdDeviation="12" result="blur12" />
+          <feGaussianBlur in="SourceGraphic" data-target-blur="9" stdDeviation="9" result="blur9" />
+          <feGaussianBlur in="SourceGraphic" data-target-blur="12" stdDeviation="12" result="blur12" />
+          <feColorMatrix in="blur4" result="color-0-blur" type="matrix" values="1 0 0 0 0
+                            0 0.9803921568627451 0 0 0
+                            0 0 0.9647058823529412 0 0
+                            0 0 0 0.8 0" />
+          <feOffset in="color-0-blur" result="layer-0-offsetted" dx="0" dy="0" data-target-offset-y="0" />
+          <feColorMatrix in="blur12" result="color-1-blur" type="matrix" values="0.8156862745098039 0 0 0 0
+                            0 0.49411764705882355 0 0 0
+                            0 0 0.2627450980392157 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-1-blur" result="layer-1-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+          <feColorMatrix in="blur9" result="color-2-blur" type="matrix" values="1 0 0 0 0
+                            0 0.6666666666666666 0 0 0
+                            0 0 0.36470588235294116 0 0
+                            0 0 0 0.65 0" />
+          <feOffset in="color-2-blur" result="layer-2-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+          <feColorMatrix in="blur12" result="color-3-blur" type="matrix" values="1 0 0 0 0
+                            0 0.611764705882353 0 0 0
+                            0 0 0.39215686274509803 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-3-blur" result="layer-3-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+          <feColorMatrix in="blur12" result="color-4-blur" type="matrix" values="0.4549019607843137 0 0 0 0
+                            0 0.16470588235294117 0 0 0
+                            0 0 0 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-4-blur" result="layer-4-offsetted" dx="0" dy="16" data-target-offset-y="16" />
+          <feColorMatrix in="blur12" result="color-5-blur" type="matrix" values="0.4235294117647059 0 0 0 0
+                            0 0.19607843137254902 0 0 0
+                            0 0 0.11372549019607843 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-5-blur" result="layer-5-offsetted" dx="0" dy="20" data-target-offset-y="20" />
+          <feColorMatrix in="blur12" result="color-6-blur" type="matrix" values="0.21176470588235294 0 0 0 0
+                            0 0.10980392156862745 0 0 0
+                            0 0 0.07450980392156863 0 0
+                            0 0 0 1 0" />
+          <feOffset in="color-6-blur" result="layer-6-offsetted" dx="0" dy="20" data-target-offset-y="20" />
+          <feColorMatrix in="blur12" result="color-7-blur" type="matrix" values="0 0 0 0 0
+                            0 0 0 0 0
+                            0 0 0 0 0
+                            0 0 0 0.68 0" />
+          <feOffset in="color-7-blur" result="layer-7-offsetted" dx="0" dy="20" data-target-offset-y="20" />
+          <feMerge>
+            <feMergeNode in="layer-0-offsetted" />
+            <feMergeNode in="layer-1-offsetted" />
+            <feMergeNode in="layer-2-offsetted" />
+            <feMergeNode in="layer-3-offsetted" />
+            <feMergeNode in="layer-4-offsetted" />
+            <feMergeNode in="layer-5-offsetted" />
+            <feMergeNode in="layer-6-offsetted" />
+            <feMergeNode in="layer-7-offsetted" />
+            <feMergeNode in="layer-0-offsetted" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <filter id="glow-1-ios" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" x="-50%" y="-50%"
+          width="200%" Height="200%">
+          <feGaussianBlur in="SourceGraphic" data-target-blur="4" stdDeviation="4" result="blur4" />
+          <feGaussianBlur in="SourceGraphic" data-target-blur="12" stdDeviation="12" result="blur12" />
+          <feGaussianBlur in="SourceGraphic" data-target-blur="9" stdDeviation="9" result="blur9" />
+          <feGaussianBlur in="SourceGraphic" data-target-blur="12" stdDeviation="12" result="blur12" />
+          <feColorMatrix in="blur4" result="color-0-blur" type="matrix" values="1 0 0 0 0
+                          0 0.9803921568627451 0 0 0
+                          0 0 0.9647058823529412 0 0
+                          0 0 0 0.8 0" />
+          <feOffset in="color-0-blur" result="layer-0-offsetted" dx="0" dy="0" data-target-offset-y="0" />
+          <feColorMatrix in="blur12" result="color-1-blur" type="matrix" values="0.8156862745098039 0 0 0 0
+                          0 0.49411764705882355 0 0 0
+                          0 0 0.2627450980392157 0 0
+                          0 0 0 1 0" />
+          <feOffset in="color-1-blur" result="layer-1-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+          <feColorMatrix in="blur9" result="color-2-blur" type="matrix" values="1 0 0 0 0
+                          0 0.6666666666666666 0 0 0
+                          0 0 0.36470588235294116 0 0
+                          0 0 0 0.65 0" />
+          <feOffset in="color-2-blur" result="layer-2-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+          <feColorMatrix in="blur12" result="color-3-blur" type="matrix" values="1 0 0 0 0
+                          0 0.611764705882353 0 0 0
+                          0 0 0.39215686274509803 0 0
+                          0 0 0 1 0" />
+          <feOffset in="color-3-blur" result="layer-3-offsetted" dx="0" dy="2" data-target-offset-y="2" />
+          <feColorMatrix in="blur12" result="color-4-blur" type="matrix" values="0.4549019607843137 0 0 0 0
+                          0 0.16470588235294117 0 0 0
+                          0 0 0 0 0
+                          0 0 0 1 0" />
+          <feOffset in="color-4-blur" result="layer-4-offsetted" dx="0" dy="12" data-target-offset-y="12" />
+          <feColorMatrix in="blur12" result="color-5-blur" type="matrix" values="0.4235294117647059 0 0 0 0
+                          0 0.19607843137254902 0 0 0
+                          0 0 0.11372549019607843 0 0
+                          0 0 0 1 0" />
+          <feOffset in="color-5-blur" result="layer-5-offsetted" dx="0" dy="12" data-target-offset-y="12" />
+          <feColorMatrix in="blur12" result="color-6-blur" type="matrix" values="0.21176470588235294 0 0 0 0
+                          0 0.10980392156862745 0 0 0
+                          0 0 0.07450980392156863 0 0
+                          0 0 0 1 0" />
+          <feOffset in="color-6-blur" result="layer-6-offsetted" dx="0" dy="12" data-target-offset-y="12" />
+          <feColorMatrix in="blur12" result="color-7-blur" type="matrix" values="0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0.68 0" />
+          <feOffset in="color-7-blur" result="layer-7-offsetted" dx="0" dy="12" data-target-offset-y="12" />
+          <feMerge>
+            <feMergeNode in="layer-0-offsetted" />
+            <feMergeNode in="layer-1-offsetted" />
+            <feMergeNode in="layer-2-offsetted" />
+            <feMergeNode in="layer-3-offsetted" />
+            <feMergeNode in="layer-4-offsetted" />
+            <feMergeNode in="layer-5-offsetted" />
+            <feMergeNode in="layer-6-offsetted" />
+            <feMergeNode in="layer-7-offsetted" />
+            <feMergeNode in="layer-0-offsetted" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+    </svg>
+    <div class="container">
+        <section class="wine-part">
+            <!-- Hero Section -->
+            <header class="hero">
+              <div class="hero-image">
+              </div>
+              <div class="hero-text">
+                <p class="eyebrow">酿酒</p>
+                <h1>酶在酿酒中的应用</h1>
+                <p class="subtitle">各种酶制剂在酿酒工艺中扮演着不可替代的角色</p>
+              </div>
+            </header>
+<!-- Wine Making Section -->
+<!-- <section class="full-bleed">
+    <div class="animated-bg"></div>
+    <div class="section-label">酿酒</div>
+    <div class="content-block fade-up">
+      <h2 class="section-head">酶在酿酒中的应用</h2>
+      <p class="subtitle">各种酶制剂在酿酒工艺中扮演着不可替代的角色</p>
+    </div>
+  </section> -->
+
+  <!-- Feature Grid -->
+  <section class="section">
+    <div class="content-block fade-up">
+      <h2>酿酒中的核心酶类</h2>
+      <p>探索不同酶制剂在酿酒工艺中的特定作用</p>
+    </div>
+
+    <div class="grid">
+      <div class="grid-item parallax-item">
+        <h3>淀粉酶</h3>
+        <p>包括α-淀粉酶和β-淀粉酶，将淀粉分解为可发酵糖，是啤酒、黄酒等酿造的基础。</p>
+      </div>
+      <div class="grid-item parallax-item">
+        <h3>葡萄糖苷酶</h3>
+        <p>分解短链糊精为葡萄糖，改善醪液流动性，用于清酒、黄酒的糖化阶段。</p>
+      </div>
+      <div class="grid-item parallax-item">
+        <h3>蛋白酶</h3>
+        <p>分解蛋白质为氨基酸和小肽，为酵母提供氮源，促进发酵，影响口感和风味。</p>
+      </div>
+      <div class="grid-item parallax-item">
+        <h3>酯酶</h3>
+        <p>催化酸与醇合成酯类物质，赋予酒类果香或花香，用于白酒、朗姆酒等。</p>
+      </div>
+      <div class="grid-item parallax-item">
+        <h3>脱支酶</h3>
+        <p>切断支链淀粉的α-1,6糖苷键，释放直链糊精，提高淀粉利用率。</p>
+      </div>
+      <div class="grid-item parallax-item">
+        <h3>果胶酶</h3>
+        <p>分解果胶，提高果汁出汁率，减少浑浊，用于葡萄酒、苹果酒的酿造。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="video-section">
+    <div class="video-container">
+      <div class="video-placeholder">
+        <a class="play-button" href="https://www.bilibili.com/video/BV1oE411b7SC/?share_source=copy_web&vd_source=859d6fcb69258977a2761c00c6c794d8" target="_blank"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies Section -->
+  <section class="scroll-sequence wine-part">
+    <div class="scroll-sticky">
+      <div class="scroll-content">
+        <div class="scroll-item active">
+          <div class="scroll-image">
+            <img src="images/wine/啤酒酿造.png" alt="啤酒酿造">
+          </div>
+          <div class="scroll-text">
+            <p class="eyebrow">案例研究</p>
+            <h3>啤酒酿造</h3>
+            <p>蛋白酶不足会导致冷浑浊；α-淀粉酶过多会使酒精度过高且泡沫稳定性差。精准掌控酶的平衡，才能酿造出优质啤酒。</p>
+          </div>
+        </div>
+        <div class="scroll-item">
+          <div class="scroll-image">
+            <img src="images/wine/白酒.png" alt="白酒固态发酵">
+          </div>
+          <div class="scroll-text">
+            <p class="eyebrow">案例研究</p>
+            <h3>白酒固态发酵</h3>
+            <p>酯酶不足会导致香味淡薄；蛋白酶过多会使杂醇油含量升高，饮后易"上头"。通过控制酶活性来平衡风味。</p>
+          </div>
+        </div>
+        <div class="scroll-item">
+          <div class="scroll-image">
+            <img src="images/wine/葡萄酒.png" alt="葡萄酒自然发酵">
+          </div>
+          <div class="scroll-text">
+            <p class="eyebrow">案例研究</p>
+            <h3>葡萄酒自然发酵</h3>
+            <p>果胶酶不足会导致酒液浑浊且陈年潜力差；野生酶系失衡会产生异味（如醋酸菌污染）。合理应用酶制剂可确保葡萄酒品质稳定。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Comparison -->
+  <section class="section">
+    <div class="content-block fade-up">
+      <h2>面包与酿酒中酶的比较</h2>
+      <p>探索同类酶制剂在不同领域的应用差异</p>
+    </div>
+
+    <div class="feature-compare">
+      <div class="feature-item">
+        <div class="feature-icon">🍞</div>
+        <div class="feature-title">面包中的淀粉酶</div>
+        <p class="feature-description">改善面包体积和质地，延缓老化，最适温度45~75℃</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🍺</div>
+        <div class="feature-title">酿酒中的淀粉酶</div>
+        <p class="feature-description">产生可发酵糖分，影响酒体风味，最适温度50~65℃</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🧬</div>
+        <div class="feature-title">面包中的蛋白酶</div>
+        <p class="feature-description">改良面筋结构，影响弹性和韧性</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔬</div>
+        <div class="feature-title">酿酒中的蛋白酶</div>
+        <p class="feature-description">为酵母提供氮源，参与美拉德反应生成香气</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>© 大分子：从材料到生命第三组</p>
+      <p>2025 春学期</p>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer for fade-up animations
+    document.addEventListener('DOMContentLoaded', function () {
+      const fadeElements = document.querySelectorAll('.fade-up');
+
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            fadeObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      fadeElements.forEach(element => {
+        fadeObserver.observe(element);
+      });
+
+      // Parallax effect for grid items
+      const parallaxItems = document.querySelectorAll('.parallax-item');
+
+      window.addEventListener('mousemove', function (e) {
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+
+        parallaxItems.forEach(item => {
+          const offsetX = (mouseX - 0.5) * 15;
+          const offsetY = (mouseY - 0.5) * 15;
+          item.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        });
+      });
+
+    //   // Carousel functionality
+    //   const breadCarouselTrack = document.querySelector('.wine-part .carousel-track');
+    //   const carouselItems = breadCarouselTrack.querySelectorAll('.carousel-item');
+    //   const breadCarouselDots = document.querySelectorAll('.wine-part .carousel-dot');
+    //   let currentIndex = 0;
+
+    //   function updateCarousel() {
+    //     const itemWidth = carouselItems[0].offsetWidth;
+    //     const currentPos = carouselItems[currentIndex].offsetLeft;
+    //     breadCarouselTrack.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
+
+    //     breadCarouselDots.forEach((dot, index) => {
+    //       dot.classList.toggle('active', index === currentIndex);
+    //     });
+    //   }
+
+    //   breadCarouselDots.forEach((dot, index) => {
+    //     dot.addEventListener('click', () => {
+    //       currentIndex = index;
+    //       updateCarousel();
+    //     });
+    //   });
+
+    //   // Auto slide
+    //   setInterval(() => {
+    //     currentIndex = (currentIndex + 1) % carouselItems.length;
+    //     updateCarousel();
+    //   }, 4000);
+
+      // Scroll sequence animation
+      const breadScrollContainer = document.querySelector('.wine-part.scroll-sequence');
+      const scrollItems = breadScrollContainer.querySelectorAll('.scroll-item');
+      // const scrollContainer = breadSequence.querySelector('.scroll-sequence');
+
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const containerTop = breadScrollContainer.offsetTop;
+        const containerHeight = breadScrollContainer.offsetHeight;
+
+        // Calculate progress through the scroll sequence (0 to 1)
+        let progress = (scrollTop - containerTop + window.innerHeight / 3) / (containerHeight);
+        progress = Math.max(0, Math.min(1, progress));
+        // console.log(progress);
+        // Calculate which item should be active based on progress
+        const itemIndex = Math.floor(progress * scrollItems.length);
+
+        scrollItems.forEach((item, index) => {
+          item.classList.toggle('active', index === itemIndex);
+        });
+      });
+    });
+  </script>
+</div>
+</body>
+
+</html>

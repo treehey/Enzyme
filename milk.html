@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,49 +12,172 @@
             box-sizing: border-box;
             font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
-        
+
         body {
             background-color: #fbfbfd;
             color: #1d1d1f;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
-        
-        .nav {
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            height: 44px;
-            width: 100%;
+
+        /* 动态导航栏 */
+        .nav-bar {
             position: fixed;
             top: 0;
+            width: 100%;
+            min-width: 320px;
+            height: 53px;
+            max-height: 48px;
+            font-size: 17px;
             z-index: 9999;
+            /* font-size: 17px; */
+            /* padding: 0 32px; */
+            backdrop-filter: saturate(180%) blur(24px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.36s cubic-bezier(0.32, 0.08, 0.24, 1);
+            user-select: none;
+        }
+
+        .theme-light .nav-bar {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .theme-dark .nav-bar {
+            background: rgba(22, 22, 23, .8);
+        }
+
+        .nav-container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        .nav-content {
+            max-width: 1024px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            padding-top: 0;
+            padding-bottom: 0;
+            height: 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .theme-light .nav-logo {
+            color: var(--text-primary);
+        }
+
+        .theme-dark .nav-logo {
+            color: rgba(255, 255, 255, .8);
+        }
+
+
+        .nav-content {
+            cursor: default;
+            /* margin: 0 -8px; */
+            width: auto;
+            display: flex;
+            justify-content: space-between;
+            -webkit-user-select: none;
+            user-select: none;
+            list-style: none;
+            /* gap: 32px; */
+        }
+
+        .nav-item {
+            box-sizing: border-box;
+            height: 48px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        
-        .nav ul {
+
+        /* .nav-item * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+        .nav-links {
             display: flex;
-            list-style: none;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 28px;
+            height: 100%;
+            flex-grow: 1;
         }
-        
-        .nav ul li {
-            margin: 0 25px;
-        }
-        
-        .nav ul li a {
-            color: #f5f5f7;
+
+        .nav-link {
             text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: -.01em;
+            font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+            line-height: 1;
+            transition: color 0.3s ease;
+            display: inherit;
+        }
+
+        .theme-light .nav-link {
+            color: var(--text-secondary);
+        }
+
+        .theme-dark .nav-link {
+            color: rgba(255, 255, 255, .8);
+        }
+
+        .theme-light .nav-link:hover {
+            color: var(--color-primary);
+        }
+
+        .theme-dark .nav-link:hover {
+            color: #FFFFFF;
+        }
+
+        .nav-bar .nav-button {
+            padding: 10px 20px;
+            font-size: 10px;
+        }
+
+        .nav-bar .nav-search {
             font-size: 12px;
-            opacity: 0.8;
-            transition: opacity 0.3s;
+            font-weight: 400;
+            letter-spacing: -.01em;
+            font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, .8);
+            position: relative;
+            z-index: 1;
+            padding: 0 calc(8px / var(--r-globalnav-text-zoom-scale, 1));
+            height: 44px;
+            background: no-repeat;
+            text-decoration: none;
+            white-space: nowrap;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            transition: color .32s cubic-bezier(.4, 0, .6, 1);
         }
-        
-        .nav ul li a:hover {
-            opacity: 1;
+
+        .nav-bar .nav-regular {
+            display: flex;
+            pointer-events: none;
         }
-        
+
+        .nav-bar .nav-regular svg {
+            fill: currentColor;
+            transform: translateZ(0);
+        }
+
         .hero {
             height: 100vh;
             display: flex;
@@ -66,14 +190,14 @@
             overflow: hidden;
             background-color: #000;
         }
-        
+
         .hero-content {
             z-index: 2;
             max-width: 980px;
             margin: 0 auto;
             color: #fff;
         }
-        
+
         .hero h1 {
             font-size: 64px;
             font-weight: 600;
@@ -86,17 +210,17 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         .hero h2 {
             font-size: 32px;
             font-weight: 400;
-            color: #a1a1a6;
+            color: #bbbbbf;
             margin-bottom: 30px;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeUp 1.2s 0.3s forwards;
         }
-        
+
         .hero-image-container {
             position: relative;
             width: 100%;
@@ -107,7 +231,7 @@
             animation: fadeUp 1.5s 0.6s forwards;
             overflow: hidden;
         }
-        
+
         .hero-image {
             position: absolute;
             width: 100%;
@@ -116,26 +240,27 @@
             transform: scale(1.05);
             animation: zoomIn 15s infinite alternate;
         }
-        
+
         @keyframes zoomIn {
             0% {
                 transform: scale(1);
             }
+
             100% {
                 transform: scale(1.1);
             }
         }
-        
+
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%);
             z-index: 1;
         }
-        
+
         .scroll-indicator {
             position: absolute;
             bottom: 30px;
@@ -148,30 +273,37 @@
             opacity: 0;
             animation: fadeIn 1s 1.5s forwards;
         }
-        
+
         .scroll-indicator span {
             font-size: 12px;
             margin-bottom: 8px;
         }
-        
+
         .chevron {
             width: 20px;
             height: 10px;
             animation: bounce 2s infinite;
         }
-        
+
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
                 transform: translateY(0);
             }
+
             40% {
                 transform: translateY(-10px);
             }
+
             60% {
                 transform: translateY(-5px);
             }
         }
-        
+
         .sticky-nav {
             background-color: rgba(255, 255, 255, 0.8);
             backdrop-filter: saturate(180%) blur(20px);
@@ -184,40 +316,40 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             transform: translateY(-100px);
             opacity: 0;
             transition: transform 0.4s ease, opacity 0.4s ease;
         }
-        
+
         .sticky-nav.visible {
             transform: translateY(0);
             opacity: 1;
         }
-        
+
         .sticky-nav ul {
             display: flex;
             list-style: none;
         }
-        
+
         .sticky-nav ul li {
             margin: 0 30px;
         }
-        
+
         .sticky-nav ul li a {
             color: #1d1d1f;
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
         }
-        
+
         .section {
             padding: 120px 0;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
-        
+
         .section-content {
             max-width: 1100px;
             margin: 0 auto;
@@ -225,7 +357,7 @@
             position: relative;
             z-index: 2;
         }
-        
+
         .section h2 {
             font-size: 56px;
             font-weight: 600;
@@ -237,11 +369,11 @@
             opacity: 0;
             transform: translateY(20px);
         }
-        
+
         .section h2.visible {
             animation: fadeUp 1s forwards;
         }
-        
+
         .section h3 {
             font-size: 32px;
             font-weight: 400;
@@ -253,18 +385,18 @@
             opacity: 0;
             transform: translateY(20px);
         }
-        
+
         .section h3.visible {
             animation: fadeUp 1s 0.2s forwards;
         }
-        
+
         .enzyme-cards {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 40px;
             margin-top: 60px;
         }
-        
+
         .enzyme-card {
             background: #fff;
             border-radius: 18px;
@@ -276,16 +408,16 @@
             position: relative;
             height: 400px;
         }
-        
+
         .enzyme-card.visible {
             animation: fadeUp 1s forwards;
         }
-        
+
         .enzyme-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
         }
-        
+
         .enzyme-image {
             height: 200px;
             width: 100%;
@@ -293,12 +425,12 @@
             background-position: center;
             position: relative;
         }
-        
+
         .enzyme-content {
             padding: 30px;
             text-align: left;
         }
-        
+
         .enzyme-icon {
             width: 60px;
             height: 60px;
@@ -312,32 +444,32 @@
             font-size: 24px;
             font-weight: bold;
         }
-        
+
         .enzyme-card h4 {
             font-size: 24px;
             font-weight: 600;
             margin-bottom: 15px;
             color: #1d1d1f;
         }
-        
+
         .enzyme-card p {
             font-size: 16px;
             line-height: 1.5;
             color: #86868b;
             margin-bottom: 20px;
         }
-        
+
         .feature {
             padding: 180px 0;
             position: relative;
             overflow: hidden;
         }
-        
+
         .feature-bg {
             background-color: #000;
             color: #fff;
         }
-        
+
         .feature-content {
             display: flex;
             align-items: center;
@@ -345,13 +477,13 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         .feature-text {
             flex: 1;
             text-align: left;
             padding-right: 80px;
         }
-        
+
         .feature-image {
             flex: 1.2;
             position: relative;
@@ -359,19 +491,19 @@
             opacity: 0;
             transform: translateX(60px);
         }
-        
+
         .feature-image.visible {
             animation: fadeInRight 1.5s forwards;
         }
-        
+
         .feature-bg .feature-image {
             transform: translateX(-60px);
         }
-        
+
         .feature-bg .feature-image.visible {
             animation: fadeInLeft 1.5s forwards;
         }
-        
+
         .feature-image img {
             width: 100%;
             height: 100%;
@@ -379,7 +511,7 @@
             border-radius: 24px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
         }
-        
+
         .feature-text h2 {
             font-size: 48px;
             font-weight: 600;
@@ -387,18 +519,18 @@
             opacity: 0;
             transform: translateY(30px);
         }
-        
+
         .feature-bg .feature-text h2 {
             background: linear-gradient(90deg, #fff, #a1a1a6);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         .feature-text h2.visible {
             animation: fadeUp 1s forwards;
         }
-        
+
         .feature-text p {
             font-size: 19px;
             line-height: 1.6;
@@ -406,30 +538,31 @@
             opacity: 0;
             transform: translateY(30px);
         }
-        
+
         .feature-bg .feature-text p {
             color: #a1a1a6;
         }
-        
+
         .feature-text p.visible {
             animation: fadeUp 1s 0.3s forwards;
         }
-        
+
         .feature-stat {
             display: flex;
             margin-top: 40px;
             opacity: 0;
             transform: translateY(30px);
         }
-        
+
         .feature-stat.visible {
             animation: fadeUp 1s 0.6s forwards;
         }
-        
-        .stat-item {
+
+        .stat-item * {
             margin-right: 40px;
+            line-height: 50px;
         }
-        
+
         .stat-number {
             font-size: 48px;
             font-weight: 700;
@@ -439,29 +572,29 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         .feature-bg .stat-number {
             background: linear-gradient(90deg, #fff, #a1a1a6);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         .stat-label {
             font-size: 14px;
             color: #86868b;
         }
-        
+
         .feature-bg .stat-label {
             color: #a1a1a6;
         }
-        
+
         .chart-section {
             padding: 140px 0;
             background-color: #f5f5f7;
             overflow: hidden;
         }
-        
+
         .chart-container {
             max-width: 900px;
             margin: 80px auto 0;
@@ -472,25 +605,25 @@
             opacity: 0;
             transform: translateY(40px);
         }
-        
+
         .chart-container.visible {
             animation: fadeUp 1s forwards;
         }
-        
+
         .chart {
             width: 100%;
             height: 400px;
             position: relative;
             margin-top: 20px;
         }
-        
+
         .chart-tabs {
             display: flex;
             margin-bottom: 30px;
             border-bottom: 1px solid #e5e5e5;
             padding-bottom: 15px;
         }
-        
+
         .chart-tab {
             padding: 10px 20px;
             margin-right: 10px;
@@ -500,25 +633,27 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        
+
         .chart-tab.active {
             background-color: #0071e3;
             color: white;
         }
+
         
+
         .education-section {
             padding: 140px 0;
             text-align: center;
             background-color: #fff;
         }
-        
+
         .edu-cards {
             display: flex;
             justify-content: space-between;
             max-width: 1100px;
             margin: 80px auto 0;
         }
-        
+
         .edu-card {
             flex: 0 0 30%;
             background: #f5f5f7;
@@ -531,35 +666,35 @@
             transform: translateY(40px);
             transition: transform 0.5s, box-shadow 0.5s;
         }
-        
+
         .edu-card.visible {
             animation: fadeUp 1s forwards;
         }
-        
+
         .edu-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-        
+
         .edu-card h4 {
             font-size: 22px;
             margin-top: 20px;
             margin-bottom: 15px;
         }
-        
+
         .edu-card p {
             font-size: 16px;
             line-height: 1.5;
             color: #86868b;
         }
-        
+
         .edu-card-number {
             font-size: 36px;
             font-weight: 700;
             color: #0071e3;
             margin-bottom: 15px;
         }
-        
+
         .parallax-section {
             height: 80vh;
             position: relative;
@@ -569,7 +704,7 @@
             justify-content: center;
             color: white;
         }
-        
+
         .parallax-bg {
             position: absolute;
             top: 0;
@@ -583,17 +718,17 @@
             will-change: transform;
             z-index: 1;
         }
-        
+
         .parallax-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 100%);
             z-index: 2;
         }
-        
+
         .parallax-content {
             position: relative;
             z-index: 3;
@@ -601,18 +736,18 @@
             text-align: center;
             padding: 0 20px;
         }
-        
+
         .parallax-content h2 {
             font-size: 56px;
             margin-bottom: 20px;
             opacity: 0;
             transform: translateY(30px);
         }
-        
+
         .parallax-content h2.visible {
             animation: fadeUp 1s forwards;
         }
-        
+
         .parallax-content p {
             font-size: 22px;
             line-height: 1.6;
@@ -620,11 +755,11 @@
             opacity: 0;
             transform: translateY(30px);
         }
-        
+
         .parallax-content p.visible {
             animation: fadeUp 1s 0.3s forwards;
         }
-        
+
         .button {
             display: inline-block;
             padding: 16px 32px;
@@ -638,26 +773,26 @@
             opacity: 0;
             transform: translateY(20px);
         }
-        
+
         .button.visible {
             animation: fadeUp 1s 0.6s forwards;
         }
-        
+
         .button:hover {
             background-color: #0077ed;
             transform: scale(1.05);
         }
-        
+
         .button-secondary {
             background-color: transparent;
             border: 1px solid #fff;
             margin-left: 15px;
         }
-        
+
         .button-secondary:hover {
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(255, 255, 255, 0.1);
         }
-        
+
         footer {
             background-color: #f5f5f7;
             padding: 60px 0 30px;
@@ -665,51 +800,51 @@
             font-size: 12px;
             color: #86868b;
         }
-        
+
         .footer-links {
             display: flex;
             justify-content: center;
             margin-bottom: 30px;
         }
-        
+
         .footer-links a {
             margin: 0 15px;
             color: #515154;
             text-decoration: none;
             font-size: 12px;
         }
-        
+
         .footer-links a:hover {
             text-decoration: underline;
         }
-        
+
         @keyframes fadeUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes fadeIn {
             to {
                 opacity: 1;
             }
         }
-        
+
         @keyframes fadeInRight {
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
-        
+
         @keyframes fadeInLeft {
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
-        
+
         /* Video Background */
         .video-bg {
             position: absolute;
@@ -721,7 +856,7 @@
             opacity: 0.7;
             z-index: 0;
         }
-        
+
         /* Diagram Animation */
         .process-diagram {
             width: 100%;
@@ -729,7 +864,7 @@
             position: relative;
             margin-top: 60px;
         }
-        
+
         .process-step {
             position: absolute;
             width: 160px;
@@ -747,12 +882,12 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        
+
         .process-step.visible {
             opacity: 1;
             transform: scale(1);
         }
-        
+
         .process-step:nth-child(1) {
             background: linear-gradient(135deg, #5f2c82, #49a09d);
             left: 10%;
@@ -760,28 +895,28 @@
             transform: translateY(-50%);
             transition-delay: 0.1s;
         }
-        
+
         .process-step:nth-child(2) {
             background: linear-gradient(135deg, #2980b9, #6dd5fa);
             left: 30%;
             top: 20%;
             transition-delay: 0.3s;
         }
-        
+
         .process-step:nth-child(3) {
             background: linear-gradient(135deg, #2b5876, #4e4376);
             left: 50%;
             top: 60%;
             transition-delay: 0.5s;
         }
-        
+
         .process-step:nth-child(4) {
             background: linear-gradient(135deg, #314755, #26a0da);
             left: 70%;
             top: 30%;
             transition-delay: 0.7s;
         }
-        
+
         .process-line {
             position: absolute;
             height: 2px;
@@ -789,131 +924,154 @@
             opacity: 0;
             z-index: -1;
         }
-        
+
         .process-line.visible {
             opacity: 1;
             animation: drawLine 1.5s forwards;
         }
-        
+
         @keyframes drawLine {
             0% {
                 width: 0;
             }
+
             100% {
                 width: 100%;
             }
         }
-        
+
         .process-step-number {
             font-size: 36px;
             font-weight: 700;
             margin-bottom: 5px;
         }
-        
+
         /* For devices with smaller screens */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 40px;
             }
-            
+
             .hero h2 {
                 font-size: 24px;
             }
-            
+
             .section h2 {
                 font-size: 36px;
             }
-            
+
             .section h3 {
                 font-size: 22px;
             }
-            
+
             .enzyme-cards {
                 grid-template-columns: 1fr;
             }
-            
+
             .feature-content {
                 flex-direction: column;
             }
-            
+
             .feature-text {
                 padding-right: 0;
                 padding-bottom: 40px;
                 text-align: center;
                 order: 2;
             }
-            
+
             .feature-image {
                 width: 100%;
                 height: 300px;
                 margin-bottom: 40px;
                 order: 1;
             }
-            
+
             .feature-stat {
                 justify-content: center;
             }
-            
+
             .edu-cards {
                 flex-direction: column;
             }
-            
+
             .edu-card {
                 margin-bottom: 30px;
                 width: 100%;
             }
-            
+
             .process-diagram {
                 height: 600px;
             }
-            
+
             .process-step {
                 width: 120px;
                 height: 120px;
                 font-size: 16px;
             }
-            
+
             .process-step:nth-child(1) {
                 left: 20%;
                 top: 10%;
             }
-            
+
             .process-step:nth-child(2) {
                 left: 60%;
                 top: 30%;
             }
-            
+
             .process-step:nth-child(3) {
                 left: 20%;
                 top: 50%;
             }
-            
+
             .process-step:nth-child(4) {
                 left: 60%;
                 top: 70%;
             }
-            
+
             .parallax-content h2 {
                 font-size: 36px;
             }
-            
+
             .parallax-content p {
                 font-size: 18px;
             }
         }
     </style>
 </head>
-<body>
-    <nav class="nav">
-        <ul>
-            <li><a href="#">主页</a></li>
-            <li><a href="#">干酪</a></li>
-            <li><a href="#">低乳糖牛奶</a></li>
-            <li><a href="#">科学探索</a></li>
-            <li><a href="#">制作工艺</a></li>
-        </ul>
+
+<body class="theme-dark">
+    <!-- 导航栏 -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <ul class="nav-content">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-logo">酶工厂</a>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-links">
+                        <a href="#bread" class="nav-link">面包酶</a>
+                        <a href="#wine" class="nav-link">酿酒酶</a>
+                        <a href="#cheese" class="nav-link">奶酪酶</a>
+                        <a href="juice_seasoning.html" class="nav-link">果汁酶与调味品</a>
+                        <!-- <a href="#" class="nav-link">面包酶实验室</a> -->
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="member.html" role="button" class="nav-search">
+                        <span class="nav-regular">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15px" height="44px" viewBox="0 0 15 44">
+                                <path
+                                    d="M14.298,27.202l-3.87-3.87c0.701-0.929,1.122-2.081,1.122-3.332c0-3.06-2.489-5.55-5.55-5.55c-3.06,0-5.55,2.49-5.55,5.55 c0,3.061,2.49,5.55,5.55,5.55c1.251,0,2.403-0.421,3.332-1.122l3.87,3.87c0.151,0.151,0.35,0.228,0.548,0.228 s0.396-0.076,0.548-0.228C14.601,27.995,14.601,27.505,14.298,27.202z M1.55,20c0-2.454,1.997-4.45,4.45-4.45 c2.454,0,4.45,1.997,4.45,4.45S8.454,24.45,6,24.45C3.546,24.45,1.55,22.454,1.55,20z">
+                                </path>
+                            </svg>
+                        </span>
+                    </a>
+                </li>
+                <!-- <button class="ios-button nav-button">探索之旅</button> -->
+            </ul>
     </nav>
-    
+
     <section class="hero" id="hero">
         <div class="hero-overlay"></div>
         <img src="images/cheese/cheese-bg.jpg" alt="干酪和低乳糖牛奶背景" class="hero-image">
@@ -924,11 +1082,11 @@
         <div class="scroll-indicator">
             <span>继续探索</span>
             <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 10">
-                <path d="M0,0 L10,10 L20,0" fill="none" stroke="#fff" stroke-width="2"/>
+                <path d="M0,0 L10,10 L20,0" fill="none" stroke="#fff" stroke-width="2" />
             </svg>
         </div>
     </section>
-    
+
     <nav class="sticky-nav" id="sticky-nav">
         <ul>
             <li><a href="#enzymes">酶的奥秘</a></li>
@@ -937,39 +1095,39 @@
             <li><a href="#research">研究成果</a></li>
         </ul>
     </nav>
-    
+
     <section class="section" id="enzymes">
         <div class="section-content">
             <h2 id="enzyme-title">酶的奥秘</h2>
             <h3 id="enzyme-subtitle">食品工业中的"神奇催化剂"如何改变我们的食物？</h3>
-            
+
             <div class="enzyme-cards">
                 <div class="enzyme-card" id="card1">
-                    <div class="enzyme-image" style="background-image: url('/api/placeholder/600/300')"></div>
+                    <div class="enzyme-image" style="background-image: url('images/enzyme/凝乳酶.png')"></div>
                     <div class="enzyme-content">
                         <h4>凝乳酶</h4>
                         <p>干酪制作的关键催化剂，通过裂解酪蛋白链使牛奶凝结，为干酪质构奠定基础。</p>
                     </div>
                 </div>
-                
+
                 <div class="enzyme-card" id="card2">
-                    <div class="enzyme-image" style="background-image: url('/api/placeholder/600/300')"></div>
+                    <div class="enzyme-image" style="background-image: url('images/enzyme/蛋白酶.jpg')"></div>
                     <div class="enzyme-content">
                         <h4>蛋白酶</h4>
                         <p>分解酪蛋白为肽和氨基酸，创造干酪的独特风味和口感，是风味形成的关键酶类。</p>
                     </div>
                 </div>
-                
+
                 <div class="enzyme-card" id="card3">
-                    <div class="enzyme-image" style="background-image: url('/api/placeholder/600/300')"></div>
+                    <div class="enzyme-image" style="background-image: url('images/enzyme/脂肪酶.png')"></div>
                     <div class="enzyme-content">
                         <h4>脂肪酶</h4>
                         <p>分解脂肪生成脂肪酸和醇类化合物，赋予干酪丰富多彩的风味特征。</p>
                     </div>
                 </div>
-                
+
                 <div class="enzyme-card" id="card4">
-                    <div class="enzyme-image" style="background-image: url('/api/placeholder/600/300')"></div>
+                    <div class="enzyme-image" style="background-image: url('images/enzyme/乳糖酶.jpg')"></div>
                     <div class="enzyme-content">
                         <h4>乳糖酶</h4>
                         <p>将乳糖分解为葡萄糖和半乳糖，使乳糖不耐受人群也能享用牛奶的营养。</p>
@@ -978,12 +1136,13 @@
             </div>
         </div>
     </section>
-    
+
     <section class="feature" id="cheese">
         <div class="feature-content">
             <div class="feature-text">
                 <h2 id="feature1-title">干酪制作的科学</h2>
-                <p id="feature1-text">在干酪制作的奇妙旅程中，多种酶类协同工作，共同创造出令人难以抗拒的风味和质感。凝乳酶首先将牛奶凝结，蛋白酶和脂肪酶随后分别作用于蛋白质和脂肪，释放出丰富的味道分子。</p>
+                <p id="feature1-text">在干酪制作的奇妙旅程中，多种酶类协同工作，共同创造出令人难以抗拒的风味和质感。凝乳酶首先将牛奶凝结，蛋白酶和脂肪酶随后分别作用于蛋白质和脂肪，释放出丰富的味道分子。
+                </p>
                 <div class="feature-stat" id="feature1-stat">
                     <div class="stat-item">
                         <div class="stat-number">6种</div>
@@ -996,16 +1155,17 @@
                 </div>
             </div>
             <div class="feature-image" id="feature1-image">
-                <img src="/api/placeholder/800/600" alt="干酪制作过程">
+                <img src="images/cheese/Cheese making process.png" alt="干酪制作过程">
             </div>
         </div>
     </section>
-    
+
     <section class="feature feature-bg" id="milk">
         <div class="feature-content">
             <div class="feature-text">
                 <h2 id="feature2-title">乳糖酶的神奇力量</h2>
-                <p id="feature2-text">乳糖酶能催化乳糖分解为葡萄糖和半乳糖，使乳糖不耐受人群也能享用牛奶的营养。每100克牛奶中含有约4.7克乳糖，乳糖酶可将其分解为更易消化的单糖，让每个人都能享受牛奶的美妙。</p>
+                <p id="feature2-text">
+                    乳糖酶能催化乳糖分解为葡萄糖和半乳糖，使乳糖不耐受人群也能享用牛奶的营养。每100克牛奶中含有约4.7克乳糖，乳糖酶可将其分解为更易消化的单糖，让每个人都能享受牛奶的美妙。</p>
                 <div class="feature-stat" id="feature2-stat">
                     <div class="stat-item">
                         <div class="stat-number">30-40°C</div>
@@ -1022,28 +1182,28 @@
             </div>
         </div>
     </section>
-    
+
     <section class="chart-section" id="research">
         <div class="section-content">
             <h2 id="chart-title">食品科学的研究成果</h2>
             <h3 id="chart-subtitle">探索不同凝乳酶的表现与效果</h3>
-            
+
             <div class="chart-container" id="chart-container">
                 <div class="chart-tabs">
-                    <div class="chart-tab active">凝乳效果</div>
-                    <div class="chart-tab">干酪质量</div>
-                    <div class="chart-tab">风味物质</div>
+                    <div class="chart-tab active" data-type="质构特性">凝乳效果</div>
+                    <div class="chart-tab" data-type="出品率">干酪质量</div>
+                    <div class="chart-tab" data-type="水解效率">风味物质</div>
                 </div>
                 <div class="chart" id="enzyme-chart"></div>
             </div>
         </div>
     </section>
-    
+
     <section class="section">
         <div class="section-content">
             <h2 id="process-title">酶解工艺流程</h2>
             <h3 id="process-subtitle">从原料到成品的科学之旅</h3>
-            
+
             <div class="process-diagram">
                 <div class="process-step">
                     <div class="process-step-number">1</div>
@@ -1067,25 +1227,25 @@
                 <div class="process-line"></div>
             </div>
     </section>
-    
+
     <section class="education-section">
         <div class="section-content">
             <h2 id="edu-title">探索更多知识</h2>
             <h3 id="edu-subtitle">了解更多关于食品科学的奥秘</h3>
-            
+
             <div class="edu-cards">
                 <div class="edu-card" id="edu1">
                     <div class="edu-card-number">01</div>
                     <h4>青刺果凝乳酶</h4>
                     <p>源自云贵川地区的奇妙植物，其凝乳效果比传统凝乳酶更佳，是未来干酪工业的新星。</p>
                 </div>
-                
+
                 <div class="edu-card" id="edu2">
                     <div class="edu-card-number">02</div>
                     <h4>乳糖不耐受</h4>
                     <p>全球约65%的人群存在不同程度的乳糖不耐受，低乳糖牛奶为他们提供了关键解决方案。</p>
                 </div>
-                
+
                 <div class="edu-card" id="edu3">
                     <div class="edu-card-number">03</div>
                     <h4>益生元作用</h4>
@@ -1094,50 +1254,48 @@
             </div>
         </div>
     </section>
-    
+
     <section class="parallax-section" id="parallax">
         <div class="parallax-bg" id="parallax-bg"></div>
         <div class="parallax-overlay"></div>
         <div class="parallax-content">
             <h2 id="parallax-title">食品科学，改变生活</h2>
-            <p id="parallax-text">通过深入了解酶的奥秘，我们正在创造更美味、更健康、更包容的食品世界。</p>
-            <a href="#" class="button" id="main-button">探索更多</a>
-            <a href="#" class="button button-secondary" id="secondary-button">加入我们</a>
+            <p id="parallax-text">通过深入了解酶的奥秘，创造更美味、更健康、更包容的食品世界。</p>
+            <a href="index.html" class="button" id="main-button">探索更多</a>
+            <!-- <a href="#" class="button button-secondary" id="secondary-button">加入我们</a> -->
         </div>
     </section>
-    
+
     <footer>
-        <div class="footer-links">
-            <a href="#">关于我们</a>
-            <a href="#">联系方式</a>
-            <a href="#">隐私政策</a>
-            <a href="#">使用条款</a>
+        <div class="footer-content">
+            <p>© 大分子：从材料到生命第三组</p>
+            <p>2025 春学期</p>
         </div>
-        <p>Copyright © 2025 食品科学探索. 保留所有权利。</p>
     </footer>
-    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script>
         // 监听滚动事件，控制导航栏显示
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const stickyNav = document.getElementById('sticky-nav');
             if (window.scrollY > window.innerHeight - 100) {
                 stickyNav.classList.add('visible');
             } else {
                 stickyNav.classList.remove('visible');
             }
-            
+
             // 检查元素是否在视口中，并添加动画
             checkElementsInViewport();
         });
-        
+
         // 平滑滚动到锚点
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-                
+
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 50,
@@ -1146,7 +1304,7 @@
                 }
             });
         });
-        
+
         // 检查元素是否在视口中
         function isElementInViewport(el) {
             const rect = el.getBoundingClientRect();
@@ -1155,7 +1313,7 @@
                 rect.bottom >= 0
             );
         }
-        
+
         // 检查并为在视口中的元素添加动画类
         function checkElementsInViewport() {
             // 标题和副标题
@@ -1165,7 +1323,7 @@
                     title.classList.add('visible');
                 }
             });
-            
+
             // 卡片
             const cards = document.querySelectorAll('.enzyme-card, .edu-card');
             cards.forEach(card => {
@@ -1173,7 +1331,7 @@
                     card.classList.add('visible');
                 }
             });
-            
+
             // 特性区块
             const features = document.querySelectorAll('.feature-image, .feature-stat, .feature-text p');
             features.forEach(feature => {
@@ -1181,19 +1339,19 @@
                     feature.classList.add('visible');
                 }
             });
-            
+
             // 图表容器
             const chartContainer = document.getElementById('chart-container');
             if (chartContainer && isElementInViewport(chartContainer)) {
                 chartContainer.classList.add('visible');
             }
-            
+
             // 流程步骤
             const steps = document.querySelectorAll('.process-step');
             steps.forEach((step, index) => {
                 if (isElementInViewport(step)) {
                     step.classList.add('visible');
-                    
+
                     // 添加连接线动画
                     if (index < steps.length - 1) {
                         const line = document.querySelector('.process-line');
@@ -1203,7 +1361,7 @@
                     }
                 }
             });
-            
+
             // 视差滚动内容
             const parallaxContent = document.querySelectorAll('.parallax-content h2, .parallax-content p, .parallax-content .button');
             parallaxContent.forEach(item => {
@@ -1212,79 +1370,117 @@
                 }
             });
         }
-        
+
         // 视差滚动效果
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const parallaxBg = document.getElementById('parallax-bg');
             if (parallaxBg) {
                 const scrollPosition = window.pageYOffset;
                 const parallaxSection = document.getElementById('parallax');
                 const sectionTop = parallaxSection.offsetTop;
                 const sectionHeight = parallaxSection.offsetHeight;
-                
+
                 if (scrollPosition > sectionTop - window.innerHeight && scrollPosition < sectionTop + sectionHeight) {
                     const yPos = (scrollPosition - sectionTop) * 0.8;
                     parallaxBg.style.transform = 'translateY(' + yPos + 'px)';
                 }
             }
         });
-        
+
         // 初始化图表
-        function initChart() {
-            // 使用echarts或者chart.js来绘制图表
-            // 这里使用简单的HTML+CSS来模拟图表
-            const chartElement = document.getElementById('enzyme-chart');
-            const chartHTML = `
-                <div style="display: flex; height: 100%; align-items: flex-end; justify-content: space-around; padding: 20px 0;">
-                    <div class="chart-bar" style="height: 80%; width: 60px; background: linear-gradient(to top, #0071e3, #38b7ff); border-radius: 5px 5px 0 0; position: relative;">
-                        <div style="position: absolute; bottom: -25px; width: 100%; text-align: center; font-size: 12px;">凝乳酶</div>
-                        <div style="position: absolute; top: -25px; width: 100%; text-align: center; font-size: 14px; font-weight: 600;">95%</div>
-                    </div>
-                    <div class="chart-bar" style="height: 65%; width: 60px; background: linear-gradient(to top, #0071e3, #38b7ff); border-radius: 5px 5px 0 0; position: relative;">
-                        <div style="position: absolute; bottom: -25px; width: 100%; text-align: center; font-size: 12px;">蛋白酶</div>
-                        <div style="position: absolute; top: -25px; width: 100%; text-align: center; font-size: 14px; font-weight: 600;">75%</div>
-                    </div>
-                    <div class="chart-bar" style="height: 72%; width: 60px; background: linear-gradient(to top, #0071e3, #38b7ff); border-radius: 5px 5px 0 0; position: relative;">
-                        <div style="position: absolute; bottom: -25px; width: 100%; text-align: center; font-size: 12px;">脂肪酶</div>
-                        <div style="position: absolute; top: -25px; width: 100%; text-align: center; font-size: 14px; font-weight: 600;">82%</div>
-                    </div>
-                    <div class="chart-bar" style="height: 90%; width: 60px; background: linear-gradient(to top, #5f2c82, #49a09d); border-radius: 5px 5px 0 0; position: relative;">
-                        <div style="position: absolute; bottom: -25px; width: 100%; text-align: center; font-size: 12px;">青刺果</div>
-                        <div style="position: absolute; top: -25px; width: 100%; text-align: center; font-size: 14px; font-weight: 600;">98%</div>
-                    </div>
-                    <div class="chart-bar" style="height: 60%; width: 60px; background: linear-gradient(to top, #0071e3, #38b7ff); border-radius: 5px 5px 0 0; position: relative;">
-                        <div style="position: absolute; bottom: -25px; width: 100%; text-align: center; font-size: 12px;">乳糖酶</div>
-                        <div style="position: absolute; top: -25px; width: 100%; text-align: center; font-size: 14px; font-weight: 600;">68%</div>
-                    </div>
+function initChart() {
+    // 定义三种图表数据
+    const chartData = {
+        '质构特性': [
+            { name: '凝乳酶', value: 95, color: '#0071e3' },
+            { name: '蛋白酶', value: 75, color: '#0071e3' },
+            { name: '脂肪酶', value: 82, color: '#0071e3' },
+            { name: '青刺果', value: 98, color: '#5f2c82' },
+            { name: '乳糖酶', value: null }
+        ],
+        '出品率': [
+            { name: '凝乳酶', value: 95, color: '#0071e3' },
+            { name: '青刺果', value: 92, color: '#5f2c82' },
+            { name: '木瓜酶', value: 78, color: '#0071e3' },
+            { name: '毛霉酶', value: 82, color: '#0071e3' },
+            { name: '乳糖酶', value: null }
+        ],
+        '水解效率': [
+            { name: '凝乳酶', value: null },
+            { name: '青刺果', value: null },
+            { name: '乳糖酶', value: 85, color: '#0071e3' },
+            { name: '中性酶', value: 78, color: '#0071e3' },
+            { name: '低温酶', value: 68, color: '#0071e3' }
+        ]
+    };
+
+    // 获取当前选项卡类型
+    const currentTab = document.querySelector('.chart-tab.active').dataset.type;
+    const currentData = chartData[currentTab];
+
+    // 生成图表HTML
+    const chartElement = document.getElementById('enzyme-chart');
+    let chartHTML = '<div style="display: flex; height: 100%; align-items: flex-end; justify-content: space-around; padding: 20px 0;">';
+    
+    currentData.forEach(item => {
+        if (item.value === null) return;
+        
+        chartHTML += `
+            <div class="chart-bar" 
+                 style="height: ${item.value}%;
+                        width: 60px;
+                        background: linear-gradient(to top, ${item.color}, ${item.color}88);
+                        border-radius: 5px 5px 0 0;
+                        position: relative;" data-target-height="${item.value}%">
+                <div style="position: absolute; bottom: -25px; width: 100%; text-align: center; font-size: 12px;">
+                    ${item.name}
                 </div>
-            `;
-            chartElement.innerHTML = chartHTML;
-            
-            // 为图表添加动画效果
-            const chartBars = document.querySelectorAll('.chart-bar');
-            chartBars.forEach((bar, index) => {
-                setTimeout(() => {
-                    bar.style.animation = 'growUp 1.5s forwards cubic-bezier(0.11, 0.73, 0.48, 1.07)';
-                }, index * 200);
-            });
-        }
+                <div style="position: absolute; top: -25px; width: 100%; text-align: center; font-size: 14px; font-weight: 600;">
+                    ${item.value}%
+                </div>
+            </div>`;
+    });
+
+    chartElement.innerHTML = chartHTML + '</div>';
+
+    // 添加动画效果
+    const chartBars = document.querySelectorAll('.chart-bar');
+    chartBars.forEach((bar, index) => {
+        bar.style.height = '0%'; // 初始高度设为0
+        setTimeout(() => {
+            bar.style.transition = 'all 1.5s cubic-bezier(0.11, 0.73, 0.48, 1.07)';
+            bar.style.height = `${bar.style.height}`; // 触发重绘
+            bar.style.height = bar.getAttribute('data-target-height') || bar.style.height;
+        }, index * 200);
+    });
+}
+
+// 切换图表选项卡
+document.querySelectorAll('.chart-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+        // 切换激活状态
+        document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
         
-        // 切换图表选项卡
-        document.querySelectorAll('.chart-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                
-                // 这里可以根据不同的选项卡显示不同的图表数据
-                // 简化处理，不实现完整的图表切换功能
-            });
-        });
+        // 更新图表内容
+        initChart();
         
+        // 更新说明文字
+        const descMap = {
+            '质构特性': '不同酶对干酪质构特性的影响对比（数值越高越好）',
+            '出品率': '不同凝乳酶的干酪出品率对比（数值越高越好）',
+            '水解效率': '乳糖酶在不同条件下的水解效率（数值越高越好）'
+        };
+        // document.getElementById('chart-desc').textContent = descMap[this.dataset.type];
+    });
+});
+
+
         // 页面加载完成后执行
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             checkElementsInViewport();
             initChart();
-            
+
             // 添加自定义动画效果
             const heroImage = document.querySelector('.hero-image');
             if (heroImage) {
@@ -1293,11 +1489,12 @@
                 }, 1000);
             }
         });
-        
+
         // 添加进场动画
         document.querySelectorAll('.chart-bar').forEach(bar => {
             bar.style.height = '0';
         });
     </script>
 </body>
+
 </html>

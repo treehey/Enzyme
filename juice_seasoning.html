@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果汁与调味品酿造新纪元</title>
+    <style>
+        /* --- 全局重置和基础样式 --- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth; /* 平滑滚动 */
+            font-size: 16px; /* 基准字体大小 */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+            overflow-x: hidden; /* 防止水平滚动 */
+            -webkit-font-smoothing: antialiased; /* 字体抗锯齿 */
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- 容器和布局 --- */
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- 基础排版 --- */
+        h1, h2, h3, p {
+            margin-bottom: 1em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem); /* 响应式字体 */
+            font-weight: 600;
+            line-height: 1.1;
+            color: #000000;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            line-height: 1.2;
+            text-align: center;
+            margin-bottom: 1.5em;
+            color: #000000;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1em;
+             color: #000000;
+        }
+
+        p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            line-height: 1.7;
+            max-width: 70ch; /* 优化阅读行长 */
+            margin-left: auto;
+            margin-right: auto;
+            color: #242425; /* 稍暗的灰色 */
+        }
+
+        a {
+            color: #2997ff; /* 苹果蓝 */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #66baff;
+        }
+
+        /* 动态导航栏 */
+  .nav-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    min-width: 320px;
+    height: 53px;
+    max-height: 48px;
+    font-size: 17px;
+    z-index: 9999;
+    /* font-size: 17px; */
+    /* padding: 0 32px; */
+    backdrop-filter: saturate(180%) blur(24px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.36s cubic-bezier(0.32, 0.08, 0.24, 1);
+    user-select: none;
+  }
+
+  .theme-light .nav-bar {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .theme-dark .nav-bar {
+    background: rgba(22, 22, 23, .8);
+  }
+
+  .nav-container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+
+  .nav-content {
+    max-width: 1024px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+  }
+
+  .nav-logo {
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .theme-light .nav-logo {
+    color: var(--text-primary);
+  }
+
+  .theme-dark .nav-logo {
+    color: rgba(255, 255, 255, .8);
+  }
+
+
+  .nav-content {
+    cursor: default;
+    /* margin: 0 -8px; */
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    -webkit-user-select: none;
+    user-select: none;
+    list-style: none;
+    /* gap: 32px; */
+  }
+
+  .nav-item {
+    box-sizing: border-box;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* .nav-item * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+  .nav-links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 28px;
+    height: 100%;
+    flex-grow: 1;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    line-height: 1;
+    transition: color 0.3s ease;
+    display: inherit;
+  }
+
+  .theme-light .nav-link {
+    color: var(--text-secondary);
+  }
+
+  .theme-dark .nav-link {
+    color: rgba(255, 255, 255, .8);
+  }
+
+  .theme-light .nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  .theme-dark .nav-link:hover {
+    color: #FFFFFF;
+  }
+
+  .nav-bar .nav-button {
+    padding: 10px 20px;
+    font-size: 10px;
+  }
+
+  .nav-bar .nav-search {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 1;
+    padding: 0 calc(8px / var(--r-globalnav-text-zoom-scale, 1));
+    height: 44px;
+    background: no-repeat;
+    text-decoration: none;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    transition: color .32s cubic-bezier(.4, 0, .6, 1);
+  }
+
+  .nav-bar .nav-regular {
+    display: flex;
+    pointer-events: none;
+  }
+
+  .nav-bar .nav-regular svg {
+    fill: currentColor;
+    transform: translateZ(0);
+  }
+
+        /* --- Section 通用样式 --- */
+        .scroll-section {
+            min-height: 100vh; /* 至少一屏高 */
+            padding: 80px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden; /* 隐藏超出部分，为内部动画做准备 */
+            opacity: 0; /* 初始隐藏 */
+            transform: translateY(50px); /* 初始向下偏移 */
+            transition: opacity 1s ease-out, transform 1s ease-out; /* 入场动画 */
+        }
+
+        .scroll-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- 导航栏 (可选，如果需要固定导航) --- */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000;
+            padding: 10px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .main-nav .container {
+            display: flex;
+            justify-content: space-between; /* 或 center */
+            align-items: center;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .main-nav a {
+            color: #000000;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: #000000;
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            background: url("images/juice/background.jpg") no-repeat center center/cover;
+            justify-content: flex-start; /* 内容靠上 */
+            padding-top: 15vh; /* 顶部留白 */
+            text-align: center;
+            min-height: 100vh; /* 稍微高一点，确保覆盖 */
+        }
+
+        #hero .hero-content {
+            margin-top: 5vh; /* 导航栏下方留白 */
+             opacity: 0;
+            animation: fadeInHero 1.5s 0.5s ease-out forwards; /* 延迟入场 */
+        }
+
+        @keyframes fadeInHero {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 0.2em;
+        }
+        #hero p {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #515154;
+            max-width: 600px;
+        }
+
+        /* --- 特色功能 Section --- */
+        #features {
+           background-color: #e3e3e3; /* 深一点的背景 */
+        }
+
+        .feature-item {
+            display: grid;
+            grid-template-columns: 1fr; /* 移动端默认单列 */
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 100px; /* 特色项间距 */
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .feature-item.is-visible {
+             opacity: 1;
+             transform: scale(1);
+        }
+
+        /* 交错动画延迟 */
+        .feature-item:nth-child(odd).is-visible { transition-delay: 0.2s; }
+        .feature-item:nth-child(even).is-visible { transition-delay: 0.4s; }
+
+
+        .feature-text {
+            text-align: center; /* 移动端居中 */
+        }
+
+         .feature-text h3 {
+            color: #000000;
+            margin-bottom: 0.5em;
+         }
+         .feature-text p {
+             color: #434346;
+             max-width: 50ch; /* 限制行长 */
+         }
+
+        .feature-visual img,
+        .feature-visual video {
+            width: 100%;
+            max-width: 600px; /* 控制最大宽度 */
+            height: auto;
+            display: block;
+            margin: 0 auto; /* 居中 */
+            border-radius: 18px; /* 圆角 */
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+            /* 视觉元素的入场动画 */
+            opacity: 0;
+            transform: perspective(1000px) rotateY(20deg) scale(0.95);
+            transition: opacity 1s ease-out, transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 更复杂的缓动 */
+        }
+
+        .feature-item.is-visible .feature-visual img,
+        .feature-item.is-visible .feature-visual video {
+             opacity: 1;
+             transform: perspective(1000px) rotateY(0deg) scale(1);
+        }
+
+        /* --- 图库 Section --- */
+        #gallery {
+            background-color: #cfcfcfc3;
+            padding-bottom: 100px; /* 底部多留白 */
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 响应式网格 */
+            gap: 30px;
+        }
+
+        .gallery-item {
+             overflow: hidden; /* 隐藏图片溢出 */
+             border-radius: 18px;
+             box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+             opacity: 0;
+             transform: translateY(40px) scale(0.95);
+             transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.6);
+        }
+
+        /* 交错显示画廊项目 */
+        .gallery-item.is-visible:nth-child(1) { transition-delay: 0.1s; }
+        .gallery-item.is-visible:nth-child(2) { transition-delay: 0.2s; }
+        .gallery-item.is-visible:nth-child(3) { transition-delay: 0.3s; }
+        .gallery-item.is-visible:nth-child(4) { transition-delay: 0.4s; }
+        .gallery-item.is-visible:nth-child(5) { transition-delay: 0.5s; }
+        .gallery-item.is-visible:nth-child(6) { transition-delay: 0.6s; }
+        
+
+        .gallery-item.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+
+        .gallery-item img {
+            display: flex;
+            width: 100%;
+            height: 100%; /* 确保填满容器 */
+            object-fit: cover; /* 裁剪以适应 */
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); /* 平滑缩放 */
+        }
+
+        .gallery-text {
+            position:absolute;
+            bottom: 50px;
+            color: #ffffff;
+            background-color: transparent;
+            font-size: 20px;
+        }
+        .gallery-item:hover img {
+             transform: scale(1.05); /* 悬停时放大 */
+        }
+
+        /* --- 技术规格 Section --- */
+        #tech-specs {
+            background-color: #ededed; /* 非常深的灰色 */
+        }
+
+        .specs-container {
+            background-color: #e6e6e6; /* 规格背景色 */
+            background-image: url("background.jpg");
+            padding: clamp(30px, 5vw, 60px);
+            border-radius: 18px;
+            max-width: 900px; /* 限制最大宽度 */
+            width: 100%;
+            opacity: 0;
+            transform: perspective(1000px) rotateX(-10deg);
+            transition: opacity 1s ease-out, transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        #tech-specs.is-visible .specs-container {
+             opacity: 1;
+             transform: perspective(1000px) rotateX(0deg);
+        }
+
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* 移动端单列 */
+            gap: 40px;
+        }
+
+        .spec-category h3 {
+            color: #000000;
+            border-bottom: 1px solid #3b3b3d; /* 分隔线 */
+            padding-bottom: 0.5em;
+            margin-bottom: 1em;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+        }
+
+        .spec-category ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .spec-category li {
+            margin-bottom: 0.8em;
+            color: #4a4a4d;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        /* 规格列表项交错动画 */
+        #tech-specs.is-visible .spec-category li {
+             opacity: 1;
+             transform: translateX(0);
+        }
+        #tech-specs.is-visible .spec-category li:nth-child(1) { transition-delay: 0.3s; }
+        #tech-specs.is-visible .spec-category li:nth-child(2) { transition-delay: 0.4s; }
+        #tech-specs.is-visible .spec-category li:nth-child(3) { transition-delay: 0.5s; }
+        #tech-specs.is-visible .spec-category li:nth-child(4) { transition-delay: 0.6s; }
+        #tech-specs.is-visible .spec-category li:nth-child(5) { transition-delay: 0.7s; }
+        /* ... 更多延迟 ... */
+
+
+        .spec-category li strong {
+            color: #000000; /* 规格名称颜色 */
+            display: block; /* 让描述换行 */
+            margin-bottom: 0.2em;
+        }
+
+        /* --- 页脚 --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            color: #a5a5ac; /* 苹果页脚灰色 */
+            font-size: 0.8rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5em;
+            font-size: inherit; /* 继承页脚字体大小 */
+             color: inherit;
+        }
+
+        footer a {
+            color: #bebec5; /* 链接颜色 */
+        }
+        footer a:hover {
+            color: #f5f5f7;
+        }
+
+        /* --- 响应式设计 --- */
+
+        /* 平板及以上 */
+        @media (min-width: 768px) {
+            .feature-item {
+                grid-template-columns: repeat(2, 1fr); /* 左右布局 */
+                text-align: left; /* 文本居左 */
+                gap: 60px;
+            }
+            .feature-item:nth-child(even) .feature-visual {
+                order: -1; /* 偶数项图片放左边 */
+            }
+             .feature-item:nth-child(even) .feature-text {
+                text-align: right; /* 偶数项文本居右 */
+            }
+
+            .feature-text {
+                 text-align: left; /* 默认文本居左 */
+                 display: flex;
+                 flex-direction: column;
+                 justify-content: center;
+            }
+             .feature-text p {
+                margin-left: 0;
+                margin-right: 0;
+             }
+             .feature-item:nth-child(even) .feature-text p {
+                 margin-left: auto; /* 偶数项段落靠右 */
+                 margin-right: 0;
+             }
+
+
+            .feature-visual img,
+            .feature-visual video {
+                margin: 0; /* 取消居中 */
+            }
+             .feature-item:nth-child(even) .feature-visual img,
+             .feature-item:nth-child(even) .feature-visual video {
+                 margin-left: auto; /* 偶数项图片靠右 */
+             }
+
+
+            .specs-grid {
+                grid-template-columns: repeat(2, 1fr); /* 规格两列 */
+                gap: 60px;
+            }
+        }
+
+        /* 大型桌面设备 */
+        @media (min-width: 1024px) {
+             h1 { font-size: 5.5rem; }
+             h2 { font-size: 4rem; }
+             h3 { font-size: 2.5rem; }
+             p { font-size: 1.3rem; }
+            .main-nav a { font-size: 1rem; }
+        }
+
+        /* --- 动画辅助类 --- */
+        /* (JavaScript 将添加/删除 'is-visible' 类) */
+
+    </style>
+</head>
+<body class="theme-light">
+<!-- 导航栏 -->
+<nav class="nav-bar">
+    <div class="nav-container">
+      <ul class="nav-content">
+        <li class="nav-item">
+          <a href="index.html" class="nav-logo">酶工厂</a>
+        </li>
+        <li class="nav-item">
+          <div class="nav-links">
+            <a href="index.html#bread" class="nav-link">面包酶</a>
+            <a href="index.html#wine" class="nav-link">酿酒酶</a>
+            <a href="index.html#cheese" class="nav-link">奶酪酶</a>
+            <a href="juice_seasoning.html" class="nav-link">果汁酶与调味品</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="member.html" role="button" class="nav-search">
+            <span class="nav-regular">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15px" height="44px" viewBox="0 0 15 44">
+                <path
+                  d="M14.298,27.202l-3.87-3.87c0.701-0.929,1.122-2.081,1.122-3.332c0-3.06-2.489-5.55-5.55-5.55c-3.06,0-5.55,2.49-5.55,5.55 c0,3.061,2.49,5.55,5.55,5.55c1.251,0,2.403-0.421,3.332-1.122l3.87,3.87c0.151,0.151,0.35,0.228,0.548,0.228 s0.396-0.076,0.548-0.228C14.601,27.995,14.601,27.505,14.298,27.202z M1.55,20c0-2.454,1.997-4.45,4.45-4.45 c2.454,0,4.45,1.997,4.45,4.45S8.454,24.45,6,24.45C3.546,24.45,1.55,22.454,1.55,20z">
+                </path>
+              </svg>
+            </span>
+          </a>
+        </li>
+        <!-- <button class="ios-button nav-button">探索之旅</button> -->
+      </ul>
+  </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="scroll-section">
+            <div class="hero-content container">
+                <h1>味蕾上的跃动</h1>
+                <p>果汁和调味品中酶制剂的全新妙用</p>
+                <!-- 可选：向下滚动提示 -->
+                <!-- <div class="scroll-indicator">↓</div> -->
+            </div>
+        </section>
+
+        <!-- 特色功能 Section -->
+        <section id="features" class="scroll-section">
+            <div class="container">
+                <h2>工业化生产新方法</h2>
+
+                <div class="feature-item">
+                    <div class="feature-text">
+                        <h3>固定化方法</h3>
+                        <p>包埋法可防止酶聚集和浸出，但传质受限、酶负载量低；共价结合法能牢固固定酶，但可能破坏酶的活性构象；交联法可提高酶性能，但交联剂可能改变酶的构象。</p>
+                    </div>
+                    <div class="feature-visual">
+                        <!-- 替换为相关图片或视频 -->
+                        <img src="images/juice/pr1.jpg" alt="空间 App 界面">
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                     <div class="feature-text">
+                        <h3>固定化载体</h3>
+                        <p>常用载体包括磁性纳米粒子、海藻酸盐、壳聚糖等。磁性纳米粒子易分离、比表面积大，但易团聚；海藻酸盐来源广泛、价格低廉、生物相容性好；壳聚糖结构独特、成本效益高、安全性好。此外，还有浮石、蒙脱土等其他载体。 </p>
+                    </div>
+                    <div class="feature-visual">
+                        <img src="images/juice/pr2.jpg" alt="空间 App 界面">
+                    </div>
+                </div>
+
+                 <div class="feature-item">
+                    <div class="feature-text">
+                        <h3>催化条件</h3>
+                        <p>pH、温度、酶用量和反应设备等因素影响固定化酶的催化活性。不同酶有最佳pH值和温度，反应设备如搅拌罐反应器、流化床反应器和填充床反应器对酶的催化活性也有影响。</p>
+                    </div>
+                    <div class="feature-visual">
+                        <img src="images/juice/pr3.jpg" alt="空间照片和视频">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- 技术规格 Section -->
+        <section id="tech-specs" class="scroll-section">
+            <div class="container">
+                 <h2>种类区别</h2>
+                 <div class="specs-container">
+                    <div class="specs-grid">
+                        <div class="spec-category">
+                            <h3>果胶酶</h3>
+                            <ul>
+                                <li><strong>水解果胶</strong></li>
+                                <li>降低果汁粘度，浊度</li>
+                                <li>提高澄清率</li>
+                                <li>可能降低抗氧化能力</li>
+                            </ul>
+                        </div>
+                        <div class="spec-category">
+                            <h3>漆酶</h3>
+                            <ul>
+                                <li><strong>氧化酚类化合物</strong></li>
+                                <li>聚合形成不溶性聚合物</li>
+                                <li>易于离心过滤</li>
+                                <li>提高澄清率</li>
+                                <li>固定化会导致漆酶活性损失</li>
+                            </ul>
+                        </div>
+                         <div class="spec-category">
+                            <h3>木聚糖酶</h3>
+                            <ul>
+                                <li><strong>降解木糖醇</strong></li>
+                                <li>降低果汁的浊度和粘度</li>
+                                <li>提高澄清度和还原糖含量</li>
+                                <li>且具有良好的热稳定性和可回收性</li>
+                            </ul>
+                        </div>
+                        <div class="spec-category">
+                            <h3>其他酶</h3>
+                            <ul>
+                                <li>木瓜蛋白酶</li>
+                                <li>单宁酶</li>
+                                <li>转化酶</li>
+                                <li>......</li>
+                                <li>都可用于果汁澄清</li>
+                                <li>且取得了很好的效果</li>
+                            </ul>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+        <section id="gallery" class="scroll-section">
+            <div class="container">
+                <h2>调味品生产</h2>
+
+                <div class="feature-item">
+                    <div class="feature-text">
+                        <h3>酱油生产</h3>
+                        <p>传统酱油生产工艺包括润水、蒸料、制曲、发酵等步骤。在发酵过程中添加蛋白酶，可提高原料利用率，增进酱油香味，使蛋白质利用率从65% - 75%提升到82% - 85%。</p>
+                    </div>
+                    <div class="feature-visual">
+                        <img src="images/juice/soy.jpg" alt="空间 App 界面">
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                     <div class="feature-text">
+                        <h3>食醋生产</h3>
+                        <p>“双酶法”制醋可进行固态或液体深层发酵，能缩短发酵周期，提高产品质量、风味和原料利用率，降低生产成本。 </p>
+                    </div>
+                    <div class="feature-visual">
+                        <img src="images/juice/vinegar.jpg" alt="空间 App 界面">
+                    </div>
+                </div>
+
+                 <div class="feature-item">
+                    <div class="feature-text">
+                        <h3>腐乳生产</h3>
+                        <p>酶法生产腐乳可缩短发酵周期，减少污染，控制产品质量。酶法生产腐乳时，前发酵最适温度为18℃，后发酵最适温度为50 - 55℃ ，pH为5.6 - 5.9，盐分10%，酒精度9%，发酵时间15 - 20天。</p>
+                    </div>
+                    <div class="feature-visual">
+                        <img src="images/juice/tofu.jpg" alt="空间照片和视频">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <footer>
+            <div class="footer-content">
+              <p>© 大分子：从材料到生命第三组</p>
+              <p>2025 春学期</p>
+            </div>
+          </footer>
+    </main>
+
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.scroll-section');
+            const featureItems = document.querySelectorAll('.feature-item');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const specContainer = document.querySelector('#tech-specs .specs-container');
+            const specListItems = document.querySelectorAll('#tech-specs .spec-category li');
+
+            const observerOptions = {
+                root: null, // 视口
+                rootMargin: '0px',
+                threshold: 0.1 // 元素进入视口 10% 时触发
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+
+                        // 触发内部元素的交错动画
+                        if (entry.target.id === 'features') {
+                            observeElements(featureItems, itemObserver);
+                        } else if (entry.target.id === 'gallery') {
+                            observeElements(galleryItems, itemObserver);
+                        } else if (entry.target.id === 'tech-specs') {
+                            // 观察规格容器
+                            if (specContainer) {
+                                itemObserver.observe(specContainer);
+                            }
+                            // 容器可见后，观察列表项
+                            const specObserver = new IntersectionObserver((specEntries) => {
+                                specEntries.forEach(specEntry => {
+                                    if(specEntry.isIntersecting) {
+                                        observeElements(specListItems, itemObserver);
+                                        specObserver.unobserve(specEntry.target); // 触发后停止观察容器
+                                    }
+                                });
+                            }, { threshold: 0.5 }); // 容器大部分可见时触发列表项动画
+                             if (specContainer) {
+                                 specObserver.observe(specContainer);
+                             }
+                        }
+
+                        // 可选：触发一次后停止观察该 section，以节省资源
+                        // observer.unobserve(entry.target);
+                    } else {
+                        // 可选：如果希望元素离开视口时隐藏，则取消注释下一行
+                        // entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+             // 创建用于观察内部元素的 Observer (feature-item, gallery-item, li 等)
+            const itemObserver = new IntersectionObserver((entries, observer) => {
+                 entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // 内部元素显示后即停止观察
+                    }
+                });
+            }, { threshold: 0.1 }); // 内部元素稍微可见就触发
+
+            // 辅助函数：观察一组元素
+            function observeElements(elements, observerInstance) {
+                 elements.forEach(el => {
+                     observerInstance.observe(el);
+                 });
+            }
+
+            // 开始观察所有主 Section
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            // --- 可选：平滑滚动到锚点 ---
+            const navLinks = document.querySelectorAll('.main-nav a[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                         // 计算目标位置，考虑固定导航栏的高度
+                         const navHeight = document.querySelector('.main-nav')?.offsetHeight || 0;
+                         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
