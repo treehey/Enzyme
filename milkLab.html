@@ -694,31 +694,6 @@
         
         });
         
-        // 乳糖酶游戏
-        let lactoseGameTimer;
-        let lactoseGameTime = 60;
-        let score = 0;
-        let hydrolyzedCount = 0;
-        let lactoseCount = 10;
-        let lactoses = [];
-        let gameRunning = false;
-        
-        const lactase = document.getElementById('lactase');
-        const intestine = document.querySelector('.intestine');
-        const lactoseCountEl = document.getElementById('lactose-count');
-        const hydrolyzedEl =document.getElementById('hydrolyzed');
-        const scoreEl = document.getElementById('score');
-        const gameOverEl = document.getElementById('game-over');
-        const restartBtn = document.getElementById('restart-btn');
-        const lactoseGame = document.getElementById('lactose-game');
-        const lactoseGameContainer = document.getElementById('lactose-game-container');
-        const lactoseGameInstructions = document.getElementById('lactose-game-instructions');
-        const lactoseGameStartBtn = document.getElementById('lactose-game-start-btn');
-        const lactoseGameStopBtn = document.getElementById('lactose-game-stop-btn');
-        const lactoseGameResetBtn = document.getElementById('lactose-game-reset-btn');
-        const lactoseGameInstructionsCloseBtn = document.getElementById('lactose-game-instructions-close-btn');
-        const lactoseGameInstructionsOpenBtn = document.getElementById('lactose-game-instructions-open-btn');
-        
         
         // 补充乳糖酶游戏的代码
 document.getElementById('lactose-quiz-btn').addEventListener('click', () => {
@@ -794,6 +769,31 @@ document.getElementById('submit-lactose-quiz').addEventListener('click', () => {
 });
 
 // 乳糖酶游戏
+let lactoseGameTimer;
+        let lactoseGameTime = 60;
+        let score = 0;
+        let hydrolyzedCount = 0;
+        let lactoseCount = 10;
+        let lactoses = [];
+        let gameRunning = false;
+        
+        const lactase = document.getElementById('lactase');
+        const intestine = document.querySelector('.intestine');
+        const lactoseCountEl = document.getElementById('lactose-count');
+        const hydrolyzedEl =document.getElementById('hydrolyzed');
+        const scoreEl = document.getElementById('score');
+        const gameOverEl = document.getElementById('game-over');
+        const restartBtn = document.getElementById('restart-btn');
+        const lactoseGame = document.getElementById('lactose-game');
+        const lactoseGameContainer = document.getElementById('lactose-game-container');
+        const lactoseGameInstructions = document.getElementById('lactose-game-instructions');
+        const lactoseGameStartBtn = document.getElementById('lactose-game-start-btn');
+        const lactoseGameStopBtn = document.getElementById('lactose-game-stop-btn');
+        const lactoseGameResetBtn = document.getElementById('lactose-game-reset-btn');
+        const lactoseGameInstructionsCloseBtn = document.getElementById('lactose-game-instructions-close-btn');
+        const lactoseGameInstructionsOpenBtn = document.getElementById('lactose-game-instructions-open-btn');
+
+// 乳糖酶游戏
 document.getElementById('start-lactose-game').addEventListener('click', function() {
     if (gameRunning) return;
     
@@ -825,7 +825,7 @@ document.getElementById('start-lactose-game').addEventListener('click', function
         }
         
         // 每15秒新增一批乳糖
-        if (lactoseGameTime % 15 === 0 && lactoseGameTime > 0) {
+        if (lactoseGameTime % 5 === 0 && lactoseGameTime > 0) {
             spawnLactose(3);
             lactoseCount += 3;
             document.getElementById('lactose-count').textContent = lactoseCount;

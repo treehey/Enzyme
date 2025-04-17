@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN"  data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>创新研发团队 | TechStars</title>
+    <title>小组成员</title>
     <style>
         :root {
             --primary-color: #1d1d1f;
@@ -27,308 +27,399 @@
 
             --shadow-lifted: 0px 20px 40px rgba(0, 0, 0, 0.12);
             --ai-gradient: linear-gradient(94deg, #0090F7, #BA62FC, #F2416B, #F55600);
+            --primary-text: #1d1d1f;
+            --secondary-text: #86868B;
+            --accent-blue: #2997FF;
+            --accent-green: #32D74B;
+            --glass-bg: rgba(28, 28, 30, 0.72);
+            --border-gradient: linear-gradient(145deg,
+                    rgba(41, 151, 255, 0.4) 0%,
+                    rgba(50, 215, 75, 0.2) 100%);
+
+            --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-xl: 0 32px 64px rgba(0, 0, 0, 0.24);
         }
 
-        /* 苹果风格重置 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+        /* 动态主题切换 */
+        [data-theme="dark"] {
+            --surface-primary: #1D1D1F;
+            --surface-secondary: #2C2C2E;
+            --primary-text: #F5F5F7;
+            --shadow-xl: 0 0px 64px rgba(255, 255, 255, 0.24);
+            --glass-bg: rgba(227, 227, 225, 0.72);
+        }
 
-body {
-    font-family: 'SF Pro Display', -apple-system, sans-serif;
-    font-size: 17px;
-    line-height: 1.47059;
-    color: var(--text-primary);
-    background: #FFFFFF;
-}
+        [data-theme="light"] {
+            --surface-primary: #FBFBFD;
+            --surface-secondary: #FFFFFF;
+            --primary-text: #1d1d1f;
+        }
 
-            /* 动态导航栏 */
-            .nav-bar {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                min-width: 320px;
-                height: 53px;
-                max-height: 48px;
-                font-size: 17px;
-                z-index: 9999;
-                /* font-size: 17px; */
-                /* padding: 0 32px; */
-                backdrop-filter: saturate(180%) blur(24px);
-                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-                transition: all 0.36s cubic-bezier(0.32, 0.08, 0.24, 1);
-                user-select: none;
-            }
+        /* 基础重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-            .theme-light .nav-bar {
-                background: rgba(255, 255, 255, 0.8);
-            }
+        body {
+            font-family: 'SF Pro Display', -apple-system, sans-serif;
+            font-size: 17px;
+            line-height: 1.47059;
+            color: var(--primary-text);
+            background: var(--surface-primary);
+        }
 
-            .theme-dark .nav-bar {
-                background: rgba(22, 22, 23, .8);
-            }
+        /* 动态导航栏 */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            min-width: 320px;
+            height: 53px;
+            max-height: 48px;
+            font-size: 17px;
+            z-index: 9999;
+            /* font-size: 17px; */
+            /* padding: 0 32px; */
+            backdrop-filter: saturate(180%) blur(24px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.36s cubic-bezier(0.32, 0.08, 0.24, 1);
+            user-select: none;
+        }
 
-            .nav-container {
-                max-width: 1024px;
-                margin: 0 auto;
-                padding: 0 22px;
-            }
+        .theme-light .nav-bar {
+            background: rgba(255, 255, 255, 0.8);
+        }
 
-            .nav-content {
-                max-width: 1024px;
-                margin: 0 auto;
-                box-sizing: border-box;
-                padding-top: 0;
-                padding-bottom: 0;
-                height: 48px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                list-style: none;
-            }
+        .theme-dark .nav-bar {
+            background: rgba(22, 22, 23, .8);
+        }
 
-            .nav-logo {
-                font-size: 20px;
-                font-weight: 500;
-                text-decoration: none;
-            }
+        .nav-container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
 
-            .theme-light .nav-logo {
-                color: var(--text-primary);
-            }
+        .nav-content {
+            max-width: 1024px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            padding-top: 0;
+            padding-bottom: 0;
+            height: 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+        }
 
-            .theme-dark .nav-logo {
-                color: rgba(255, 255, 255, .8);
-            }
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .theme-light .nav-logo {
+            color: var(--text-primary);
+        }
+
+        .theme-dark .nav-logo {
+            color: rgba(255, 255, 255, .8);
+        }
 
 
-            .nav-content {
-                cursor: default;
-                /* margin: 0 -8px; */
-                width: auto;
-                display: flex;
-                justify-content: space-between;
-                -webkit-user-select: none;
-                user-select: none;
-                list-style: none;
-                /* gap: 32px; */
-            }
+        .nav-content {
+            cursor: default;
+            /* margin: 0 -8px; */
+            width: auto;
+            display: flex;
+            justify-content: space-between;
+            -webkit-user-select: none;
+            user-select: none;
+            list-style: none;
+            /* gap: 32px; */
+        }
 
-            .nav-item {
-                box-sizing: border-box;
-                height: 48px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        .nav-item {
+            box-sizing: border-box;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-            /* .nav-item * {
+        /* .nav-item * {
     display: flex;
     align-items: center;
     justify-content: center;
 } */
 
+        .nav-links {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 28px;
+            height: 100%;
+            flex-grow: 1;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: -.01em;
+            font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+            line-height: 1;
+            transition: color 0.3s ease;
+            display: inherit;
+        }
+
+        .theme-light .nav-link {
+            color: var(--text-secondary);
+        }
+
+        .theme-dark .nav-link {
+            color: rgba(255, 255, 255, .8);
+        }
+
+        .theme-light .nav-link:hover {
+            color: var(--color-primary);
+        }
+
+        .theme-dark .nav-link:hover {
+            color: #FFFFFF;
+        }
+
+        .nav-bar .nav-button {
+            padding: 10px 20px;
+            font-size: 10px;
+        }
+
+        .nav-bar .nav-search {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: -.01em;
+            font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, .8);
+            position: relative;
+            z-index: 1;
+            padding: 0 calc(8px / var(--r-globalnav-text-zoom-scale, 1));
+            height: 44px;
+            background: no-repeat;
+            text-decoration: none;
+            white-space: nowrap;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            transition: color .32s cubic-bezier(.4, 0, .6, 1);
+        }
+
+        .nav-bar .nav-regular {
+            display: flex;
+            pointer-events: none;
+        }
+
+        .nav-bar .nav-regular svg {
+            fill: currentColor;
+            transform: translateZ(0);
+        }
+
+        /* 团队展示区 */
+        .team-section {
+            padding: 8rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: sectionReveal 1s var(--ease-smooth) forwards;
+        }
+
+        @keyframes sectionReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            background: linear-gradient(120deg, var(--accent-blue), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .team-grid {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        /* 成员卡片 */
+        .member-card {
+            background: var(--surface-secondary);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            position: relative;
+            /* overflow: hidden; */
+            transform: translateY(0);
+            transition: all 0.6s var(--ease-smooth);
+            opacity: 0;
+            animation: cardReveal 0.8s var(--ease-smooth) forwards;
+            animation-delay: calc(var(--index) * 0.1s);
+            box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes cardReveal {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .member-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: var(--border-gradient);
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            transition: all 0.6s var(--ease-smooth);
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px),scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+        .member-card:hover::before {
+            transform: scale(1.05);
+        }
+
+        .member-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            margin: -100px auto 1.5rem;
+            object-fit: cover;
+            border: 3px solid var(--surface-secondary);
+            filter: grayscale(20%);
+            transition: all 0.6s var(--ease-smooth);
+            z-index: 100;
+        }
+
+        .member-card:hover .member-photo {
+            filter: grayscale(0);
+            transform: scale(1.05);
+        }
+
+        .member-name {
+            font-size: 1.6rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            color: var(--accent-blue);
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .member-role::after {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--accent-green);
+            position: absolute;
+            bottom: -0.8rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .member-bio {
+            color: var(--secondary-text);
+            text-align: center;
+            margin: 2rem 0;
+            line-height: 1.8;
+            min-height: 120px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f5f5f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .social-link:hover {
+            background: #e5e5e9;
+        }
+
+        /* 增加多列布局适配 */
+        @media (min-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
             .nav-links {
-                display: flex;
-                justify-content: space-evenly;
-                align-items: center;
-                gap: 28px;
-                height: 100%;
-                flex-grow: 1;
-            }
-
-            .nav-link {
-                text-decoration: none;
-                font-size: 14px;
-                font-weight: 400;
-                letter-spacing: -.01em;
-                font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
-                line-height: 1;
-                transition: color 0.3s ease;
-                display: inherit;
-            }
-
-            .theme-light .nav-link {
-                color: var(--text-secondary);
-            }
-
-            .theme-dark .nav-link {
-                color: rgba(255, 255, 255, .8);
-            }
-
-            .theme-light .nav-link:hover {
-                color: var(--color-primary);
-            }
-
-            .theme-dark .nav-link:hover {
-                color: #FFFFFF;
-            }
-
-            .nav-bar .nav-button {
-                padding: 10px 20px;
-                font-size: 10px;
-            }
-
-            .nav-bar .nav-search {
-                font-size: 12px;
-                font-weight: 400;
-                letter-spacing: -.01em;
-                font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
-                line-height: 1;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: rgba(255, 255, 255, .8);
-                position: relative;
-                z-index: 1;
-                padding: 0 calc(8px / var(--r-globalnav-text-zoom-scale, 1));
-                height: 44px;
-                background: no-repeat;
-                text-decoration: none;
-                white-space: nowrap;
-                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-                transition: color .32s cubic-bezier(.4, 0, .6, 1);
-            }
-
-            .nav-bar .nav-regular {
-                display: flex;
-                pointer-events: none;
-            }
-
-            .nav-bar .nav-regular svg {
-                fill: currentColor;
-                transform: translateZ(0);
-            }
-
-            /* 新增团队展示区 */
-            .team-section {
-                padding: 100px 20px;
-                background: #fbfbfd;
-            }
-
-            .section-header {
-                text-align: center;
-                margin-bottom: 60px;
+                display: none;
             }
 
             .section-title {
-                font-size: 40px;
-                margin-bottom: 15px;
+                font-size: 2.5rem;
             }
 
             .team-grid {
-                max-width: 1200px;
-                margin: 0 auto;
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 30px;
-                padding: 0 20px;
+                grid-template-columns: 1fr;
             }
-
-            .member-card {
-                background: white;
-                border-radius: 18px;
-                padding: 30px;
-                box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
-                transition: transform 0.3s ease;
-            }
-
-            .member-card:hover {
-                transform: translateY(-10px);
-            }
-
-            .member-photo {
-                width: 160px;
-                height: 160px;
-                border-radius: 50%;
-                margin: -80px auto 20px;
-                object-fit: cover;
-                border: 4px solid white;
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            }
-
-            .member-name {
-                font-size: 24px;
-                margin-bottom: 8px;
-                color: var(--primary-color);
-            }
-
-            .member-role {
-                color: var(--accent-color);
-                margin-bottom: 15px;
-                font-weight: 500;
-            }
-
-            .member-bio {
-                color: var(--secondary-color);
-                line-height: 1.6;
-                margin-bottom: 20px;
-            }
-
-            .social-links {
-                display: flex;
-                justify-content: center;
-                gap: 15px;
-            }
-
-            .social-link {
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
-                background: #f5f5f7;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: background 0.3s;
-            }
-
-            .social-link:hover {
-                background: #e5e5e9;
-            }
-
-            /* 增加多列布局适配 */
-            @media (min-width: 1024px) {
-                .team-grid {
-                    grid-template-columns: repeat(3, 1fr);
-                }
-            }
-
-            @media (min-width: 768px) and (max-width: 1023px) {
-                .team-grid {
-                    grid-template-columns: repeat(2, 1fr);
-                }
-            }
-
-            /* 调整卡片间距 */
-            .member-card {
-                margin-bottom: 30px;
-            }
-
-            /* 优化头像尺寸 */
-            .member-photo {
-                width: 180px;
-                height: 180px;
-                margin-top: -90px;
-            }
-
-            /* 统一简介高度 */
-            .member-bio {
-                height: 80px;
-                overflow: auto;
-                margin-bottom: 15px;
-            }
-
-            /* 添加角色图标 */
-            .member-role::before {
-                content: "· ";
-                color: var(--accent-color);
-                font-weight: bold;
-                font-size: 1.2em;
-            }
+        }
     </style>
 </head>
 
@@ -342,11 +433,11 @@ body {
                 </li>
                 <li class="nav-item">
                     <div class="nav-links">
-                        <a href="#intro" class="nav-link">面包酶</a>
-                        <a href="#food" class="nav-link">酿酒酶</a>
-                        <a href="#industry" class="nav-link">奶酪酶</a>
-                        <a href="#" class="nav-link">果汁酶</a>
-                        <a href="#" class="nav-link">调味品</a>
+                        <a href="#bread" class="nav-link">面包酶</a>
+                        <a href="#wine" class="nav-link">酿酒酶</a>
+                        <a href="#cheese" class="nav-link">奶酪酶</a>
+                        <a href="juice_seasoning.html" class="nav-link">果汁酶与调味品</a>
+                        <!-- <a href="#" class="nav-link">面包酶实验室</a> -->
                     </div>
                 </li>
                 <li class="nav-item">
@@ -368,78 +459,74 @@ body {
         <!-- 团队展示区 -->
         <section class="team-section">
             <div class="section-header">
-                <h2 class="section-title">创新研发团队</h2>
-                <p class="hero-subhead">5位专业领域精英组成核心力量</p>
+                <h2 class="section-title">小组成员</h2>
+                <p class="hero-subhead">5位成员</p>
             </div>
 
             <div class="team-grid">
                 <!-- 成员卡片1 -->
-                <div class="member-card">
-                    <img src="member1.jpg" alt="廖梓熙" class="member-photo">
+                <div class="member-card" style="--index: 0">
+                    <img src="images/icon/lzx.jpg" alt="xxx" class="member-photo">
                     <h3 class="member-name">廖梓熙</h3>
-                    <p class="member-role">技术总监</p>
-                    <p class="member-bio">全栈开发专家，主导过3个百万级用户平台架构设计，擅长分布式系统与性能优化...</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">📧</a>
-                        <a href="#" class="social-link">💻</a>
-                        <a href="#" class="social-link">📱</a>
-                    </div>
+                    <p class="member-role">技术科学实验班</p>
+                    <p class="member-bio">能做出来这种网页的家里得请哈基高了，唉唉网页怎么这么难写。</p>
                 </div>
 
                 <!-- 成员卡片2 -->
-                <div class="member-card">
-                    <img src="member2.jpg" alt="吕夯" class="member-photo">
-                    <h3 class="member-name">吕夯</h3>
-                    <p class="member-role">UX设计师</p>
-                    <p class="member-bio">交互设计专家，荣获3项国际设计大奖，擅长将复杂需求转化为直观的用户体验...</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">📧</a>
-                        <a href="#" class="social-link">🎨</a>
-                        <a href="#" class="social-link">📱</a>
-                    </div>
+                <div class="member-card" style="--index: 0">
+                    <img src="images/icon/lwt.jpg" alt="xx" class="member-photo">
+                    <h3 class="member-name">李文韬</h3>
+                    <p class="member-role">匡亚明学院</p>
+                    <p class="member-bio">化生🥜方向，垂死挣扎大学牲，超稀有高四体验卡拥有者，喜欢的运动是在焦虑摆烂之间反复横跳和追赶ddl，偶尔看书，偶尔羽毛球，偶尔打农和一些奇怪的小游戏，理想是或许将来可以从事科研工作，最大的愿望是微积分二总评上85（成了必回来还愿）</p>
                 </div>
 
                 <!-- 成员卡片3 -->
-                <div class="member-card">
-                    <img src="member3.jpg" alt="马一铭" class="member-photo">
-                    <h3 class="member-name">马一铭</h3>
-                    <p class="member-role">数据分析师</p>
-                    <p class="member-bio">大数据专家，精通机器学习算法，成功构建多个预测模型准确率达95%以上...</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">📧</a>
-                        <a href="#" class="social-link">📊</a>
-                        <a href="#" class="social-link">📱</a>
-                    </div>
+                <div class="member-card" style="--index: 0">
+                    <img src="images/icon/lh.jpg" alt="xx" class="member-photo">
+                    <h3 class="member-name">吕夯</h3>
+                    <p class="member-role">计算机科学与技术系</p>
+                    <p class="member-bio">...</p>
                 </div>
 
                 <!-- 成员卡片4 -->
-                <div class="member-card">
-                    <img src="member4.jpg" alt="周玟序" class="member-photo">
-                    <h3 class="member-name">周玟序</h3>
-                    <p class="member-role">项目经理</p>
-                    <p class="member-bio">PMP认证专家，成功交付过20+大型IT项目，擅长敏捷开发与跨团队协作...</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">📧</a>
-                        <a href="#" class="social-link">📑</a>
-                        <a href="#" class="social-link">📱</a>
-                    </div>
+                <div class="member-card" style="--index: 0">
+                    <img src="images/icon/mym.jpg" alt="xxx" class="member-photo">
+                    <h3 class="member-name">马一铭</h3>
+                    <p class="member-role">经济管理试验班</p>
+                    <p class="member-bio">...</p>
                 </div>
 
                 <!-- 成员卡片5 -->
-                <div class="member-card">
-                    <img src="member5.jpg" alt="李文韬" class="member-photo">
-                    <h3 class="member-name">李文韬</h3>
-                    <p class="member-role">安全工程师</p>
-                    <p class="member-bio">网络安全专家，持有CISSP认证，成功防御过多次高级持续性威胁攻击...</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">📧</a>
-                        <a href="#" class="social-link">🔒</a>
-                        <a href="#" class="social-link">📱</a>
-                    </div>
+                <div class="member-card" style="--index: 0">
+                    <img src="images/icon/zwx.png" alt="xxx" class="member-photo">
+                    <h3 class="member-name">周玟序</h3>
+                    <p class="member-role">匡亚明学院</p>
+                    <p class="member-bio">...</p>
                 </div>
             </div>
         </section>
     </main>
+    <script>
+        // 动态卡片延迟加载
+        document.querySelectorAll('.member-card').forEach((card, index) => {
+            card.style.setProperty('--index', index);
+        });
+
+        // 主题切换
+        const themeToggle = document.createElement('div');
+        themeToggle.innerHTML = `
+            <button id="themeToggle" style="position:fixed;bottom:2rem;right:2rem;
+            padding:1rem;border-radius:50%;background:var(--glass-bg);backdrop-filter:blur(12px);
+            border:none;color:var(--primary-text);cursor:pointer;">🌓</button>
+        `;
+        document.body.appendChild(themeToggle);
+
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+        });
+    </script>
 </body>
 
 </html>

@@ -642,7 +642,8 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
             padding: 20px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
@@ -1015,27 +1016,27 @@
         }
 
         /* Apple-style footer */
-  footer {
-    background: #f5f5f7;
-    color: #86868b;
-    padding: 20px;
-    font-size: 12px;
-    line-height: 1.33341;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-  }
+        footer {
+            background: #f5f5f7;
+            color: #86868b;
+            padding: 20px;
+            font-size: 12px;
+            line-height: 1.33341;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
 
-  .footer-content {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 17px 0;
-  }
+        .footer-content {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 17px 0;
+        }
 
-  .footer-content p {
-    font-size: 12px;
-    line-height: 1.33341;
-    color: #86868b;
-  }
+        .footer-content p {
+            font-size: 12px;
+            line-height: 1.33341;
+            color: #86868b;
+        }
 
         /* Animations */
         @keyframes pulse {
@@ -1067,6 +1068,7 @@
             nav .logo {
                 font-size: 15px;
             }
+
             .nav-links {
                 font-size: 15px;
             }
@@ -1280,6 +1282,10 @@
                                 <span>分解率</span>
                                 <span class="stat-value">0%</span>
                             </div>
+                            <div class="stat-item">
+                                <span>时间</span>
+                                <span class="stat-value" id="game-time">0</span>
+                            </div>
                         </div>
                         <div class="game-controls">
                             <button class="btn" id="start-game">开始游戏</button>
@@ -1406,10 +1412,10 @@
 
     <footer>
         <div class="footer-content">
-          <p>© 大分子：从材料到生命第三组</p>
-          <p>2025 春学期</p>
+            <p>© 大分子：从材料到生命第三组</p>
+            <p>2025 春学期</p>
         </div>
-      </footer>
+    </footer>
 
     <div class="modal" id="quiz-result-modal">
         <div class="modal-content">
@@ -1707,7 +1713,7 @@
             const microscopeView = document.querySelector('.microscope-view');
             let microscopeActive = false;
 
-            milk_con.addEventListener('mousemove', function (e) {
+            labSimulation.addEventListener('mousemove', function (e) {
                 if (!microscopeActive) return;
 
                 const rect = labSimulation.getBoundingClientRect();
@@ -1724,29 +1730,29 @@
                 if (microscopeActive && processStarted) {
                     // 随机生成酶微观效果
                     microscopeView.innerHTML = '';
-                        const coagulationProgress = document.querySelectorAll('.progress-bar .progress')[0];
-                        const coagulation = parseInt(coagulationProgress.style.width);
-                        for (let i = 0; i < coagulation / 5; i++) {
-                            const microParticle = document.createElement('div');
-                            microParticle.style.position = 'absolute';
-                            microParticle.style.width = '8px';
-                            microParticle.style.height = '8px';
-                            microParticle.style.backgroundColor = '#4285f4';
-                            microParticle.style.borderRadius = '50%';
-                            microParticle.style.left = `${Math.random() * 150}px`;
-                            microParticle.style.top = `${Math.random() * 150}px`;
-                            microscopeView.appendChild(microParticle);
+                    const coagulationProgress = document.querySelectorAll('.progress-bar .progress')[0];
+                    const coagulation = parseInt(coagulationProgress.style.width);
+                    for (let i = 0; i < coagulation / 5; i++) {
+                        const microParticle = document.createElement('div');
+                        microParticle.style.position = 'absolute';
+                        microParticle.style.width = '8px';
+                        microParticle.style.height = '8px';
+                        microParticle.style.backgroundColor = '#4285f4';
+                        microParticle.style.borderRadius = '50%';
+                        microParticle.style.left = `${Math.random() * 150}px`;
+                        microParticle.style.top = `${Math.random() * 150}px`;
+                        microscopeView.appendChild(microParticle);
 
-                            const line = document.createElement('div');
-                            line.style.position = 'absolute';
-                            line.style.width = `${10 + Math.random() * 20}px`;
-                            line.style.height = '2px';
-                            line.style.backgroundColor = '#333';
-                            line.style.left = `${Math.random() * 150}px`;
-                            line.style.top = `${Math.random() * 150}px`;
-                            line.style.transform = `rotate(${Math.random() * 360}deg)`;
-                            microscopeView.appendChild(line);
-                        }
+                        const line = document.createElement('div');
+                        line.style.position = 'absolute';
+                        line.style.width = `${10 + Math.random() * 20}px`;
+                        line.style.height = '2px';
+                        line.style.backgroundColor = '#333';
+                        line.style.left = `${Math.random() * 150}px`;
+                        line.style.top = `${Math.random() * 150}px`;
+                        line.style.transform = `rotate(${Math.random() * 360}deg)`;
+                        microscopeView.appendChild(line);
+                    }
                 }
             });
 
@@ -1774,7 +1780,7 @@
                         // } else {
                         //     microscopeView.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:12px;text-align:center;padding:10px;z-index:1;">酶正在切割酪蛋白链，形成小团块</div>`;
                         // }
-                        
+
                     } else {
                         microscopeView.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:12px;text-align:center;padding:10px;z-index:1;">牛奶中的脂肪球和蛋白质分子</div>`;
                     }
@@ -1788,6 +1794,7 @@
             const startGameBtn = document.getElementById('start-game');
             const resetGameBtn = document.getElementById('reset-game');
             const lactoseFactory = document.querySelector('.lactose-factory');
+            const intestineTrack = document.querySelector('.intestine-track');
             const lactase = document.querySelector('.lactase');
             const statValues = document.querySelectorAll('.stat-value');
 
@@ -1796,19 +1803,42 @@
             let glucoseCount = 0;
             let galactoseCount = 0;
             let lactoseTotal = 10;
+            let lactoseGameTimer;
+            let lactoses;
+            let lactoseCount = 10;
 
             startGameBtn.addEventListener('click', function () {
                 if (gameActive) return;
 
                 gameActive = true;
                 this.disabled = true;
+                lactoses = [];
+                let lactoseGameTime = 60;
+                lactoseBroken = 0;
 
                 // Create lactose molecules
                 clearLactoseFactory();
-                createLactoseMolecules();
+                createLactoseMolecules(10);
+
+                // 启动游戏计时器
+                lactoseGameTimer = setInterval(() => {
+                    lactoseGameTime--;
+                    document.getElementById('game-time').textContent = lactoseGameTime;
+
+                    if (lactoseGameTime <= 0 || lactoseBroken >= 10) {
+                        endGame();
+                    }
+
+                    // 每15秒新增一批乳糖
+                    if (lactoseGameTime % 2 === 0 && lactoseGameTime > 0) {
+                        createLactoseMolecules(3);
+                        lactoseCount += 3;
+                        // document.getElementById('lactose-count').textContent = lactoseCount;
+                    }
+                }, 1000);
 
                 // Make lactase draggable
-                makeLactaseDraggable();
+                makeLactaseDraggable(lactase);
 
                 showFeedback('游戏开始！拖动乳糖酶去分解乳糖');
             });
@@ -1824,6 +1854,7 @@
 
                 updateLactoseStats();
                 clearLactoseFactory();
+                endGame();
 
                 // Reset lactase position
                 lactase.style.top = '300px';
@@ -1832,42 +1863,71 @@
                 showFeedback('游戏已重置');
             });
 
-            function createLactoseMolecules() {
-                for (let i = 0; i < lactoseTotal; i++) {
+            function createLactoseMolecules(count) {
+                for (let i = 0; i < count; i++) {
                     const lactose = document.createElement('div');
-                    lactose.className = 'lactose';
                     lactose.className = 'lactose';
                     lactose.style.top = `${Math.random() * 300 + 100}px`;
                     lactose.style.left = `${Math.random() * 400 + 100}px`;
                     lactose.textContent = '乳糖';
                     lactose.dataset.broken = 'false';
-                    lactoseFactory.appendChild(lactose);
+                    lactose.dataset.id = Date.now() + i;
+                    intestineTrack.appendChild(lactose);
+                    lactoses.push(lactose);
+
+                    // 随机移动
+                    animateLactose(lactose);
                 }
             }
 
-            function makeLactaseDraggable() {
+            function animateLactose(lactose) {
+                const rect = intestineTrack.getBoundingClientRect();
+                const speed = 0.5 + Math.random() * 1;
+                let dx = (Math.random() > 0.5 ? 1 : -1) * speed;
+                let dy = (Math.random() > 0.5 ? 1 : -1) * speed;
+
+                function move() {
+                    if (!gameActive) return;
+
+                    const x = parseFloat(lactose.style.left);
+                    const y = parseFloat(lactose.style.top);
+
+                    // 边界检测
+                    if (x <= 0 || x >= rect.width - 50) dx *= -1;
+                    if (y <= 0 || y >= rect.height - 50) dy *= -1;
+
+                    lactose.style.left = `${x + dx}px`;
+                    lactose.style.top = `${y + dy}px`;
+
+                    requestAnimationFrame(move);
+                }
+
+                requestAnimationFrame(move);
+            }
+
+            function makeLactaseDraggable(element) {
                 let isDragging = false;
                 let offsetX, offsetY;
 
                 lactase.addEventListener('mousedown', function (e) {
                     if (!gameActive) return;
                     isDragging = true;
-                    offsetX = e.clientX - parseInt(lactase.style.left);
-                    offsetY = e.clientY - parseInt(lactase.style.top);
+                    offsetX = e.clientX - element.getBoundingClientRect().left;
+                    offsetY = e.clientY - element.getBoundingClientRect().top;
                     e.preventDefault();
                 });
 
                 document.addEventListener('mousemove', function (e) {
                     if (!isDragging) return;
 
-                    const x = e.clientX - offsetX;
-                    const y = e.clientY - offsetY;
-                    const rect = lactoseFactory.getBoundingClientRect();
+                    const rect = intestineTrack.getBoundingClientRect();
+                    const x = e.clientX - rect.left - offsetX;
+                    const y = e.clientY - rect.top - offsetY;
                     const maxX = rect.width - lactase.offsetWidth;
                     const maxY = rect.height - lactase.offsetHeight;
 
-                    lactase.style.left = `${Math.max(0, Math.min(maxX, x))}px`;
-                    lactase.style.top = `${Math.max(0, Math.min(maxY, y))}px`;
+                    lactase.style.left = `${Math.max(0, Math.min(x, rect.width - element.offsetWidth)) + 50}px`;
+                    lactase.style.top = `${Math.max(0, Math.min(y, rect.height - element.offsetHeight)) + 50}px`;
 
                     // Check collision with lactose molecules
                     checkLactoseCollision();
@@ -1906,8 +1966,8 @@
 
 
                 // Create glucose and galactose
-                createSugar('glucose', lactose);
-                createSugar('galactose', lactose);
+                createSugar(lactose);
+                // createSugar('galactose', lactose);
 
                 // Update stats
                 lactoseBroken++;
@@ -1925,37 +1985,78 @@
                 }
             }
 
-            function createSugar(type, lactose) {
-                const sugar = document.createElement('div');
-                sugar.className = type;
+            function endGame() {
+                clearInterval(lactoseGameTimer);
+                gameActive = false;
 
+                // document.getElementById('start-lactose-game').textContent = "再来一局";
+                // document.getElementById('start-lactose-game').disabled = false;
 
-                const rect = lactose.getBoundingClientRect();
-                const factoryRect = lactoseFactory.getBoundingClientRect();
+                // 显示结果
+                let message = "";
+                if (lactoseBroken >= 10) {
+                    message = `恭喜你！成功分解了所有乳糖！`;
+                } else {
+                    message = `游戏结束！你分解了${lactoseBroken}个乳糖，得分：${lactoseBroken*10}！`;
+                }
 
-                // Position relative to lactose
-                sugar.style.top = `${rect.top - factoryRect.top + (type === 'glucose' ? -20 : 20)}px`;
-                sugar.style.left = `${rect.left - factoryRect.left + (type === 'glucose' ? -20 : 20)}px`;
+                // 清理游戏元素
+                lactoses.forEach(lactose => lactose.remove());
+                document.querySelectorAll('.glucose, .galactose').forEach(el => el.remove());
 
-                sugar.textContent = type === 'glucose' ? '葡萄糖' : '半乳糖';
-                lactoseFactory.appendChild(sugar);
+                // 显示结果
+                showFeedback(message);
+            }
 
-                // Animate sugar movement
-                const targetY = type === 'glucose' ? -50 : 50;
-                const targetX = type === 'glucose' ? -50 : 50;
+            function createSugar(lactose) {
+                // const sugar = document.createElement('div');
+                // sugar.className = type;
+    // 创建分解产物
+    const glucose = document.createElement('div');
+    glucose.classList.add('glucose');
+    glucose.textContent = '葡萄糖';
+    glucose.style.left = lactose.style.left;
+    glucose.style.top = lactose.style.top;
+    
+    const galactose = document.createElement('div');
+    galactose.classList.add('galactose');
+    galactose.textContent = '半乳糖';
+    galactose.style.left = `${parseFloat(lactose.style.left) + 40}px`;
+    galactose.style.top = lactose.style.top;
+    
+    intestineTrack.appendChild(glucose);
+    intestineTrack.appendChild(galactose);
 
-                sugar.animate([
-                    { transform: 'translate(0, 0)' },
-                    { transform: `translate(${targetX}px, ${targetY}px)` }
-                ], {
-                    duration: 1000,
-                    fill: 'forwards'
-                });
+                // sugar.animate([
+                //     { transform: 'translate(0, 0)' },
+                //     { transform: `translate(${targetX}px, ${targetY}px)` }
+                // ], {
+                //     duration: 1000,
+                //     fill: 'forwards'
+                // });
+                // 动画效果
+    setTimeout(() => {
+        glucose.style.opacity = 1;
+        galactose.style.opacity = 1;
+        
+        glucose.style.left = `${parseFloat(glucose.style.left) - 30}px`;
+        galactose.style.left = `${parseFloat(galactose.style.left) + 30}px`;
+        // 移除原乳糖
+        setTimeout(() => {
+            lactose.remove();
+            
+            // 移除产物
+            setTimeout(() => {
+                glucose.remove();
+                galactose.remove();
+            }, 2000);
+        }, 500);
+    }, 100);
 
                 // Remove after animation
-                setTimeout(() => {
-                    sugar.remove();
-                }, 1000);
+                // setTimeout(() => {
+                //     sugar.remove();
+                // }, 1000);
             }
 
             function updateLactoseStats() {
@@ -2047,10 +2148,10 @@
                 quizResultModal.style.display = 'none';
 
                 // Reset all selections
-                const radioButtons = document.querySelectorAll('input[type="radio"]');
-                radioButtons.forEach(radio => {
-                    radio.checked = false;
-                });
+                // const radioButtons = document.querySelectorAll('input[type="radio"]');
+                // radioButtons.forEach(radio => {
+                //     radio.checked = false;
+                // });
             });
 
             // Modal close functionality
