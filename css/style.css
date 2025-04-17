@@ -88,12 +88,21 @@ html {
     font-size: 20px;
     font-weight: 500;
     text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    /* height: 100%; */
 }
 .theme-light .nav-logo {
     color: var(--text-primary);
 }
 .theme-dark .nav-logo {
     color: rgba(255, 255, 255, .8);
+}
+
+.nav-logo img{
+    width: 100px;
+    height: 100%;
 }
 
 
@@ -1101,6 +1110,10 @@ footer {
         text-wrap: nowrap;
         height: 48px;
         padding: 0px 16px;
+    }
+    .nav-bar .nav-logo img {
+        width: 50px;
+        height: 30px;
     }
     .nav-bar .nav-links {
         gap: 15px;
