@@ -433,9 +433,9 @@
                 </li>
                 <li class="nav-item">
                     <div class="nav-links">
-                        <a href="#bread" class="nav-link">面包酶</a>
-                        <a href="#wine" class="nav-link">酿酒酶</a>
-                        <a href="#cheese" class="nav-link">奶酪酶</a>
+                        <a href="index.html#bread" class="nav-link">面包酶</a>
+                        <a href="index.html#wine" class="nav-link">酿酒酶</a>
+                        <a href="index.html#cheese" class="nav-link">奶酪酶</a>
                         <a href="juice_seasoning.html" class="nav-link">果汁酶与调味品</a>
                         <!-- <a href="#" class="nav-link">面包酶实验室</a> -->
                     </div>
@@ -485,7 +485,7 @@
                     <img src="images/icon/lh.jpg" alt="xx" class="member-photo">
                     <h3 class="member-name">吕夯</h3>
                     <p class="member-role">计算机科学与技术系</p>
-                    <p class="member-bio">...</p>
+                    <p class="member-bio">自我介绍：吕夯，男，汉族，2005年6月7日生，鄂尔多斯市准格尔旗人，群众，未婚，2024年8月24日参加大学，没念完，暂时是高中学历。现任南二π舍B床床长，组内首席AI情绪安抚师，外星猫防诈骗顾问。</p>
                 </div>
 
                 <!-- 成员卡片4 -->
@@ -493,7 +493,7 @@
                     <img src="images/icon/mym.jpg" alt="xxx" class="member-photo">
                     <h3 class="member-name">马一铭</h3>
                     <p class="member-role">经济管理试验班</p>
-                    <p class="member-bio">...</p>
+                    <p class="member-bio">自我介绍：半文半理的经管专业，在微积分线代、微观经济数以万计的曲线图和记不住的会计条目里挣扎，但上课主打一个「选择性听课」，精通《如何在三天内学完一学期课程》，说"今天肯定不熬夜"后必通宵，讨厌校园跑。建议不要学经管（微笑）</p>
                 </div>
 
                 <!-- 成员卡片5 -->
@@ -501,7 +501,13 @@
                     <img src="images/icon/zwx.png" alt="xxx" class="member-photo">
                     <h3 class="member-name">周玟序</h3>
                     <p class="member-role">匡亚明学院</p>
-                    <p class="member-bio">...</p>
+                    <p class="member-bio">>>> 初始化基础参数
+                        · 主线程：在脑科学迷雾森林里给神经网络画地图（当前进度：卡在反向传播算法的第42重梦境）
+                        · 副进程：羽毛球场上演《各种下网还要假装怪拍子》（隐藏成就：用球拍在场地画出完整Python缩进符）
+                        · 系统漏洞：def 人生重要时刻( ):
+                                               总会手抖少打个括号
+                        >>> 特别鸣谢培养皿制造商
+                        本样本郑重声明：在匡院这个把咖啡因当培养基、用板书当壁纸、拿讨论班当茶话会的奇妙生态系统中，成功实现了从人类到永动机（伪）的华丽蜕变。</p>
                 </div>
             </div>
         </section>
@@ -525,6 +531,21 @@
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', newTheme);
+            const photos = document.querySelectorAll('.member-photo');
+            if (newTheme === 'dark') {
+                photos[0].src = `images/icon/lzx2.jpg`;
+                photos[1].src = `images/icon/lwt2.jpg`;
+                photos[2].src = `images/icon/lh2.jpg`;
+                photos[3].src = `images/icon/mym2.jpg`;
+                photos[4].src = `images/icon/zwx2.jpg`;
+            } else {
+                photos[0].src = `images/icon/lzx.jpg`;
+                photos[1].src = `images/icon/lwt.jpg`;
+                photos[2].src = `images/icon/lh.jpg`;
+                photos[3].src = `images/icon/mym.jpg`;
+                photos[4].src = `images/icon/zwx.png`;
+            }
+            
         });
     </script>
 </body>
