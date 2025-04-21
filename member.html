@@ -233,7 +233,7 @@
 
         /* 团队展示区 */
         .team-section {
-            padding: 8rem 2rem;
+            padding: 5rem 2rem;
         }
 
         .section-header {
@@ -266,7 +266,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            padding: 0 2rem;
+            padding: 0 0.5rem;
         }
 
         /* 成员卡片 */
@@ -435,6 +435,10 @@
 
         /* 响应式设计 */
         @media (max-width: 768px) {
+            .team-section {
+                padding: 5rem 0;
+
+            }
             .nav-links {
                 display: none;
             }
