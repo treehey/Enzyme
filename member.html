@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN"  data-theme="light">
+<html lang="zh-CN" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -28,7 +28,7 @@
             --shadow-lifted: 0px 20px 40px rgba(0, 0, 0, 0.12);
             --ai-gradient: linear-gradient(94deg, #0090F7, #BA62FC, #F2416B, #F55600);
             --primary-text: #1d1d1f;
-            --secondary-text: #86868B;
+            --secondary-text: #5e5e62;
             --accent-blue: #2997FF;
             --accent-green: #32D74B;
             --glass-bg: rgba(28, 28, 30, 0.72);
@@ -70,6 +70,7 @@
             line-height: 1.47059;
             color: var(--primary-text);
             background: var(--surface-primary);
+            /* transition: all 0.36s cubic-bezier(0.32, 0.08, 0.24, 1); */
         }
 
         /* 动态导航栏 */
@@ -311,12 +312,14 @@
             -webkit-mask-composite: xor;
             mask-composite: exclude;
             transition: all 0.6s var(--ease-smooth);
+            z-index: -1;
         }
 
         .member-card:hover {
-            transform: translateY(-10px),scale(1.1);
+            transform: translateY(-10px), scale(1.1);
             box-shadow: var(--shadow-xl);
         }
+
         .member-card:hover::before {
             transform: scale(1.05);
         }
@@ -372,6 +375,10 @@
             min-height: 120px;
         }
 
+        [data-theme="dark"] .member-bio {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         .social-links {
             display: flex;
             justify-content: center;
@@ -392,6 +399,26 @@
         .social-link:hover {
             background: #e5e5e9;
         }
+
+        .alien-cat {
+        background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff0000);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400% 400%; /* 设置背景大小 */
+        animation: gradientAnimation 0.5s infinite linear;
+        cursor: pointer;
+        white-space: nowrap;
+        font-size: 25px;
+    }
+
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
 
         /* 增加多列布局适配 */
         @media (min-width: 1024px) {
@@ -469,7 +496,7 @@
                     <img src="images/icon/lzx.jpg" alt="xxx" class="member-photo">
                     <h3 class="member-name">廖梓熙</h3>
                     <p class="member-role">技术科学实验班</p>
-                    <p class="member-bio">能做出来这种网页的家里得请哈基高了，唉唉网页怎么这么难写。</p>
+                    <p class="member-bio">能做出来这种网页的家里得请哈基高了，唉唉网页怎么这么难写。我差不多就是这种小猫咪，表面上单纯天真，实际上圆滑通透。你不可能算计得了本喵，因为从一开始你就被本喵布局了。本喵是耄耋，而你只是猫条，若你违逆本喵，你会知道什么是哈气和猫拳。本喵从来不缺雷霆手段也不缺菩萨心肠，本喵心中有绝世豪猫也有棘背龙，但我把棘背龙深深的封印起来了，只剩下绝世毫猫了，我本想以好喵喵心肠面对所有人，可是有些人非要我把心中的棘背龙形态解除封印，那我想问问你们，当你们面对一个真正的棘背龙现世，你们还镇的住吗？</p>
                 </div>
 
                 <!-- 成员卡片2 -->
@@ -477,7 +504,9 @@
                     <img src="images/icon/lwt.jpg" alt="xx" class="member-photo">
                     <h3 class="member-name">李文韬</h3>
                     <p class="member-role">匡亚明学院</p>
-                    <p class="member-bio">化生🥜方向，垂死挣扎大学牲，超稀有高四体验卡拥有者，喜欢的运动是在焦虑摆烂之间反复横跳和追赶ddl，偶尔看书，偶尔羽毛球，偶尔打农和一些奇怪的小游戏，理想是或许将来可以从事科研工作，最大的愿望是微积分二总评上85（成了必回来还愿）</p>
+                    <p class="member-bio">
+                        化生🥜方向，垂死挣扎大学牲，超稀有高四体验卡拥有者，喜欢的运动是在焦虑摆烂之间反复横跳和追赶ddl，偶尔看书，偶尔羽毛球，偶尔打农和一些奇怪的小游戏，理想是或许将来可以从事科研工作，最大的愿望是微积分二总评上85（成了必回来还愿）
+                    </p>
                 </div>
 
                 <!-- 成员卡片3 -->
@@ -485,7 +514,9 @@
                     <img src="images/icon/lh.jpg" alt="xx" class="member-photo">
                     <h3 class="member-name">吕夯</h3>
                     <p class="member-role">计算机科学与技术系</p>
-                    <p class="member-bio">自我介绍：吕夯，男，汉族，2005年6月7日生，鄂尔多斯市准格尔旗人，群众，未婚，2024年8月24日参加大学，没念完，暂时是高中学历。现任南二π舍B床床长，组内首席AI情绪安抚师，外星猫防诈骗顾问。</p>
+                    <p class="member-bio">
+                        自我介绍：吕夯，男，汉族，2005年6月7日生，鄂尔多斯市准格尔旗人，群众，未婚，2024年8月24日参加大学，没念完，暂时是高中学历。现任南二π舍B床床长，组内首席AI情绪安抚师，<span
+                            class="alien-cat" onclick="toggleTheme()">外星猫</span>防诈骗顾问。</p>
                 </div>
 
                 <!-- 成员卡片4 -->
@@ -493,7 +524,9 @@
                     <img src="images/icon/mym.jpg" alt="xxx" class="member-photo">
                     <h3 class="member-name">马一铭</h3>
                     <p class="member-role">经济管理试验班</p>
-                    <p class="member-bio">半文半理的经管专业，在微积分线代、微观经济数以万计的曲线图和记不住的会计条目里挣扎，但上课主打一个「选择性听课」，精通《如何在三天内学完一学期课程》，说"今天肯定不熬夜"后必通宵，讨厌校园跑。建议不要学经管（微笑）</p>
+                    <p class="member-bio">
+                        半文半理的经管专业，在微积分线代、微观经济数以万计的曲线图和记不住的会计条目里挣扎，但上课主打一个「选择性听课」，精通《如何在三天内学完一学期课程》，说"今天肯定不熬夜"后必通宵，讨厌校园跑。建议不要学经管（微笑）
+                    </p>
                 </div>
 
                 <!-- 成员卡片5 -->
@@ -505,7 +538,7 @@
                         · 主线程：在脑科学迷雾森林里给神经网络画地图（当前进度：卡在反向传播算法的第42重梦境）
                         · 副进程：羽毛球场上演《各种下网还要假装怪拍子》（隐藏成就：用球拍在场地画出完整Python缩进符）
                         · 系统漏洞：def 人生重要时刻( ):
-                                               总会手抖少打个括号
+                        总会手抖少打个括号
                         >>> 特别鸣谢培养皿制造商
                         本样本郑重声明：在匡院这个把咖啡因当培养基、用板书当壁纸、拿讨论班当茶话会的奇妙生态系统中，成功实现了从人类到永动机（伪）的华丽蜕变。</p>
                 </div>
@@ -523,30 +556,127 @@
         themeToggle.innerHTML = `
             <button id="themeToggle" style="position:fixed;bottom:2rem;right:2rem;
             padding:1rem;border-radius:50%;background:var(--glass-bg);backdrop-filter:blur(12px);
-            border:none;color:var(--primary-text);cursor:pointer;">🌓</button>
+            border:none;color:var(--primary-text);cursor:pointer;" onclick="toggleTheme()">🌓</button>
         `;
         document.body.appendChild(themeToggle);
 
-        document.getElementById('themeToggle').addEventListener('click', () => {
+        function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', newTheme);
-            const photos = document.querySelectorAll('.member-photo');
-            if (newTheme === 'dark') {
-                photos[0].src = `images/icon/lzx2.jpg`;
-                photos[1].src = `images/icon/lwt2.jpg`;
-                photos[2].src = `images/icon/lh2.jpg`;
-                photos[3].src = `images/icon/mym2.jpg`;
-                photos[4].src = `images/icon/zwx2.jpg`;
-            } else {
-                photos[0].src = `images/icon/lzx.jpg`;
-                photos[1].src = `images/icon/lwt.jpg`;
-                photos[2].src = `images/icon/lh.jpg`;
-                photos[3].src = `images/icon/mym.jpg`;
-                photos[4].src = `images/icon/zwx.png`;
+
+            const photoPaths = [
+                { light: 'images/icon/lzx.jpg', dark: 'images/icon/lzx2.jpg' },
+                { light: 'images/icon/lwt.jpg', dark: 'images/icon/lwt2.jpg' },
+                { light: 'images/icon/lh.jpg', dark: 'images/icon/lh2.jpg' },
+                { light: 'images/icon/mym.jpg', dark: 'images/icon/mym2.jpg' },
+                { light: 'images/icon/zwx.png', dark: 'images/icon/zwx2.jpg' }
+            ];
+
+            const bioContents = [
+                {
+                    light: "能做出来这种网页的家里得请哈基高了，唉唉网页怎么这么难写。我差不多就是这种小猫咪，表面上单纯天真，实际上圆滑通透。你不可能算计得了本喵，因为从一开始你就被本喵布局了。本喵是耄耋，而你只是猫条，若你违逆本喵，你会知道什么是哈气和猫拳。本喵从来不缺雷霆手段也不缺菩萨心肠，本喵心中有绝世豪猫也有棘背龙，但我把棘背龙深深的封印起来了，只剩下绝世毫猫了，我本想以好喵喵心肠面对所有人，可是有些人非要我把心中的棘背龙形态解除封印，那我想问问你们，当你们面对一个真正的棘背龙现世，你们还镇的住吗？",
+                    dark: "Nithra'xelis vornak ul'tharnax, zorvath krelnor. Xel'tharis dynorix, praxan vor'thalis ethren kor'naxar."
+                },
+                {
+                    light: "化生🥜方向，垂死挣扎大学牲，超稀有高四体验卡拥有者，喜欢的运动是在焦虑摆烂之间反复横跳和追赶ddl，偶尔看书，偶尔羽毛球，偶尔打农和一些奇怪的小游戏，理想是或许将来可以从事科研工作，最大的愿望是微积分二总评上85（成了必回来还愿）",
+                    dark: "Mangxu la radikon de la legomo, faru grandajn aferojn. Kie estas la radiko de la legomo? La pastoreto montras for al la NJU"
+                },
+                {
+                    light: "自我介绍：吕夯，男，汉族，2005年6月7日生，鄂尔多斯市准格尔旗人，群众，未婚，2024年8月24日参加大学，没念完，暂时是高中学历。现任南二π舍B床床长，组内首席AI情绪安抚师，外星猫防诈骗顾问。",
+                    dark: "Zyx'tor flarn!Kweepolix zong-blattVr'zith drellis oon-wobble,Squizzle-fraz m'zoth quark-snizz!"
+                },
+                {
+                    light: "半文半理的经管专业，在微积分线代、微观经济数以万计的曲线图和记不住的会计条目里挣扎，但上课主打一个「选择性听课」，精通《如何在三天内学完一学期课程》，说\"今天肯定不熬夜\"后必通宵，讨厌校园跑。建议不要学经管（微笑）",
+                    dark: "Zorath, firok zorath dora. Vadis nagorath nagor. Lunara tarikath tarik. Dorath zorath, kivara zorath."
+                },
+                {
+                    light: ">>> 初始化基础参数\n· 主线程：在脑科学迷雾森林里给神经网络画地图（当前进度：卡在反向传播算法的第42重梦境）\n· 副进程：羽毛球场上演《各种下网还要假装怪拍子》（隐藏成就：用球拍在场地画出完整Python缩进符）\n· 系统漏洞：def 人生重要时刻( ):\n       总会手抖少打个括号\n>>> 特别鸣谢培养皿制造商\n本样本郑重声明：在匡院这个把咖啡因当培养基、用板书当壁纸、拿讨论班当茶话会的奇妙生态系统中，成功实现了从人类到永动机（伪）的华丽蜕变。",
+                    dark: "✨ Zyr’vahl Xenitharian ✨  Vyr’ath sol’qira shi’lana,  Oryn’vei ka’lyssa trem’vora,  Qel’zara mord’ynth te’pharos,  Zal’qorra yl’shennath,  Zal’qorra yl’shennath!"
+                }
+            ];
+
+            const memberNames = [
+                {
+                    light: "廖梓熙",
+                    dark: "TreeHey"
+                },
+                {
+                    light: "李文韬",
+                    dark: "Soar"
+                },
+                {
+                    light: "吕夯",
+                    dark: "ecnuoner"
+                },
+                {
+                    light: "马一铭",
+                    dark: "Nemophilist"
+                },
+                {
+                    light: "周玟序",
+                    dark: "ARESa"
+                }
+            ];
+
+            const memberRoles = [
+                {
+                    light: "技术科学实验班",
+                    dark: "Prime Technological Research Sector"
+                },
+                {
+                    light: "匡亚明学院",
+                    dark: "Kryamin'Zor Academy of Cosmic Knowledge"
+                },
+                {
+                    light: "计算机科学与技术系",
+                    dark: "Cybertronix Nexus of Computational Mastery"
+                },
+                {
+                    light: "经济管理试验班",
+                    dark: "The EconoSynth Institute for Advanced Management and Economic Dynamics"
+                },
+                {
+                    light: "匡亚明学院",
+                    dark: "Kryamin'Zor Academy of Cosmic Knowledge"
+                }
+            ]
+
+            const title = {
+                light: "小组成员",
+                dark: "Mysterious alien cat group"
             }
-            
-        });
+            const subtitle = {
+                light: "2024届 5位成员",
+                dark: "Group num. 8372, 5 members"
+            }
+
+            const photos = document.querySelectorAll('.member-photo');
+            const bios = document.querySelectorAll('.member-bio');
+            const names = document.querySelectorAll('.member-name');
+            const roles = document.querySelectorAll('.member-role');
+            const titleE = document.querySelector('.section-title');
+            const subtitleE = document.querySelector('.hero-subhead');
+
+            photos.forEach((photo, index) => {
+                photo.src = newTheme === 'dark' ? photoPaths[index].dark : photoPaths[index].light;
+            });
+
+            bios.forEach((bio, index) => {
+                bio.textContent = newTheme === 'dark' ? bioContents[index].dark : bioContents[index].light;
+            });
+
+            names.forEach((name, index) => {
+                name.textContent = newTheme === 'dark' ? memberNames[index].dark : memberNames[index].light;
+            });
+
+            roles.forEach((role, index) => {
+                role.textContent = newTheme === 'dark' ? memberRoles[index].dark : memberRoles[index].light;
+            });
+
+            titleE.textContent = newTheme === 'dark' ? title.dark : title.light;
+            subtitleE.textContent = newTheme === 'dark' ? subtitle.dark : subtitle.light;
+        };
     </script>
 </body>
 
