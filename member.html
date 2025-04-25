@@ -242,6 +242,9 @@
             opacity: 0;
             transform: translateY(40px);
             animation: sectionReveal 1s var(--ease-smooth) forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         @keyframes sectionReveal {
@@ -258,6 +261,77 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 1.5rem;
             letter-spacing: -0.03em;
+        }
+
+        /* From Uiverse.io by Creatlydev */
+        .btn-github {
+            margin-top: 10px;
+            cursor: pointer;
+            display: flex;
+            /* gap: 0.5rem; */
+            border: none;
+
+            /* transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); */
+            border-radius: 100px;
+            font-weight: 800;
+            place-content: center;
+
+            /* padding: 0.75rem 1rem; */
+            font-size: 0.825rem;
+            line-height: 1rem;
+
+            /* background-color: rgba(0, 0, 0, 0.6);
+            box-shadow:
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.04); */
+            color: #fff;
+            backdrop-filter: blur(10px);
+        }
+
+        .svgContainer {
+            width: 100%;
+            height: 100%;
+            gap: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            /* backdrop-filter: blur(0px); */
+            border-radius: 100px;
+            padding: 0.75rem 1rem;
+            transition: all .3s;
+
+            box-shadow:
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+            color: #fff;
+        }
+
+        .button-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 100px;
+            pointer-events: none;
+            transition: all .3s;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        .btn-github:hover .svgContainer{
+            box-shadow:
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+                inset 0 0 0 1px rgba(252, 232, 3, 0.08);
+            /* color: #fce803; */
+            transform: translate(0, -0.25rem);
+            /* background-color: rgba(0, 0, 0, 0.5); */
+            transform: scale(1.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(156, 156, 156, 0.466);
+        }
+
+        .btn-github:hover .button-bg{
+            transform: scale(0.9);
         }
 
         .team-grid {
@@ -321,7 +395,7 @@
         }
 
         .member-card:hover::before {
-            transform: scale(1.05);
+            transform: scale(1.05);  
         }
 
         .member-photo {
@@ -401,24 +475,27 @@
         }
 
         .alien-cat {
-        background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff0000);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-size: 400% 400%; /* 设置背景大小 */
-        animation: gradientAnimation 0.5s infinite linear;
-        cursor: pointer;
-        white-space: nowrap;
-        font-size: 25px;
-    }
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #d8d800, #ff0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 400% 400%;
+            /* 设置背景大小 */
+            animation: gradientAnimation 1s infinite linear;
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 25px;
+        }
 
-    @keyframes gradientAnimation {
-        0% {
-            background-position: 100% 50%;
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 400% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
-        100% {
-            background-position: 0% 50%;
-        }
-    }
 
         /* 增加多列布局适配 */
         @media (min-width: 1024px) {
@@ -439,6 +516,7 @@
                 padding: 5rem 0;
 
             }
+
             .nav-links {
                 display: none;
             }
@@ -492,6 +570,18 @@
             <div class="section-header">
                 <h2 class="section-title">小组成员</h2>
                 <p class="hero-subhead">2024届 5位成员</p>
+                <p class="github-button-title">此项目的GitHub仓库</p>
+                <button class="btn-github" onclick="window.open('https://github.com/treehey/Enzyme')">
+                    <div class="svgContainer">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M7.99992 1.33331C7.12444 1.33331 6.25753 1.50575 5.4487 1.84078C4.63986 2.17581 3.90493 2.66688 3.28587 3.28593C2.03563 4.53618 1.33325 6.23187 1.33325 7.99998C1.33325 10.9466 3.24659 13.4466 5.89325 14.3333C6.22659 14.3866 6.33325 14.18 6.33325 14C6.33325 13.8466 6.33325 13.4266 6.33325 12.8733C4.48659 13.2733 4.09325 11.98 4.09325 11.98C3.78659 11.2066 3.35325 11 3.35325 11C2.74659 10.5866 3.39992 10.6 3.39992 10.6C4.06659 10.6466 4.41992 11.2866 4.41992 11.2866C4.99992 12.3 5.97992 12 6.35992 11.84C6.41992 11.4066 6.59325 11.1133 6.77992 10.9466C5.29992 10.78 3.74659 10.2066 3.74659 7.66665C3.74659 6.92665 3.99992 6.33331 4.43325 5.85998C4.36659 5.69331 4.13325 4.99998 4.49992 4.09998C4.49992 4.09998 5.05992 3.91998 6.33325 4.77998C6.85992 4.63331 7.43325 4.55998 7.99992 4.55998C8.56659 4.55998 9.13992 4.63331 9.66659 4.77998C10.9399 3.91998 11.4999 4.09998 11.4999 4.09998C11.8666 4.99998 11.6333 5.69331 11.5666 5.85998C11.9999 6.33331 12.2533 6.92665 12.2533 7.66665C12.2533 10.2133 10.6933 10.7733 9.20659 10.94C9.44659 11.1466 9.66659 11.5533 9.66659 12.1733C9.66659 13.0666 9.66659 13.7866 9.66659 14C9.66659 14.18 9.77325 14.3933 10.1133 14.3333C12.7599 13.44 14.6666 10.9466 14.6666 7.99998C14.6666 7.1245 14.4941 6.25759 14.1591 5.44876C13.8241 4.63992 13.333 3.90499 12.714 3.28593C12.0949 2.66688 11.36 2.17581 10.5511 1.84078C9.7423 1.50575 8.8754 1.33331 7.99992 1.33331V1.33331Z"
+                            fill="currentcolor"></path>
+                    </svg>
+                    <span>View on Github</span>
+                    </div>
+                    <span class="button-bg"></span>
+                </button>
             </div>
 
             <div class="team-grid">
@@ -500,7 +590,9 @@
                     <img src="images/icon/lzx.jpg" alt="xxx" class="member-photo">
                     <h3 class="member-name">廖梓熙</h3>
                     <p class="member-role">技术科学实验班</p>
-                    <p class="member-bio">能做出来这种网页的家里得请哈基高了，唉唉网页怎么这么难写。我差不多就是这种小猫咪，表面上单纯天真，实际上圆滑通透。你不可能算计得了本喵，因为从一开始你就被本喵布局了。本喵是耄耋，而你只是猫条，若你违逆本喵，你会知道什么是哈气和猫拳。本喵从来不缺雷霆手段也不缺菩萨心肠，本喵心中有绝世豪猫也有棘背龙，但我把棘背龙深深的封印起来了，只剩下绝世毫猫了，我本想以好喵喵心肠面对所有人，可是有些人非要我把心中的棘背龙形态解除封印，那我想问问你们，当你们面对一个真正的棘背龙现世，你们还镇的住吗？</p>
+                    <p class="member-bio">
+                        能做出来这种网页的家里得请哈基高了，唉唉网页怎么这么难写。我差不多就是这种小猫咪，表面上单纯天真，实际上圆滑通透。你不可能算计得了本喵，因为从一开始你就被本喵布局了。本喵是耄耋，而你只是猫条，若你违逆本喵，你会知道什么是哈气和猫拳。本喵从来不缺雷霆手段也不缺菩萨心肠，本喵心中有绝世豪猫也有棘背龙，但我把棘背龙深深的封印起来了，只剩下绝世毫猫了，我本想以好喵喵心肠面对所有人，可是有些人非要我把心中的棘背龙形态解除封印，那我想问问你们，当你们面对一个真正的棘背龙现世，你们还镇的住吗？
+                    </p>
                 </div>
 
                 <!-- 成员卡片2 -->
@@ -654,6 +746,10 @@
                 light: "2024届 5位成员",
                 dark: "Group num. 8372, 5 members"
             }
+            const githubButton = {
+                light: "此项目的GitHub仓库",
+                dark: "Meow Meow Meow"
+            }
 
             const photos = document.querySelectorAll('.member-photo');
             const bios = document.querySelectorAll('.member-bio');
@@ -661,6 +757,7 @@
             const roles = document.querySelectorAll('.member-role');
             const titleE = document.querySelector('.section-title');
             const subtitleE = document.querySelector('.hero-subhead');
+            const githubButtonE = document.querySelector('.github-button-title');
 
             photos.forEach((photo, index) => {
                 photo.src = newTheme === 'dark' ? photoPaths[index].dark : photoPaths[index].light;
@@ -680,6 +777,7 @@
 
             titleE.textContent = newTheme === 'dark' ? title.dark : title.light;
             subtitleE.textContent = newTheme === 'dark' ? subtitle.dark : subtitle.light;
+            githubButtonE.textContent = newTheme === 'dark' ? githubButton.dark : githubButton.light;
         };
     </script>
 </body>
