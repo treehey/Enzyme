@@ -410,8 +410,8 @@
   .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 980px;
+    gap: 40px;
+    max-width: 1000px;
     margin: 60px auto;
     padding: 0 20px;
   }
